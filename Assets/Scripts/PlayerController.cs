@@ -34,6 +34,18 @@ public class PlayerController : MonoBehaviour {
 
     private void FixedUpdate()
     {
+
+        Vector3 fixedVelocity = myRigidbody2D.velocity;
+        fixedVelocity.x *= 0.75f;
+
+        if (tocandoPiso)
+        {
+            myRigidbody2D.velocity = fixedVelocity;
+        }
+
+        // Lo de arriba es para solucionar que no se mueva siempre, ya que pusimos
+        // que las plataformas no tengan fricción.
+
         float direccion = Input.GetAxis("Horizontal");
 
         myRigidbody2D.AddForce(Vector2.right * speed * direccion);
@@ -56,5 +68,11 @@ public class PlayerController : MonoBehaviour {
             myRigidbody2D.AddForce(Vector2.up * fuerzaSalto, ForceMode2D.Impulse);
             jump = false;
         }
+    }
+
+    private void OnBecameInvisible()
+        // Sólo para las pruebas
+    {
+        transform.position = new Vector3(-7, 0, 0);
     }
 }
