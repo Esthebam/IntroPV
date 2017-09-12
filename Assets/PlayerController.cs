@@ -6,32 +6,55 @@ public class PlayerController : MonoBehaviour {
 
     public float maxSpeed = 5f;
     public float speed = 2f;
-
-    private Rigidbody2D myrb2d;
+    public bool tocandoPiso;
+    public float fuerzaSalto = 6.5f;
+    
+    private Rigidbody2D myRigidbody2D;
+    private Animator myAnimator;
+    private bool jump;
 
 	// Use this for initialization
 	void Start () {
-        myrb2d = GetComponent<Rigidbody2D>();
-	}
+        myRigidbody2D = GetComponent<Rigidbody2D>();
+        myAnimator = GetComponent<Animator>();
+    }
 	
 	// Update is called once per frame
 	void Update () {
-		
+        // Hacemos que cambie el sprite pero comprobando siempre contra un valor positivo (0.1).
+        // Por eso usamos Abs (valor absoluto)
+        myAnimator.SetFloat("Speed", Mathf.Abs(myRigidbody2D.velocity.x));
+        myAnimator.SetBool("TocandoPiso", tocandoPiso);
+
+        if (Input.GetKeyDown(KeyCode.UpArrow) && tocandoPiso)
+        {
+            jump = true;
+        }
 	}
 
     private void FixedUpdate()
     {
         float direccion = Input.GetAxis("Horizontal");
 
-        myrb2d.AddForce(Vector2.right * speed * direccion);
+        myRigidbody2D.AddForce(Vector2.right * speed * direccion);
 
-        if (myrb2d.velocity.x > maxSpeed)
+        // Clamp toma un valor y le aplica un filtro (un valor mínimo y un valor máximo)
+        float limiteVelocidad = Mathf.Clamp(myRigidbody2D.velocity.x, -maxSpeed, maxSpeed);
+        myRigidbody2D.velocity = new Vector2(limiteVelocidad, myRigidbody2D.velocity.y);
+
+        if (direccion > 0.1f)
         {
-            myrb2d.velocity = new Vector2(maxSpeed, myrb2d.velocity.y);
+            transform.localScale = new Vector3(1f, 1f, 1f);
         }
-        if (myrb2d.velocity.x < -maxSpeed)
+        if (direccion < -0.1f)
         {
-            myrb2d.velocity = new Vector2(-maxSpeed, myrb2d.velocity.y);
+            transform.localScale = new Vector3(-1f, 1f, 1f);
+        }
+
+        if (jump)
+        {
+            myRigidbody2D.AddForce(Vector2.up * fuerzaSalto, ForceMode2D.Impulse);
+            jump = false;
         }
     }
 }
