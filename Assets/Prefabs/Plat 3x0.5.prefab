@@ -69,7 +69,7 @@ GameObject:
   - component: {fileID: 4590855189342938}
   - component: {fileID: 61364744670680190}
   m_Layer: 0
-  m_Name: Plataforma 3x0.5
+  m_Name: Plat 3x0.5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

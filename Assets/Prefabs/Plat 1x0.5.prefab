@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 212957106298128214}
   - component: {fileID: 61457742513224278}
   m_Layer: 0
-  m_Name: Plataforma 1x1 aerea
+  m_Name: Plat 1x0.5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
