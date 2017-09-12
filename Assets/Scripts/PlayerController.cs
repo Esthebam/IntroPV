@@ -65,6 +65,7 @@ public class PlayerController : MonoBehaviour {
 
         if (jump)
         {
+            myRigidbody2D.velocity = new Vector2(myRigidbody2D.velocity.x, 0); // Para que cancele la velocidad vertical y no se produzcan "saltos dobles"
             myRigidbody2D.AddForce(Vector2.up * fuerzaSalto, ForceMode2D.Impulse);
             jump = false;
         }
