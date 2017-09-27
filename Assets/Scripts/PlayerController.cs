@@ -46,10 +46,10 @@ public class PlayerController : MonoBehaviour {
             jump = true;
         }
 
-		if (Input.GetKeyDown (KeyCode.Space)) {
+		if (Input.GetMouseButtonDown(0)) {
 			disparo = true;
 
-		} else if (Input.GetKeyUp (KeyCode.Space)) {
+		} else if (Input.GetMouseButtonUp(0)) {
 
 			disparo = false;
 		}
