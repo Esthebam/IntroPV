@@ -12,6 +12,10 @@ public class PlayerController : MonoBehaviour {
     private Rigidbody2D myRigidbody2D;
     private Animator myAnimator;
     private bool jump;
+	private bool seAgacha;
+	private bool disparo;
+
+
 
 	// Use this for initialization
 	void Start () {
@@ -23,13 +27,35 @@ public class PlayerController : MonoBehaviour {
 	void Update () {
         // Hacemos que cambie el sprite pero comprobando siempre contra un valor positivo (0.1).
         // Por eso usamos Abs (valor absoluto)
+
         myAnimator.SetFloat("Speed", Mathf.Abs(myRigidbody2D.velocity.x));
         myAnimator.SetBool("TocandoPiso", tocandoPiso);
+		myAnimator.SetBool ("SeAgacha", seAgacha);
+		myAnimator.SetBool ("Disparo", disparo);
+
+		if (Input.GetKey (KeyCode.DownArrow) && tocandoPiso) {
+			seAgacha = true;
+		} else 
+			 {
+			 	seAgacha = false;
+			 }
+
 
         if (Input.GetKeyDown(KeyCode.UpArrow) && tocandoPiso)
         {
             jump = true;
         }
+
+		if (Input.GetKeyDown (KeyCode.Space)) {
+			disparo = true;
+
+		} else if (Input.GetKeyUp (KeyCode.Space)) {
+
+			disparo = false;
+		}
+
+
+			
 	}
 
     private void FixedUpdate()
@@ -47,6 +73,7 @@ public class PlayerController : MonoBehaviour {
         // que las plataformas no tengan fricción.
 
         float direccion = Input.GetAxis("Horizontal");
+
 
         myRigidbody2D.AddForce(Vector2.right * speed * direccion);
 
@@ -69,6 +96,7 @@ public class PlayerController : MonoBehaviour {
             myRigidbody2D.AddForce(Vector2.up * fuerzaSalto, ForceMode2D.Impulse);
             jump = false;
         }
+			
     }
 
     private void OnBecameInvisible()
