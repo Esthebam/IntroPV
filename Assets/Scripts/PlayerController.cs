@@ -13,6 +13,8 @@ public class PlayerController : MonoBehaviour
     public Transform bulletSpawner;
     public GameObject bulletPrefab;
 
+    public AudioSource shootingSound;
+
     private Rigidbody2D myRigidbody2D;
     private Animator myAnimator;
     private bool jump;
@@ -105,6 +107,7 @@ public class PlayerController : MonoBehaviour
         {
             myAnimator.SetBool("Disparo", true);
             Instantiate(bulletPrefab, bulletSpawner.position, bulletSpawner.rotation);
+            shootingSound.Play();
         }
         else if (Input.GetMouseButtonUp(0))
         {
