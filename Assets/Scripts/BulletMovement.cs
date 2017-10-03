@@ -41,4 +41,14 @@ public class BulletMovement : MonoBehaviour
     {
         Destroy(gameObject, bulletLife);
     }
+
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.tag == "Piso")
+        {
+            GetComponent<ParticleSystem>().Play(); // Que haga el efecto de partículas
+            GetComponent<SpriteRenderer>().enabled = false; // Que deje de verse la bala
+            GetComponent<CircleCollider2D>().enabled = false; // Que deshabilite el collider para que no mate un enemigo atrás de otro
+        }
+    }
 }
