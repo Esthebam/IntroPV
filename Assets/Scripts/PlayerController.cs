@@ -2,61 +2,61 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour {
+public class PlayerController : MonoBehaviour
+{
 
     public float maxSpeed = 5f;
     public float speed = 2f;
     public bool tocandoPiso;
     public float fuerzaSalto = 6.5f;
-    
+
+    public Transform bulletSpawner;
+    public GameObject bulletPrefab;
+
     private Rigidbody2D myRigidbody2D;
     private Animator myAnimator;
     private bool jump;
-	private bool seAgacha;
-	private bool disparo;
+    private bool seAgacha;
 
 
-
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start()
+    {
         myRigidbody2D = GetComponent<Rigidbody2D>();
         myAnimator = GetComponent<Animator>();
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update()
+    {
+        Movement();
+        PlayerShooting();
+
+    }
+
+    private void Movement()
+    {
         // Hacemos que cambie el sprite pero comprobando siempre contra un valor positivo (0.1).
         // Por eso usamos Abs (valor absoluto)
 
         myAnimator.SetFloat("Speed", Mathf.Abs(myRigidbody2D.velocity.x));
         myAnimator.SetBool("TocandoPiso", tocandoPiso);
-		myAnimator.SetBool ("SeAgacha", seAgacha);
-		myAnimator.SetBool ("Disparo", disparo);
+        myAnimator.SetBool("SeAgacha", seAgacha);
 
-		if (Input.GetKey (KeyCode.DownArrow) && tocandoPiso) {
-			seAgacha = true;
-		} else 
-			 {
-			 	seAgacha = false;
-			 }
-
+        if (Input.GetKey(KeyCode.DownArrow) && tocandoPiso)
+        {
+            seAgacha = true;
+        }
+        else
+        {
+            seAgacha = false;
+        }
 
         if (Input.GetKeyDown(KeyCode.UpArrow) && tocandoPiso)
         {
             jump = true;
         }
-
-		if (Input.GetMouseButtonDown(0)) {
-			disparo = true;
-
-		} else if (Input.GetMouseButtonUp(0)) {
-
-			disparo = false;
-		}
-
-
-			
-	}
+    }
 
     private void FixedUpdate()
     {
@@ -96,12 +96,50 @@ public class PlayerController : MonoBehaviour {
             myRigidbody2D.AddForce(Vector2.up * fuerzaSalto, ForceMode2D.Impulse);
             jump = false;
         }
-			
+
+    }
+
+    public void PlayerShooting()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            myAnimator.SetBool("Disparo", true);
+            Instantiate(bulletPrefab, bulletSpawner.position, bulletSpawner.rotation);
+        }
+        else if (Input.GetMouseButtonUp(0))
+        {
+            myAnimator.SetBool("Disparo", false);
+        }
     }
 
     private void OnBecameInvisible()
-        // Sólo para las pruebas
+    // Sólo para las pruebas
     {
         transform.position = new Vector3(-7, 0, 0);
     }
+
+
+    private void OnCollisionStay2D(Collision2D col)
+	{
+		if(col.gameObject.tag == "Enemigo")
+		{
+			fuerzaSalto = 15f;
+			StartCoroutine ("tiempoEspera");
+			
+		}
+
+	}
+
+	IEnumerator tiempoEspera() {
+		yield return new WaitForSeconds (5);
+		fuerzaSalto = 9.25f;
+	
+	}
+
 }
+
+
+
+		
+		
+
