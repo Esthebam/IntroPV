@@ -31,7 +31,8 @@ public class HealthManager : MonoBehaviour {
 				playerHealth -= enemyDamage;
 				if(playerHealth > 0)
 				{
-					GetComponent<SpriteRenderer>().color = Color.red;
+					//GetComponent<SpriteRenderer>().color = Color.red;
+					StartCoroutine ("color");
 					invincible = true;
 					StartCoroutine ("tiempoEspera");
 					if (col.GetComponent<SpriteRenderer>().flipX == false)
@@ -53,7 +54,7 @@ public class HealthManager : MonoBehaviour {
 		}
 
     }
-
+	/*
     void OnTriggerExit2D(Collider2D col)
     {
         if (col.tag == "Enemigo")
@@ -61,12 +62,20 @@ public class HealthManager : MonoBehaviour {
             GetComponent<SpriteRenderer>().color = Color.white;
         }
     }
-
+*/
 	IEnumerator tiempoEspera() {
 		yield return new WaitForSeconds (1.2f);
 		invincible = false;
+	}
 
+	IEnumerator color(){
+		GetComponent<SpriteRenderer>().color = Color.red;
+		yield return new WaitForSeconds (0.05f);
+		GetComponent<SpriteRenderer>().color = Color.white;
+		yield return new WaitForSeconds (0.05f);
+		GetComponent<SpriteRenderer>().color = Color.red;
+		yield return new WaitForSeconds (0.05f);
+		GetComponent<SpriteRenderer>().color = Color.white;
 	}
 
 }
-
