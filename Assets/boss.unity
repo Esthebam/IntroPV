@@ -120,6 +120,7 @@ GameObject:
   - component: {fileID: 6815476}
   - component: {fileID: 6815475}
   - component: {fileID: 6815474}
+  - component: {fileID: 6815479}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -197,6 +198,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6815479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 6815473}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9dfad760b6e9455593192a6d869f7ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  xMargin: 5
+  yMargin: 1
+  xSmooth: 1
+  ySmooth: 1
+  maxXAndY: {x: 100, y: 10}
+  minXAndY: {x: -100, y: 0}
 --- !u!1001 &549947021
 Prefab:
   m_ObjectHideFlags: 0
@@ -390,6 +408,7 @@ GameObject:
   - component: {fileID: 824704210}
   - component: {fileID: 824704209}
   - component: {fileID: 824704208}
+  - component: {fileID: 824704211}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -489,6 +508,7 @@ MonoBehaviour:
   bulletSpawner: {fileID: 1333720458}
   bulletPrefab: {fileID: 1992631845289650, guid: cfc4eb9d2647d814183d3aa3f4638eed,
     type: 2}
+  shootingSound: {fileID: 824704211}
 --- !u!50 &824704209
 Rigidbody2D:
   serializedVersion: 4
@@ -534,6 +554,86 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.7956891, y: 1.3486786}
   m_EdgeRadius: 0
+--- !u!82 &824704211
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 824704204}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: a60399d6f66776a48873b77945ec5636, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 0.5
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!1001 &923754718
 Prefab:
   m_ObjectHideFlags: 0
@@ -1310,7 +1410,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 4.6, y: 3.52}
+  m_Size: {x: 1.052, y: 1.192}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -1397,7 +1497,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 1.052, y: 1.192}
-    newSize: {x: 4.6, y: 3.52}
+    newSize: {x: 1.052, y: 1.192}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
