@@ -142,12 +142,14 @@ public class PlayerController : MonoBehaviour
 		if (col.gameObject.tag == "PowerUp") 
 		{
 			fuerzaSalto = 15f;
+			GetComponent<SpriteRenderer>().color = Color.yellow;
 			StartCoroutine ("tiempoEspera");
 			Destroy (col.gameObject);	
 		}
 		if (col.gameObject.tag == "PowerUpVida") 
 		{
 			HealthManager.healthManager.invincible = true;
+			GetComponent<SpriteRenderer>().color = Color.green;
 			StartCoroutine ("vida");
 			Destroy (col.gameObject);	
 		}
@@ -159,11 +161,13 @@ public class PlayerController : MonoBehaviour
 	IEnumerator tiempoEspera() {
 		yield return new WaitForSeconds (5);
 		fuerzaSalto = 9.25f;
+		GetComponent<SpriteRenderer>().color = Color.white;
 	}
 
 	IEnumerator vida() {
 		yield return new WaitForSeconds (5);
 		HealthManager.healthManager.invincible = false;
+		GetComponent<SpriteRenderer>().color = Color.white;
 
 }
 
