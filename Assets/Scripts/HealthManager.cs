@@ -9,6 +9,8 @@ public class HealthManager : MonoBehaviour {
     public float KnockBackX;
     public float KnockBackY;
 
+	public static HealthManager healthManager;
+
     public int playerHealth;
     public int enemyDamage;
 
@@ -20,7 +22,9 @@ public class HealthManager : MonoBehaviour {
     void Start () {
         playerDead = false;
         myRigidbody = GetComponent<Rigidbody2D>();
+		healthManager = this;
     }
+		
 
     void OnTriggerEnter2D(Collider2D col)
     {
@@ -31,7 +35,6 @@ public class HealthManager : MonoBehaviour {
 				playerHealth -= enemyDamage;
 				if(playerHealth > 0)
 				{
-					//GetComponent<SpriteRenderer>().color = Color.red;
 					StartCoroutine ("color");
 					invincible = true;
 					StartCoroutine ("tiempoEspera");

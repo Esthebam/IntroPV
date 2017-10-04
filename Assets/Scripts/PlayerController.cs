@@ -145,14 +145,25 @@ public class PlayerController : MonoBehaviour
 			StartCoroutine ("tiempoEspera");
 			Destroy (col.gameObject);	
 		}
+		if (col.gameObject.tag == "PowerUpVida") 
+		{
+			HealthManager.healthManager.invincible = true;
+			StartCoroutine ("vida");
+			Destroy (col.gameObject);	
+		}
 	}
+
+
 
 
 	IEnumerator tiempoEspera() {
 		yield return new WaitForSeconds (5);
 		fuerzaSalto = 9.25f;
-	
 	}
+
+	IEnumerator vida() {
+		yield return new WaitForSeconds (5);
+		HealthManager.healthManager.invincible = false;
 
 }
 
@@ -161,3 +172,4 @@ public class PlayerController : MonoBehaviour
 		
 		
 
+}

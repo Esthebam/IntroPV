@@ -12,6 +12,8 @@ public class EnemyManager : MonoBehaviour {
     public GameObject healthBar;
     private float currentHealth; 
 	public GameObject powerUpPrefab;
+	public GameObject powerUpVidaPrefab;
+	public Transform enemy;
 
     public float enemyHealth;
     public int enemyValue;
@@ -22,6 +24,7 @@ public class EnemyManager : MonoBehaviour {
     {
         currentHealth = enemyHealth;
         enemyAnim = GetComponent<Animator>();
+		enemy = GetComponent<Transform> ();
     }
 
 
@@ -30,19 +33,24 @@ public class EnemyManager : MonoBehaviour {
         if(col.tag == "Bullet")
         {
             currentHealth -= BulletMovement.damage;
+
             if (!enemyDead)
             {
                 float barLenght = currentHealth / enemyHealth;
                 SetHealthBar(barLenght);
             }
+            
             if (currentHealth <= 0)
             {
+				GetComponent<BoxCollider2D>().enabled = false;
                 enemyDead = true;
                 enemyAnim.SetBool("isDead", true);
-                Debug.Log(enemyValue);
                 Destroy(gameObject, animDelay);
-				Instantiate (powerUpPrefab, enemyAnim.rootPosition, enemyAnim.targetRotation);
+				//Instantiate (powerUpPrefab, enemyAnim.rootPosition, enemyAnim.targetRotation);
+				Instantiate (powerUpVidaPrefab, new Vector3(enemy.position.x, enemy.position.y + 1, enemy.position.z), enemyAnim.targetRotation);
+
             }
+			enemyDead = false;
         }
     }
 

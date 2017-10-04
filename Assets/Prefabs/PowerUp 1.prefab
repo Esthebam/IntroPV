@@ -21,10 +21,10 @@ GameObject:
   - component: {fileID: 4998615705619300}
   - component: {fileID: 212790230610625660}
   - component: {fileID: 61749820816070542}
-  - component: {fileID: 50369310782379790}
+  - component: {fileID: 50507486882606064}
   m_Layer: 0
-  m_Name: PowerUp
-  m_TagString: PowerUp
+  m_Name: PowerUp 1
+  m_TagString: PowerUpVida
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -42,7 +42,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!50 &50369310782379790
+--- !u!50 &50507486882606064
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 1
