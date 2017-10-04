@@ -572,6 +572,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   KnockBackX: 20
   KnockBackY: 5
+  playerHealth: 100
+  enemyDamage: 25
 --- !u!4 &832086689 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4853258814998350, guid: e75f137644d5fb3478822277b38f98a8,

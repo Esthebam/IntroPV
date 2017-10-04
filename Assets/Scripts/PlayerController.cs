@@ -31,8 +31,12 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Movement();
-        PlayerShooting();
+        if(HealthManager.playerDead == false)
+        {
+            Movement();
+            PlayerShooting();
+        }
+
 
     }
 
@@ -58,21 +62,6 @@ public class PlayerController : MonoBehaviour
         {
             jump = true;
         }
-    }
-
-    private void FixedUpdate()
-    {
-
-        Vector3 fixedVelocity = myRigidbody2D.velocity;
-        fixedVelocity.x *= 0.75f;
-
-        if (tocandoPiso)
-        {
-            myRigidbody2D.velocity = fixedVelocity;
-        }
-
-        // Lo de arriba es para solucionar que no se mueva siempre, ya que pusimos
-        // que las plataformas no tengan fricción.
 
         float direccion = Input.GetAxis("Horizontal");
 
@@ -98,7 +87,23 @@ public class PlayerController : MonoBehaviour
             myRigidbody2D.AddForce(Vector2.up * fuerzaSalto, ForceMode2D.Impulse);
             jump = false;
         }
+    }
 
+    private void FixedUpdate()
+    {
+
+        Vector3 fixedVelocity = myRigidbody2D.velocity;
+        fixedVelocity.x *= 0.75f;
+
+        if (tocandoPiso)
+        {
+            myRigidbody2D.velocity = fixedVelocity;
+        }
+
+        // Lo de arriba es para solucionar que no se mueva siempre, ya que pusimos
+        // que las plataformas no tengan fricción.
+
+        
     }
 
     public void PlayerShooting()

@@ -9,8 +9,14 @@ public class HealthManager : MonoBehaviour {
     public float KnockBackX;
     public float KnockBackY;
 
+    public int playerHealth;
+    public int enemyDamage;
+
+    public static bool playerDead;
+
     // Use this for initialization
     void Start () {
+        playerDead = false;
         myRigidbody = GetComponent<Rigidbody2D>();
     }
 
@@ -18,14 +24,24 @@ public class HealthManager : MonoBehaviour {
     {
         if(col.tag == "Enemigo")
         {
-            GetComponent<SpriteRenderer>().color = Color.red;
-            if (col.GetComponent<SpriteRenderer>().flipX == false)
+            playerHealth -= enemyDamage;
+            if(playerHealth > 0)
             {
-            myRigidbody.velocity = new Vector2(-KnockBackX, KnockBackY);
+                GetComponent<SpriteRenderer>().color = Color.red;
+                if (col.GetComponent<SpriteRenderer>().flipX == false)
+                {
+                    myRigidbody.velocity = new Vector2(-KnockBackX, KnockBackY);
+                }
+                else
+                {
+                myRigidbody.velocity = new Vector2(KnockBackX, KnockBackY);
+                }
             }
             else
             {
-            myRigidbody.velocity = new Vector2(KnockBackX, KnockBackY);
+                playerDead = true;
+                GetComponent<SpriteRenderer>().enabled = false;
+                GetComponent<BoxCollider2D>().enabled = false;
             }
         }
     }
