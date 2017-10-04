@@ -7,13 +7,17 @@ public class EnemyManager : MonoBehaviour {
     private Animator enemyAnim;
     public float animDelay;
 
-    public int enemyHealth;
+    public GameObject healthBar;
+    private float currentHealth; 
+
+    public float enemyHealth;
     public int enemyValue;
 
     public static bool enemyDead;
 
     void Start()
     {
+        currentHealth = enemyHealth;
         enemyAnim = GetComponent<Animator>();
     }
 
@@ -21,8 +25,13 @@ public class EnemyManager : MonoBehaviour {
     {
         if(col.tag == "Bullet")
         {
-            enemyHealth -= BulletMovement.damage;
-            if (enemyHealth <= 0)
+            currentHealth -= BulletMovement.damage;
+            if (!enemyDead)
+            {
+                float barLenght = currentHealth / enemyHealth;
+                SetHealthBar(barLenght);
+            }
+            if (currentHealth <= 0)
             {
                 enemyDead = true;
                 enemyAnim.SetBool("isDead", true);
@@ -30,5 +39,10 @@ public class EnemyManager : MonoBehaviour {
                 Destroy(gameObject, animDelay);
             }
         }
+    }
+
+    public void SetHealthBar(float enemyHealth)
+    {
+        healthBar.transform.localScale = new Vector3(enemyHealth, healthBar.transform.localScale.y , healthBar.transform.localScale.z);
     }
 }
