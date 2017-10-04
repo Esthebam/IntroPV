@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class EnemyManager : MonoBehaviour {
 
+ 
+
     private Animator enemyAnim;
     public float animDelay;
 
     public GameObject healthBar;
     private float currentHealth; 
+	public GameObject powerUpPrefab;
 
     public float enemyHealth;
     public int enemyValue;
@@ -20,6 +23,7 @@ public class EnemyManager : MonoBehaviour {
         currentHealth = enemyHealth;
         enemyAnim = GetComponent<Animator>();
     }
+
 
     public void OnTriggerEnter2D(Collider2D col)
     {
@@ -37,6 +41,7 @@ public class EnemyManager : MonoBehaviour {
                 enemyAnim.SetBool("isDead", true);
                 Debug.Log(enemyValue);
                 Destroy(gameObject, animDelay);
+				Instantiate (powerUpPrefab, enemyAnim.rootPosition, enemyAnim.targetRotation);
             }
         }
     }

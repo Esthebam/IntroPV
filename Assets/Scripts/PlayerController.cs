@@ -127,16 +127,26 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    private void OnCollisionStay2D(Collision2D col)
+    //private void OnCollisionStay2D(Collision2D col)
+	//{
+		//if(col.gameObject.tag == "PowerUp")
+		//{
+			//fuerzaSalto = 15f;
+			//StartCoroutine ("tiempoEspera");
+
+		//}
+	//}
+
+	private void OnCollisionEnter2D (Collision2D col)
 	{
-		if(col.gameObject.tag == "Enemigo")
+		if (col.gameObject.tag == "PowerUp") 
 		{
 			fuerzaSalto = 15f;
 			StartCoroutine ("tiempoEspera");
-			
+			Destroy (col.gameObject);	
 		}
-
 	}
+
 
 	IEnumerator tiempoEspera() {
 		yield return new WaitForSeconds (5);
