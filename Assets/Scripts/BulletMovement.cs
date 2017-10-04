@@ -12,8 +12,12 @@ public class BulletMovement : MonoBehaviour
     public float bulletSpeed;
     public float bulletLife;
 
+    public static int damage;
+    public int damageRef;
+
     void Awake()
     {
+        damage = damageRef;
         myRigidbody2D = GetComponent<Rigidbody2D>();
         player = GameObject.FindGameObjectWithTag("Player");
         playerTrans = player.transform;
@@ -44,7 +48,7 @@ public class BulletMovement : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.tag == "Piso")
+        if (col.tag == "Piso" || col.tag == "Enemigo")
         {
             GetComponent<ParticleSystem>().Play(); // Que haga el efecto de partículas
             GetComponent<SpriteRenderer>().enabled = false; // Que deje de verse la bala

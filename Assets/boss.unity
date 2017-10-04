@@ -314,6 +314,25 @@ Transform:
   m_PrefabParentObject: {fileID: 4908327041694416, guid: 2535d0d0a5cfac147a414e6b15eac7b1,
     type: 2}
   m_PrefabInternal: {fileID: 1533229540}
+--- !u!1 &690960625 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1661810480094712, guid: 56eee7ba36b2dce43a90bdbf97e3a632,
+    type: 2}
+  m_PrefabInternal: {fileID: 1819028605}
+--- !u!114 &690960632
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 690960625}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a4f20050f118ba4e9eeb4e5575bcd89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animDelay: 0
+  enemyHealth: 100
+  enemyValue: 100
 --- !u!4 &725142797 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4908327041694416, guid: 2535d0d0a5cfac147a414e6b15eac7b1,
@@ -1255,6 +1274,10 @@ Prefab:
     - target: {fileID: 4783890747070850, guid: 56eee7ba36b2dce43a90bdbf97e3a632, type: 2}
       propertyPath: m_RootOrder
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1661810480094712, guid: 56eee7ba36b2dce43a90bdbf97e3a632, type: 2}
+      propertyPath: m_TagString
+      value: Enemigo
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 56eee7ba36b2dce43a90bdbf97e3a632, type: 2}

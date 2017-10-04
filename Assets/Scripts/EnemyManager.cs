@@ -21,7 +21,7 @@ public class EnemyManager : MonoBehaviour {
     {
         if(col.tag == "Bullet")
         {
-            //enemyHealth -= BulletMovement.damage;
+            enemyHealth -= BulletMovement.damage;
             if (enemyHealth <= 0)
             {
                 enemyDead = true;
