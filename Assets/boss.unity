@@ -333,6 +333,7 @@ GameObject:
   - component: {fileID: 824704209}
   - component: {fileID: 824704208}
   - component: {fileID: 824704211}
+  - component: {fileID: 824704212}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -558,6 +559,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!114 &824704212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 824704204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a08a63797e5110b4497f9c6d74340c42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  KnockBackX: 20
+  KnockBackY: 5
 --- !u!4 &832086689 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4853258814998350, guid: e75f137644d5fb3478822277b38f98a8,
@@ -985,7 +999,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4590855189342938, guid: a79bed7dd3c40fe48a7cd92f1c06418d, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 1.2799999
+      value: 4.19
       objectReference: {fileID: 0}
     - target: {fileID: 4590855189342938, guid: a79bed7dd3c40fe48a7cd92f1c06418d, type: 2}
       propertyPath: m_LocalPosition.z
@@ -1255,6 +1269,11 @@ Prefab:
     - target: {fileID: 4238430295933120, guid: 56eee7ba36b2dce43a90bdbf97e3a632, type: 2}
       propertyPath: m_RootOrder
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114455058772998176, guid: 56eee7ba36b2dce43a90bdbf97e3a632,
+        type: 2}
+      propertyPath: enemySpeed
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 56eee7ba36b2dce43a90bdbf97e3a632, type: 2}
