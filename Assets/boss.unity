@@ -330,7 +330,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a4f20050f118ba4e9eeb4e5575bcd89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animDelay: 0
+  animDelay: 0.4
   enemyHealth: 100
   enemyValue: 100
 --- !u!4 &725142797 stripped
@@ -1249,7 +1249,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4783890747070850, guid: 56eee7ba36b2dce43a90bdbf97e3a632, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -2.37
+      value: -2.406
       objectReference: {fileID: 0}
     - target: {fileID: 4783890747070850, guid: 56eee7ba36b2dce43a90bdbf97e3a632, type: 2}
       propertyPath: m_LocalPosition.z
