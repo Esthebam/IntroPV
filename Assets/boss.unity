@@ -573,7 +573,8 @@ MonoBehaviour:
   KnockBackX: 20
   KnockBackY: 5
   playerHealth: 100
-  enemyDamage: 50
+  enemyDamage: 5
+  invincible: 0
 --- !u!4 &832086689 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4853258814998350, guid: e75f137644d5fb3478822277b38f98a8,
@@ -951,7 +952,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1446481109}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.042, y: -0.3, z: 0}
+  m_LocalPosition: {x: 0.05, y: -0.34, z: 0}
   m_LocalScale: {x: 0.66249996, y: 0.8744999, z: 1.06}
   m_Children: []
   m_Father: {fileID: 824704207}
@@ -980,9 +981,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.14006111, y: -0.034228064}
+  m_Offset: {x: -0.19049573, y: -0.034228064}
   serializedVersion: 2
-  m_Radius: 0.42812115
+  m_Radius: 0.3899131
 --- !u!4 &1486870989 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4940755696576974, guid: 56ea75c1e7c6b694188895535532793d,
