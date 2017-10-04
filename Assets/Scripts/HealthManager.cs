@@ -18,6 +18,7 @@ public class HealthManager : MonoBehaviour {
     {
         if(col.tag == "Enemigo")
         {
+            GetComponent<SpriteRenderer>().color = Color.red;
             if (col.GetComponent<SpriteRenderer>().flipX == false)
             {
             myRigidbody.velocity = new Vector2(-KnockBackX, KnockBackY);
@@ -29,4 +30,11 @@ public class HealthManager : MonoBehaviour {
         }
     }
 
+    void OnTriggerExit2D(Collider2D col)
+    {
+        if (col.tag == "Enemigo")
+        {
+            GetComponent<SpriteRenderer>().color = Color.white;
+        }
+    }
 }
