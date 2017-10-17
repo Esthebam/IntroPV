@@ -11,9 +11,10 @@ public class HealthManager : MonoBehaviour {
 
 	public static HealthManager healthManager;
 
+	private Animator animator;
     public int playerHealth;
     public int enemyDamage;
-
+	public GameObject player;
     public static bool playerDead;
 
 	public bool invincible;
@@ -23,6 +24,8 @@ public class HealthManager : MonoBehaviour {
         playerDead = false;
         myRigidbody = GetComponent<Rigidbody2D>();
 		healthManager = this;
+		animator = GetComponent<Animator>();
+		player = GameObject.FindGameObjectWithTag ("Player");
     }
 		
 
@@ -48,10 +51,14 @@ public class HealthManager : MonoBehaviour {
 					}
 				}
 				else
-				{
+				{	
+					animator.Play ("Player_Dead");
 					playerDead = true;
-					GetComponent<SpriteRenderer>().enabled = false;
-					GetComponent<BoxCollider2D>().enabled = false;
+					//GetComponent<SpriteRenderer>().enabled = false;
+					//GetComponent<BoxCollider2D>().enabled = false;
+					Destroy (player, 1);
+
+
 				}
 			}
 		}

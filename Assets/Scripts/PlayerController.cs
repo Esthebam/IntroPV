@@ -48,6 +48,7 @@ public class PlayerController : MonoBehaviour
         myAnimator.SetFloat("Speed", Mathf.Abs(myRigidbody2D.velocity.x));
         myAnimator.SetBool("TocandoPiso", tocandoPiso);
         myAnimator.SetBool("SeAgacha", seAgacha);
+	
 
         if (Input.GetKey(KeyCode.DownArrow) && tocandoPiso)
         {
