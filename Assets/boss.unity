@@ -718,8 +718,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   KnockBackX: 5
   KnockBackY: 5
-  playerHealth: 100
+  animDelay: 0.4
+  playerHealth: 10
   enemyDamage: 5
+  player: {fileID: 0}
   invincible: 0
 --- !u!4 &832086689 stripped
 Transform:
