@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyLegsController : MonoBehaviour {
+	
 	public float maxSpeed=1f ;
 	public float speed=1f ;
-
 	private Rigidbody2D rb2d;
 
 	void Start () {
 
 		rb2d = GetComponent<Rigidbody2D>();
-		
+
 	}
 
 
@@ -27,11 +27,17 @@ public class EnemyLegsController : MonoBehaviour {
 		if (speed < 0)
 		{
 			transform.localScale = new Vector3(1f, 1f, 1f);
+			transform.GetChild(0).localScale= new Vector3(-1f, 1f, 1f);
 		}
 		if (speed >0)
 		{
 			transform.localScale = new Vector3(-1f, 1f, 1f);
+			transform.GetChild(0).localScale= new Vector3(1f, 1f, 1f);
+		
 		}
+
+
+
 		
 	}
 

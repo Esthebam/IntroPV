@@ -13,6 +13,7 @@ public class EnemyLegManager : MonoBehaviour
     public GameObject powerUpVidaPrefab;
     public Transform enemy;
 
+
     public float enemyHealth;
     public int enemyValue;
 
@@ -21,7 +22,7 @@ public class EnemyLegManager : MonoBehaviour
     void Start()
     {
         currentHealth = enemyHealth;
-        enemyAnim = GetComponent<Animator>();
+		enemyAnim = GetComponent<Animator>();
         enemy = GetComponent<Transform>();
     }
 
