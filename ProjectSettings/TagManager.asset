@@ -9,6 +9,7 @@ TagManager:
   - Bullet
   - PowerUp
   - PowerUpVida
+  - Saw
   layers:
   - Default
   - TransparentFX

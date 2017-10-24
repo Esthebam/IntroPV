@@ -1,10 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class HealthManager : MonoBehaviour {
     
     Rigidbody2D myRigidbody;
+
+	[SerializeField]
+	Slider healthBar;
+
+	[SerializeField]
+	Text healthText;
 
     public float KnockBackX;
     public float KnockBackY;
@@ -14,10 +21,16 @@ public class HealthManager : MonoBehaviour {
     private Animator playerAnim;
     public float animDelay;
 
-    public int playerHealth;
+    public float playerHealth;
     public int enemyDamage;
 	public GameObject player;
     public static bool playerDead;
+
+
+
+
+	float maxHealth = 100;
+
 
 	public bool invincible;
 
@@ -28,6 +41,8 @@ public class HealthManager : MonoBehaviour {
 		healthManager = this;
         playerAnim = GetComponent<Animator>();
 		player = GameObject.FindGameObjectWithTag ("Player");
+		healthBar.value = maxHealth;
+		playerHealth = healthBar.value;
     }
 		
 
@@ -38,11 +53,10 @@ public class HealthManager : MonoBehaviour {
 			if(col.tag == "Enemigo")
 			{
 				playerHealth -= enemyDamage;
-				if(playerHealth > 0)
-				{
 					StartCoroutine ("color");
 					invincible = true;
 					StartCoroutine ("tiempoEspera");
+
 					if (col.GetComponent<SpriteRenderer>().flipX == false)
 					{
 						myRigidbody.velocity = new Vector2(-KnockBackX, KnockBackY);
@@ -50,23 +64,27 @@ public class HealthManager : MonoBehaviour {
 					else
 					{
 						myRigidbody.velocity = new Vector2(KnockBackX, KnockBackY);
-					}
+		
+
+                }
+
+			}
+			if (col.gameObject.tag == "Saw") 
+			{
+				playerHealth -= 5.00f;
+				StartCoroutine ("color");
+				invincible = true;
+				StartCoroutine ("tiempoEspera");
+				if (myRigidbody.GetComponent<SpriteRenderer>().flipX == false)
+				{
+					myRigidbody.velocity = new Vector2(-KnockBackX, KnockBackY);
 				}
 				else
 				{
-                    GetComponent<BoxCollider2D>().enabled = false;
-                    playerDead = true;
-                    playerAnim.SetBool("isDead", true);
-                    Component[] comps = GetComponents<Component>() as Component[];
-                    foreach(Component comp in comps)
-                    {
-                        if (comp != gameObject.GetComponent<Transform>())
-                        {
-                        Destroy(comp,animDelay);
-                        }
-                    }
+					myRigidbody.velocity = new Vector2(KnockBackX, KnockBackY);
 
-                }
+
+				}
 			}
 		}
 
@@ -95,4 +113,27 @@ public class HealthManager : MonoBehaviour {
 		GetComponent<SpriteRenderer>().color = Color.white;
 	}
 
+
+	void Update()
+	{
+		healthText.text = playerHealth.ToString () + " %";
+
+		if (playerHealth <= 0) 
+		{
+			healthText.text = 0 + " %";	
+		GetComponent<BoxCollider2D>().enabled = false;
+		playerDead = true;
+		playerAnim.SetBool("isDead", true);
+		Component[] comps = GetComponents<Component>() as Component[];
+		foreach(Component comp in comps)
+		{
+			if (comp != gameObject.GetComponent<Transform>())
+			{
+				Destroy(comp,animDelay);
+			}
+			}
+		}
+	}
 }
+		
+
