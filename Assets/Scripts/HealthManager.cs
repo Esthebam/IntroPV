@@ -25,7 +25,7 @@ public class HealthManager : MonoBehaviour {
     public int enemyDamage;
 	public GameObject player;
     public static bool playerDead;
-
+	float curHealth;
 
 
 
@@ -42,7 +42,7 @@ public class HealthManager : MonoBehaviour {
         playerAnim = GetComponent<Animator>();
 		player = GameObject.FindGameObjectWithTag ("Player");
 		healthBar.value = maxHealth;
-		playerHealth = healthBar.value;
+		curHealth= healthBar.value;
     }
 		
 
@@ -56,7 +56,7 @@ public class HealthManager : MonoBehaviour {
 					StartCoroutine ("color");
 					invincible = true;
 					StartCoroutine ("tiempoEspera");
-
+				healthBar.value = playerHealth;
 					if (col.GetComponent<SpriteRenderer>().flipX == false)
 					{
 						myRigidbody.velocity = new Vector2(-KnockBackX, KnockBackY);
@@ -75,6 +75,7 @@ public class HealthManager : MonoBehaviour {
 				StartCoroutine ("color");
 				invincible = true;
 				StartCoroutine ("tiempoEspera");
+				healthBar.value = playerHealth;
 				if (myRigidbody.GetComponent<SpriteRenderer>().flipX == false)
 				{
 					myRigidbody.velocity = new Vector2(-KnockBackX, KnockBackY);
