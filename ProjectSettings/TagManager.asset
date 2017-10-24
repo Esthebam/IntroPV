@@ -10,6 +10,7 @@ TagManager:
   - PowerUp
   - PowerUpVida
   - Saw
+  - EnemigoLegs
   layers:
   - Default
   - TransparentFX
