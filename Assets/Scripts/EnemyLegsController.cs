@@ -13,9 +13,10 @@ public class EnemyLegsController : MonoBehaviour {
 		rb2d = GetComponent<Rigidbody2D>();
 		
 	}
-	
-	// Update is called once per frame
-	void FixedUpdate () {
+
+
+    // Update is called once per frame
+    void FixedUpdate () {
 		rb2d.AddForce (Vector2.right * speed);
 		float limiteVelocidad = Mathf.Clamp(rb2d.velocity.x, -maxSpeed, maxSpeed);
 		rb2d.velocity = new Vector2(limiteVelocidad, rb2d.velocity.y);
@@ -33,4 +34,7 @@ public class EnemyLegsController : MonoBehaviour {
 		}
 		
 	}
+
+
+
 }

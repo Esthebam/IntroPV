@@ -54,6 +54,7 @@ public class EnemyManager : MonoBehaviour {
         }
     }
 
+
     public void SetHealthBar(float enemyHealth)
     {
         healthBar.transform.localScale = new Vector3(enemyHealth, healthBar.transform.localScale.y , healthBar.transform.localScale.z);

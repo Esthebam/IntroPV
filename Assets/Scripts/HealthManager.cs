@@ -25,7 +25,7 @@ public class HealthManager : MonoBehaviour {
     public int enemyDamage;
 	public GameObject player;
     public static bool playerDead;
-	float curHealth;
+	
 
 
 
@@ -42,7 +42,7 @@ public class HealthManager : MonoBehaviour {
         playerAnim = GetComponent<Animator>();
 		player = GameObject.FindGameObjectWithTag ("Player");
 		healthBar.value = maxHealth;
-		curHealth= healthBar.value;
+		
     }
 		
 
@@ -67,9 +67,33 @@ public class HealthManager : MonoBehaviour {
 		
 
                 }
-
+             
 			}
-			if (col.gameObject.tag == "Saw") 
+
+
+            if (col.tag == "EnemigoLegs")
+            {
+                playerHealth -= enemyDamage;
+                StartCoroutine("color");
+                invincible = true;
+                StartCoroutine("tiempoEspera");
+                healthBar.value = playerHealth;
+                if (myRigidbody.GetComponent<SpriteRenderer>().flipX == false)
+                {
+                    myRigidbody.velocity = new Vector2(-KnockBackX, KnockBackY);
+                }
+                else
+                {
+                    myRigidbody.velocity = new Vector2(KnockBackX, KnockBackY);
+
+
+                }
+
+            }
+
+
+
+            if (col.gameObject.tag == "Saw") 
 			{
 				playerHealth -= 5.00f;
 				StartCoroutine ("color");
