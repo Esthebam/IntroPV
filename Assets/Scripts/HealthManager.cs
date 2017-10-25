@@ -67,6 +67,8 @@ public class HealthManager : MonoBehaviour {
 		
 
                 }
+
+				CameraShake.Shake (0.25f, 0.75f);
              
 			}
 
@@ -89,9 +91,10 @@ public class HealthManager : MonoBehaviour {
 
                 }
 
+				CameraShake.Shake (0.25f, 0.75f);
             }
 
-
+				
 
             if (col.gameObject.tag == "Saw") 
 			{
@@ -110,6 +113,8 @@ public class HealthManager : MonoBehaviour {
 
 
 				}
+
+				CameraShake.Shake (0.25f, 0.75f);
 			}
 		}
 
