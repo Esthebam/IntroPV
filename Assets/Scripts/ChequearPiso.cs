@@ -13,19 +13,20 @@ public class ChequearPiso : MonoBehaviour {
 
     private void OnCollisionStay2D(Collision2D col)
     {
-        if(col.gameObject.tag == "Piso")
+		if(col.gameObject.tag == "Piso")
         {
             player.tocandoPiso = true;
         }
+
         
     }
 
     private void OnCollisionExit2D(Collision2D col)
     {
-        if(col.gameObject.tag == "Piso")
+		if(col.gameObject.tag == "Piso")
         {
-            player.tocandoPiso = false;
-        }
+			player.tocandoPiso = false;
+		}
         
     }
 

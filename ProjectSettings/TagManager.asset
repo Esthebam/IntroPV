@@ -11,6 +11,7 @@ TagManager:
   - PowerUpVida
   - Saw
   - EnemigoLegs
+  - IzqDer
   layers:
   - Default
   - TransparentFX
