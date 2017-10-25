@@ -609,7 +609,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4256965395639988, guid: acc9bf5b36c7bd74b8cea3b5ffae93ce, type: 2}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: acc9bf5b36c7bd74b8cea3b5ffae93ce, type: 2}
@@ -918,11 +918,31 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4256965395639988, guid: acc9bf5b36c7bd74b8cea3b5ffae93ce, type: 2}
       propertyPath: m_RootOrder
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 1767619857689502, guid: acc9bf5b36c7bd74b8cea3b5ffae93ce, type: 2}
       propertyPath: m_Name
       value: Saw (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 58381409001442730, guid: acc9bf5b36c7bd74b8cea3b5ffae93ce,
+        type: 2}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 50171386551312596, guid: acc9bf5b36c7bd74b8cea3b5ffae93ce,
+        type: 2}
+      propertyPath: m_BodyType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 50171386551312596, guid: acc9bf5b36c7bd74b8cea3b5ffae93ce,
+        type: 2}
+      propertyPath: m_GravityScale
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 50171386551312596, guid: acc9bf5b36c7bd74b8cea3b5ffae93ce,
+        type: 2}
+      propertyPath: m_CollisionDetection
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: acc9bf5b36c7bd74b8cea3b5ffae93ce, type: 2}
@@ -1100,7 +1120,7 @@ Transform:
   - {fileID: 1446481110}
   - {fileID: 1333720458}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &824704208
 MonoBehaviour:
@@ -1367,7 +1387,7 @@ Transform:
   - {fileID: 1275754644}
   - {fileID: 1047713001}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &912740752 stripped
 GameObject:
@@ -1836,7 +1856,7 @@ RectTransform:
   - {fileID: 1506592821}
   - {fileID: 1390463910}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1880,7 +1900,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4250444780938266, guid: ea52b9a285341c041bcdc17df67a04f8, type: 2}
       propertyPath: m_RootOrder
-      value: 11
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 61325372902814998, guid: ea52b9a285341c041bcdc17df67a04f8,
         type: 2}
