@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
     private Animator myAnimator;
     private bool jump;
     private bool seAgacha;
+	public bool estaDisparando;
 
 
     // Use this for initialization
@@ -26,6 +27,7 @@ public class PlayerController : MonoBehaviour
     {
         myRigidbody2D = GetComponent<Rigidbody2D>();
         myAnimator = GetComponent<Animator>();
+		estaDisparando = true;
     }
 
     // Update is called once per frame
@@ -107,6 +109,7 @@ public class PlayerController : MonoBehaviour
         
     }
 
+
     public void PlayerShooting()
     {
         if (Input.GetMouseButtonDown(0))
@@ -114,6 +117,14 @@ public class PlayerController : MonoBehaviour
             myAnimator.SetBool("Disparo", true);
             Instantiate(bulletPrefab, bulletSpawner.position, bulletSpawner.rotation);
             shootingSound.Play();
+
+			if (estaDisparando) {
+				speed = 25f;
+				maxSpeed = 0.5f;
+				StartCoroutine ("slow");
+			}
+		
+
         }
         else if (Input.GetMouseButtonUp(0))
         {
@@ -140,23 +151,27 @@ public class PlayerController : MonoBehaviour
 
 	private void OnCollisionEnter2D (Collision2D col)
 	{
-		if (col.gameObject.tag == "PowerUp") 
-		{
+		if (col.gameObject.tag == "PowerUp") {
 			fuerzaSalto = 15f;
-			GetComponent<SpriteRenderer>().color = Color.yellow;
+			GetComponent<SpriteRenderer> ().color = Color.yellow;
 			StartCoroutine ("tiempoEspera");
 			Destroy (col.gameObject);	
 		}
-		if (col.gameObject.tag == "PowerUpVida") 
-		{
+		if (col.gameObject.tag == "PowerUpVida") {
 			HealthManager.healthManager.invincible = true;
-			GetComponent<SpriteRenderer>().color = Color.green;
+			GetComponent<SpriteRenderer> ().color = Color.green;
 			StartCoroutine ("vida");
 			Destroy (col.gameObject);	
 		}
+		if (col.gameObject.tag == "PowerUpVel") {
+			maxSpeed = 6;
+			GetComponent<SpriteRenderer> ().color = Color.blue;
+			estaDisparando = false;
+			StartCoroutine ("vel");
+			Destroy (col.gameObject);
+		}
+
 	}
-
-
 
 
 	IEnumerator tiempoEspera() {
@@ -168,9 +183,21 @@ public class PlayerController : MonoBehaviour
 	IEnumerator vida() {
 		yield return new WaitForSeconds (5);
 		HealthManager.healthManager.invincible = false;
-		GetComponent<SpriteRenderer>().color = Color.white;
+		GetComponent<SpriteRenderer> ().color = Color.white;
+	}
 
-}
+	IEnumerator slow() {
+		yield return new WaitForSeconds (2);
+		speed = 75f; 
+		maxSpeed = 3f;
+	}
+
+	IEnumerator vel() {
+		yield return new WaitForSeconds(5);
+		maxSpeed = 3;
+		estaDisparando = true;
+		GetComponent<SpriteRenderer>().color = Color.white;
+	}
 
 
 
