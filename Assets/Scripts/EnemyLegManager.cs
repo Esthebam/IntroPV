@@ -12,7 +12,6 @@ public class EnemyLegManager : MonoBehaviour
     public GameObject powerUpPrefab;
     public GameObject powerUpVidaPrefab;
 	public GameObject powerUpVelPrefab;
-	public GameObject powerUpDmgPrefab;
     public Transform enemy;
 
 
@@ -52,9 +51,6 @@ public class EnemyLegManager : MonoBehaviour
                 Instantiate(powerUpPrefab, new Vector3(enemy.position.x + 3, enemy.position.y + 1, enemy.position.z), enemyAnim.targetRotation);
                 Instantiate(powerUpVidaPrefab, new Vector3(enemy.position.x, enemy.position.y + 1, enemy.position.z), enemyAnim.targetRotation);
 				Instantiate(powerUpVelPrefab, new Vector3(enemy.position.x + 2, enemy.position.y + 1, enemy.position.z), enemyAnim.targetRotation);
-				Instantiate(powerUpDmgPrefab, new Vector3(enemy.position.x + 1, enemy.position.y + 1, enemy.position.z), enemyAnim.targetRotation);
-
-
 
             }
             enemyDead = false;
