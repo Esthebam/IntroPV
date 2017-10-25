@@ -18,6 +18,7 @@ public class HealthManager : MonoBehaviour {
 
 	public static HealthManager healthManager;
 
+
     private Animator playerAnim;
     public float animDelay;
 

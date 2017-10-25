@@ -21,7 +21,6 @@ public class PlayerController : MonoBehaviour
     private bool seAgacha;
 	public bool estaDisparando;
 
-
     // Use this for initialization
     void Start()
     {
@@ -170,6 +169,11 @@ public class PlayerController : MonoBehaviour
 			StartCoroutine ("vel");
 			Destroy (col.gameObject);
 		}
+		if (col.gameObject.tag == "PowerUpDmg") {
+			GetComponent<SpriteRenderer> ().color = Color.gray;
+			StartCoroutine ("dmg");
+			Destroy (col.gameObject);
+		}
 
 	}
 
@@ -196,6 +200,13 @@ public class PlayerController : MonoBehaviour
 		yield return new WaitForSeconds(5);
 		maxSpeed = 3;
 		estaDisparando = true;
+		GetComponent<SpriteRenderer>().color = Color.white;
+	}
+
+	IEnumerator dmg() {
+		yield return new WaitForSeconds (5);
+		//BulletMovement.instance.damageRef = 5;
+		//GetComponent<BulletMovement>().damageRef = 5;
 		GetComponent<SpriteRenderer>().color = Color.white;
 	}
 

@@ -1,10 +1,16 @@
 fileFormatVersion: 2
 guid: f1c88b97685e98e459c5f3b8c873db19
-timeCreated: 1508872094
+timeCreated: 1508910410
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - healthBar: {instanceID: 0}
+  - powerUpPrefab: {instanceID: 0}
+  - powerUpVidaPrefab: {instanceID: 0}
+  - powerUpVelPrefab: {instanceID: 0}
+  - powerUpDmgPrefab: {instanceID: 0}
+  - enemy: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

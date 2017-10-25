@@ -611,11 +611,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4238430295933120, guid: 56eee7ba36b2dce43a90bdbf97e3a632, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 1.37
+      value: 1.3711238
       objectReference: {fileID: 0}
     - target: {fileID: 4238430295933120, guid: 56eee7ba36b2dce43a90bdbf97e3a632, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -2.36
+      value: -2.3588824
       objectReference: {fileID: 0}
     - target: {fileID: 4238430295933120, guid: 56eee7ba36b2dce43a90bdbf97e3a632, type: 2}
       propertyPath: m_LocalPosition.z
@@ -623,19 +623,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4238430295933120, guid: 56eee7ba36b2dce43a90bdbf97e3a632, type: 2}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4238430295933120, guid: 56eee7ba36b2dce43a90bdbf97e3a632, type: 2}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4238430295933120, guid: 56eee7ba36b2dce43a90bdbf97e3a632, type: 2}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: 0.0037105135
       objectReference: {fileID: 0}
     - target: {fileID: 4238430295933120, guid: 56eee7ba36b2dce43a90bdbf97e3a632, type: 2}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.99999315
       objectReference: {fileID: 0}
     - target: {fileID: 4238430295933120, guid: 56eee7ba36b2dce43a90bdbf97e3a632, type: 2}
       propertyPath: m_RootOrder
@@ -648,6 +648,10 @@ Prefab:
     - target: {fileID: 1902648626045044, guid: 56eee7ba36b2dce43a90bdbf97e3a632, type: 2}
       propertyPath: m_TagString
       value: Enemigo
+      objectReference: {fileID: 0}
+    - target: {fileID: 4238430295933120, guid: 56eee7ba36b2dce43a90bdbf97e3a632, type: 2}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0.425
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 56eee7ba36b2dce43a90bdbf97e3a632, type: 2}
@@ -1106,6 +1110,7 @@ MonoBehaviour:
     type: 2}
   shootingSound: {fileID: 824704211}
   myRigidbody2D: {fileID: 0}
+  estaDisparando: 0
 --- !u!50 &824704209
 Rigidbody2D:
   serializedVersion: 4
@@ -3055,6 +3060,18 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114591579492101666, guid: 37e2bebfa31a5f74cbe10b807a7a0501,
+        type: 2}
+      propertyPath: powerUpVelPrefab
+      value: 
+      objectReference: {fileID: 1369005040896048, guid: d3b70db9b353d2c4d97e591498444eae,
+        type: 2}
+    - target: {fileID: 114591579492101666, guid: 37e2bebfa31a5f74cbe10b807a7a0501,
+        type: 2}
+      propertyPath: powerUpDmgPrefab
+      value: 
+      objectReference: {fileID: 1414656510252452, guid: d8e6f1e57ed44644183acdac865a2b2d,
+        type: 2}
     m_RemovedComponents:
     - {fileID: 95218388284010030, guid: 37e2bebfa31a5f74cbe10b807a7a0501, type: 2}
     - {fileID: 212618870245956368, guid: 37e2bebfa31a5f74cbe10b807a7a0501, type: 2}

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BulletMovement : MonoBehaviour
 {
-
+	public static BulletMovement instance;
     private Rigidbody2D myRigidbody2D;
 
     public GameObject player;
@@ -13,10 +13,11 @@ public class BulletMovement : MonoBehaviour
     public float bulletLife;
 
     public static int damage;
-    public int damageRef;
+	public int damageRef;
 
     void Awake()
     {
+		instance = this;
         damage = damageRef;
         myRigidbody2D = GetComponent<Rigidbody2D>();
         player = GameObject.FindGameObjectWithTag("Player");
@@ -26,6 +27,7 @@ public class BulletMovement : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+		
         if (playerTrans.localScale.x > 0)
         {
             // El player mira a la derecha
@@ -39,6 +41,7 @@ public class BulletMovement : MonoBehaviour
             transform.localScale = new Vector3(-1, 1, 1);
         }
     }
+		
 
     // Update is called once per frame
     void Update()
