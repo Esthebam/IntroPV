@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     public float speed = 2f;
     public bool tocandoPiso;
     public float fuerzaSalto = 6.5f;
+    public bool endPoint;
 
     public Transform bulletSpawner;
     public GameObject bulletPrefab;
@@ -130,13 +131,13 @@ public class PlayerController : MonoBehaviour
             myAnimator.SetBool("Disparo", false);
         }
     }
-
+    
     private void OnBecameInvisible()
     // Sólo para las pruebas
     {
         transform.position = new Vector3(-7, 0, 0);
     }
-
+    
 
     //private void OnCollisionStay2D(Collision2D col)
 	//{
@@ -191,7 +192,7 @@ public class PlayerController : MonoBehaviour
 	}
 
 	IEnumerator slow() {
-		yield return new WaitForSeconds (2);
+		yield return new WaitForSeconds (0.25f);
 		speed = 75f; 
 		maxSpeed = 3f;
 	}

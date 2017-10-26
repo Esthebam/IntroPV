@@ -281,6 +281,8 @@ MonoBehaviour:
     type: 2}
   powerUpVidaPrefab: {fileID: 1455074893575294, guid: 7660f2c4c813c17429a0f2dc0ee58561,
     type: 2}
+  powerUpDmgPrefab: {fileID: 1414656510252452, guid: d8e6f1e57ed44644183acdac865a2b2d,
+    type: 2}
   enemy: {fileID: 0}
   enemyHealth: 50
   enemyValue: 50

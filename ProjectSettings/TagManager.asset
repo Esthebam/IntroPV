@@ -14,6 +14,7 @@ TagManager:
   - IzqDer
   - PowerUpVel
   - PowerUpDmg
+  - Acid
   layers:
   - Default
   - TransparentFX
@@ -56,6 +57,9 @@ TagManager:
     locked: 0
   - name: Level
     uniqueID: 2036745927
+    locked: 0
+  - name: Acid
+    uniqueID: 3336338073
     locked: 0
   - name: Player
     uniqueID: 1489055527

@@ -49,6 +49,12 @@ public class HealthManager : MonoBehaviour {
 
     void OnTriggerStay2D(Collider2D col)
     {
+        if (col.tag == "Acid")
+        {
+            playerHealth -= maxHealth;
+            healthBar.value = playerHealth;
+            playerDead = true;
+        }
 		if (!invincible) 
 		{
 			if(col.tag == "Enemigo")
