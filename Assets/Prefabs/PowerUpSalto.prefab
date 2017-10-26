@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 212184379889146716}
   - component: {fileID: 61338078706203034}
   - component: {fileID: 50839691262781102}
-  - component: {fileID: 61481548133584688}
+  - component: {fileID: 114831170291716190}
   m_Layer: 10
   m_Name: PowerUpSalto
   m_TagString: PowerUp
@@ -50,14 +50,14 @@ Rigidbody2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1436744219553118}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 4
+  m_GravityScale: 1
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -72,7 +72,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.017622113, y: -0.010341674}
@@ -88,31 +88,17 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.969604, y: 0.9729751}
   m_EdgeRadius: 0
---- !u!61 &61481548133584688
-BoxCollider2D:
+--- !u!114 &114831170291716190
+MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1436744219553118}
   m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.03086586, y: 0.3789395}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.12, y: 1.07}
-    newSize: {x: 1.12, y: 1.07}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.25575212, y: 0.15087056}
-  m_EdgeRadius: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58f1255a04f63644086176ea114d1273, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &212184379889146716
 SpriteRenderer:
   m_ObjectHideFlags: 1
