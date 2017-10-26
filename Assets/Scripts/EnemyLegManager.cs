@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class EnemyLegManager : MonoBehaviour
 {
+	private Rigidbody2D myRigidbody;
+
     private Animator enemyAnim;
     public float animDelay;
 
@@ -23,6 +25,7 @@ public class EnemyLegManager : MonoBehaviour
         currentHealth = enemyHealth;
 		enemyAnim = GetComponent<Animator>();
         enemy = GetComponent<Transform>();
+		myRigidbody=  GetComponent<Rigidbody2D> ();
     }
 
 
@@ -45,6 +48,9 @@ public class EnemyLegManager : MonoBehaviour
                 transform.GetChild(1).gameObject.SetActive(false);
                 enemyDead = true;
                 enemyAnim.SetBool("isDead", true);
+				myRigidbody.gravityScale = 0;
+
+
                 Destroy(gameObject, animDelay);
                 
             }
