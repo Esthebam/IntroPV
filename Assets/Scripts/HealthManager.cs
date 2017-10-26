@@ -26,11 +26,12 @@ public class HealthManager : MonoBehaviour {
     public int enemyDamage;
 	public GameObject player;
     public static bool playerDead;
+	public float maxHealth;
 	
 
 
 
-	float maxHealth = 100;
+
 
 
 	public bool invincible;
@@ -42,7 +43,10 @@ public class HealthManager : MonoBehaviour {
 		healthManager = this;
         playerAnim = GetComponent<Animator>();
 		player = GameObject.FindGameObjectWithTag ("Player");
-		healthBar.value = maxHealth;
+		maxHealth = playerHealth;
+		healthBar.value = 100;
+
+
 		
     }
 		
@@ -63,7 +67,7 @@ public class HealthManager : MonoBehaviour {
 					StartCoroutine ("color");
 					invincible = true;
 					StartCoroutine ("tiempoEspera");
-				healthBar.value = playerHealth;
+				healthBar.value = (playerHealth/maxHealth)* 100;
 					if (col.GetComponent<SpriteRenderer>().flipX == false)
 					{
 						myRigidbody.velocity = new Vector2(-KnockBackX, KnockBackY);
@@ -86,7 +90,7 @@ public class HealthManager : MonoBehaviour {
                 StartCoroutine("color");
                 invincible = true;
                 StartCoroutine("tiempoEspera");
-                healthBar.value = playerHealth;
+				healthBar.value = (playerHealth/maxHealth)* 100;
                 if (myRigidbody.GetComponent<SpriteRenderer>().flipX == false)
                 {
                     myRigidbody.velocity = new Vector2(-KnockBackX, KnockBackY);
@@ -109,7 +113,7 @@ public class HealthManager : MonoBehaviour {
 				StartCoroutine ("color");
 				invincible = true;
 				StartCoroutine ("tiempoEspera");
-				healthBar.value = playerHealth;
+				healthBar.value = (playerHealth/maxHealth)* 100;
 				if (myRigidbody.GetComponent<SpriteRenderer>().flipX == false)
 				{
 					myRigidbody.velocity = new Vector2(-KnockBackX, KnockBackY);
@@ -153,7 +157,7 @@ public class HealthManager : MonoBehaviour {
 
 	void Update()
 	{
-		healthText.text = playerHealth.ToString () + " %";
+		healthText.text = (playerHealth/maxHealth) * 100 + " %";
 
 		if (playerHealth <= 0) 
 		{
