@@ -11,9 +11,6 @@ public class EnemyManager : MonoBehaviour {
 
     public GameObject healthBar;
     private float currentHealth; 
-	public GameObject powerUpPrefab;
-	public GameObject powerUpVidaPrefab;
-	public GameObject powerUpDmgPrefab;
 	public Transform enemy;
 
 
@@ -48,9 +45,10 @@ public class EnemyManager : MonoBehaviour {
                 enemyDead = true;
                 enemyAnim.SetBool("isDead", true);
                 Destroy(gameObject, animDelay);
-				Instantiate (powerUpPrefab, new Vector3(enemy.position.x + 3, enemy.position.y + 1, enemy.position.z), enemyAnim.targetRotation);
-				Instantiate (powerUpVidaPrefab, new Vector3(enemy.position.x, enemy.position.y + 1, enemy.position.z), enemyAnim.targetRotation);
-				Instantiate (powerUpDmgPrefab, new Vector3(enemy.position.x + 1, enemy.position.y + 1, enemy.position.z), enemyAnim.targetRotation);
+				//Instantiate (powerUpPrefab, new Vector3(enemy.position.x + 3, enemy.position.y + 1, enemy.position.z), enemyAnim.targetRotation);
+				//Instantiate (powerUpVidaPrefab, new Vector3(enemy.position.x, enemy.position.y + 1, enemy.position.z), enemyAnim.targetRotation);
+				//Instantiate (powerUpDmgPrefab, new Vector3(enemy.position.x + 1, enemy.position.y + 1, enemy.position.z), enemyAnim.targetRotation);
+				GetComponent<LootDrop>().DropLot();
             }
 			enemyDead = false;
         }

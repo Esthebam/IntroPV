@@ -26,7 +26,7 @@ TagManager:
   - 
   - Player
   - Enemy
-  - 
+  - PowerUps
   - 
   - 
   - 
@@ -63,4 +63,10 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 1489055527
+    locked: 0
+  - name: PowerUps
+    uniqueID: 2648591623
+    locked: 0
+  - name: New Layer
+    uniqueID: 355403673
     locked: 0
