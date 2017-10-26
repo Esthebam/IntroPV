@@ -10,7 +10,7 @@ public class LootDrop : MonoBehaviour {
 	public GameObject powerUpSaltoPrefab;
 	public GameObject powerUpDmgPrefab;
 	public GameObject powerUpVelocidadPrefab;
-	public LayerMask escenario;
+
 	// Use this for initialization
 	void Start () {
     }

@@ -25,6 +25,7 @@ GameObject:
   - component: {fileID: 61494380918305030}
   - component: {fileID: 95770542045348390}
   - component: {fileID: 114033624805586024}
+  - component: {fileID: 114370357365557394}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemigo
@@ -277,12 +278,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animDelay: 0.4
   healthBar: {fileID: 1350502896167654}
-  powerUpPrefab: {fileID: 1455074893575294, guid: 82644987330d2e04ba1b4dafb1f5f6c4,
-    type: 2}
-  powerUpVidaPrefab: {fileID: 1455074893575294, guid: 7660f2c4c813c17429a0f2dc0ee58561,
-    type: 2}
-  powerUpDmgPrefab: {fileID: 1414656510252452, guid: d8e6f1e57ed44644183acdac865a2b2d,
-    type: 2}
   enemy: {fileID: 0}
   enemyHealth: 50
   enemyValue: 50
@@ -334,6 +329,29 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114370357365557394
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1023790567846880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f022ae47db2898941b056eb6e6127235, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tocandoPiso: 0
+  powerUpVidaPrefab: {fileID: 1628811710118196, guid: 2e8371ebb3999c242a30ded5b8f47940,
+    type: 2}
+  powerUpSaltoPrefab: {fileID: 1436744219553118, guid: 429ddbde87786114c9ee71d7158fe90c,
+    type: 2}
+  powerUpDmgPrefab: {fileID: 1269298817595940, guid: d8e6f1e57ed44644183acdac865a2b2d,
+    type: 2}
+  powerUpVelocidadPrefab: {fileID: 1841379246555062, guid: d3b70db9b353d2c4d97e591498444eae,
+    type: 2}
+  escenario:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &114455058772998176
 MonoBehaviour:
   m_ObjectHideFlags: 1
