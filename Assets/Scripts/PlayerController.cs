@@ -1,10 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
+	[SerializeField]
+	Slider powerUpBar;
 
+	[SerializeField]
+	Image fill;
+
+	[SerializeField]
+	Text powerUpText;
     public float maxSpeed = 5f;
     public float speed = 2f;
     public bool tocandoPiso;
@@ -28,6 +36,8 @@ public class PlayerController : MonoBehaviour
         myRigidbody2D = GetComponent<Rigidbody2D>();
         myAnimator = GetComponent<Animator>();
 		estaDisparando = true;
+		powerUpBar.value = 100;
+
     }
 
     // Update is called once per frame
@@ -94,7 +104,7 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-
+		
         Vector3 fixedVelocity = myRigidbody2D.velocity;
         fixedVelocity.x *= 0.75f;
 
@@ -154,24 +164,32 @@ public class PlayerController : MonoBehaviour
 		if (col.gameObject.tag == "PowerUp") {
 			fuerzaSalto = 15f;
 			GetComponent<SpriteRenderer> ().color = Color.yellow;
+			powerUpText.text = "Salto Doble";
+			fill.color = Color.yellow;
 			StartCoroutine ("tiempoEspera");
 			Destroy (col.gameObject);	
 		}
 		if (col.gameObject.tag == "PowerUpVida") {
 			HealthManager.healthManager.invincible = true;
 			GetComponent<SpriteRenderer> ().color = Color.green;
-			StartCoroutine ("vida");
+			powerUpText.text = "Inmunidad";
+			fill.color = Color.green;
+			StartCoroutine ("vida"); 
 			Destroy (col.gameObject);	
 		}
 		if (col.gameObject.tag == "PowerUpVel") {
 			maxSpeed = 6;
 			GetComponent<SpriteRenderer> ().color = Color.blue;
+			powerUpText.text = "Velocidad";
+			fill.color = Color.blue;
 			estaDisparando = false;
 			StartCoroutine ("vel");
 			Destroy (col.gameObject);
 		}
 		if (col.gameObject.tag == "PowerUpDmg") {
 			GetComponent<SpriteRenderer> ().color = Color.gray;
+			powerUpText.text = "Fuerza Extra";
+			fill.color = Color.grey;
 			StartCoroutine ("dmg");
 			Destroy (col.gameObject);
 		}
@@ -183,18 +201,24 @@ public class PlayerController : MonoBehaviour
 		yield return new WaitForSeconds (5);
 		fuerzaSalto = 9.25f;
 		GetComponent<SpriteRenderer>().color = Color.white;
+		powerUpText.text = "PowerUp";
+		fill.color = Color.white;
+
 	}
 
 	IEnumerator vida() {
 		yield return new WaitForSeconds (5);
 		HealthManager.healthManager.invincible = false;
 		GetComponent<SpriteRenderer> ().color = Color.white;
+		powerUpText.text = "PowerUp";
+		fill.color = Color.white;
 	}
 
 	IEnumerator slow() {
 		yield return new WaitForSeconds (0.25f);
 		speed = 75f; 
 		maxSpeed = 3f;
+
 	}
 
 	IEnumerator vel() {
@@ -202,6 +226,8 @@ public class PlayerController : MonoBehaviour
 		maxSpeed = 3;
 		estaDisparando = true;
 		GetComponent<SpriteRenderer>().color = Color.white;
+		powerUpText.text = "PowerUp";
+		fill.color = Color.white;
 	}
 
 	IEnumerator dmg() {
@@ -209,6 +235,9 @@ public class PlayerController : MonoBehaviour
 		//BulletMovement.instance.damageRef = 5;
 		//GetComponent<BulletMovement>().damageRef = 5;
 		GetComponent<SpriteRenderer>().color = Color.white;
+		powerUpText.text = "PowerUp";
+		fill.color = Color.white;
+
 	}
 
 
