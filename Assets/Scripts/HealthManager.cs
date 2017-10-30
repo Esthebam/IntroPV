@@ -20,6 +20,7 @@ public class HealthManager : MonoBehaviour {
 	public static HealthManager healthManager;
 
     public AudioSource fizzSound;
+    public AudioSource sawSound;
 
     private Animator playerAnim;
     public float animDelay;
@@ -116,7 +117,8 @@ public class HealthManager : MonoBehaviour {
 
             if (col.gameObject.tag == "Saw") 
 			{
-				playerHealth -= 5.00f;
+                sawSound.Play();
+                playerHealth -= 5.00f;
 				StartCoroutine ("color");
 				invincible = true;
 				StartCoroutine ("tiempoEspera");
