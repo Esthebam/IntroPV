@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour
     public Transform bulletSpawner;
     public GameObject bulletPrefab;
 
-    public AudioSource shootingSound;
+    public AudioSource[] shootingSounds;
 
     private Rigidbody2D myRigidbody2D;
     private Animator myAnimator;
@@ -131,9 +131,9 @@ public class PlayerController : MonoBehaviour
         {
             myAnimator.SetBool("Disparo", true);
             Instantiate(bulletPrefab, bulletSpawner.position, bulletSpawner.rotation);
-            shootingSound.Play();
+            shootingSounds[Random.Range(0, shootingSounds.Length)].Play();
 
-			if (estaDisparando) {
+            if (estaDisparando) {
 				speed = 25f;
 				maxSpeed = 0.5f;
 				StartCoroutine ("slow");

@@ -28,7 +28,6 @@ public class HealthManager : MonoBehaviour {
 
     public float playerHealth;
     public int enemyDamage;
-	private GameObject player;
     public static bool playerDead;
 	public float maxHealth;
 	public Vidas vidas;
@@ -45,7 +44,7 @@ public class HealthManager : MonoBehaviour {
         myRigidbody = GetComponent<Rigidbody2D>();
 		healthManager = this;
         playerAnim = GetComponent<Animator>();
-		player = GameObject.FindGameObjectWithTag ("Player");
+		//player = GameObject.FindGameObjectWithTag ("Player");
 		maxHealth = playerHealth;
 		healthBar.value = 100;	
     }
