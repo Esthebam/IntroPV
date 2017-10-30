@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
 
     public AudioSource shootingSound;
 
-    public Rigidbody2D myRigidbody2D;
+    private Rigidbody2D myRigidbody2D;
     private Animator myAnimator;
     private bool jump;
     private bool seAgacha;

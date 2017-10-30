@@ -117,6 +117,7 @@ public class HealthManager : MonoBehaviour {
 
             if (col.gameObject.tag == "Saw") 
 			{
+                col.GetComponent<ParticleSystem>().Play();
                 sawSound.Play();
                 playerHealth -= 5.00f;
 				StartCoroutine ("color");
