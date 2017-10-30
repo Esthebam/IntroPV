@@ -62,7 +62,7 @@ public class PlayerController : MonoBehaviour
         myAnimator.SetBool("SeAgacha", seAgacha);
 	
 
-        if (Input.GetKey(KeyCode.DownArrow) && tocandoPiso)
+		if (Input.GetKey(KeyCode.DownArrow) && tocandoPiso && !Pausa.pauseEnabled)
         {
             seAgacha = true;
         }
@@ -122,7 +122,8 @@ public class PlayerController : MonoBehaviour
 
     public void PlayerShooting()
     {
-        if (Input.GetMouseButtonDown(0))
+		
+		if (Input.GetMouseButtonDown(0) && !Pausa.pauseEnabled)
         {
             myAnimator.SetBool("Disparo", true);
             Instantiate(bulletPrefab, bulletSpawner.position, bulletSpawner.rotation);
@@ -140,6 +141,7 @@ public class PlayerController : MonoBehaviour
         {
             myAnimator.SetBool("Disparo", false);
         }
+	
     }
     
     private void OnBecameInvisible()
