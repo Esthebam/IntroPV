@@ -154,7 +154,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1902648626045044}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.79, y: -2.406, z: 0}
+  m_LocalPosition: {x: 2.0786073, y: -2.2940931, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4526854375120058}
@@ -349,9 +349,12 @@ MonoBehaviour:
     type: 2}
   powerUpVelocidadPrefab: {fileID: 1841379246555062, guid: d3b70db9b353d2c4d97e591498444eae,
     type: 2}
-  escenario:
-    serializedVersion: 2
-    m_Bits: 0
+  powerups:
+  - {fileID: 1628811710118196, guid: 2e8371ebb3999c242a30ded5b8f47940, type: 2}
+  - {fileID: 1841379246555062, guid: d3b70db9b353d2c4d97e591498444eae, type: 2}
+  - {fileID: 1436744219553118, guid: 429ddbde87786114c9ee71d7158fe90c, type: 2}
+  - {fileID: 1269298817595940, guid: d8e6f1e57ed44644183acdac865a2b2d, type: 2}
+  porcentajePowerups: 0.2
 --- !u!114 &114455058772998176
 MonoBehaviour:
   m_ObjectHideFlags: 1

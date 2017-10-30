@@ -5,55 +5,21 @@ using UnityEngine;
 public class LootDrop : MonoBehaviour {
 
     public bool tocandoPiso;
-
-    public GameObject powerUpVidaPrefab;
-	public GameObject powerUpSaltoPrefab;
-	public GameObject powerUpDmgPrefab;
-	public GameObject powerUpVelocidadPrefab;
+    public GameObject[] powerups;
+    public float porcentajePowerups;
 
 	// Use this for initialization
 	void Start () {
     }
 
 
-
-
-    void SpawnPowerUpVida () {
-		GameObject powerUpVida = Instantiate(powerUpVidaPrefab);
-		powerUpVida.transform.position = transform.position;
-		Rigidbody2D rBody = powerUpVida.GetComponent<Rigidbody2D>();
-		rBody.AddForce(new Vector2(Random.Range(3,-3), 7), ForceMode2D.Impulse);
+	public void DropLot(){
+        if (Random.Range(0f, 1f) <= porcentajePowerups)
+        {
+            GameObject powerup = Instantiate(powerups[Random.Range(0, powerups.Length)], transform.position, Quaternion.identity);
+            Rigidbody2D powerupRB = powerup.GetComponent<Rigidbody2D>();
+            powerupRB.AddForce(new Vector2(Random.Range(3, -3), 7), ForceMode2D.Impulse);
+        }
 
     }
-	void SpawnPowerUpSalto () {
-		GameObject powerUpSalto = Instantiate(powerUpSaltoPrefab);
-		powerUpSalto.transform.position = transform.position;
-		Rigidbody2D rBody = powerUpSalto.GetComponent<Rigidbody2D>();
-		rBody.AddForce(new Vector2(Random.Range(3,-3), 7), ForceMode2D.Impulse);
-
-	}
-	void SpawnPowerUpDmg () {
-		GameObject powerUpDmg = Instantiate(powerUpDmgPrefab);
-
-		powerUpDmg.transform.position = transform.position;
-		Rigidbody2D rBody = powerUpDmg.GetComponent<Rigidbody2D>();
-		rBody.AddForce(new Vector2(Random.Range(3,-3), 7), ForceMode2D.Impulse);
-
-	}
-	void SpawnPowerUpVelocidad () {
-		GameObject powerUpVelocidad = Instantiate(powerUpVelocidadPrefab);
-		powerUpVelocidad.transform.position = transform.position;
-		Rigidbody2D rBody = powerUpVelocidad.GetComponent<Rigidbody2D>();
-		rBody.AddForce(new Vector2(Random.Range(3,-3), 7), ForceMode2D.Impulse);
-
-
-	}
-		
-
-	public void DropLot(){
-		SpawnPowerUpVida ();
-		SpawnPowerUpVelocidad ();
-		SpawnPowerUpDmg ();
-		SpawnPowerUpSalto ();
-	}
 }
