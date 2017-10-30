@@ -11,7 +11,9 @@ public class PlayerController : MonoBehaviour
 	[SerializeField]
 	Image fill;
 
-	[SerializeField]
+    public float powerupTimer;
+
+    [SerializeField]
 	Text powerUpText;
     public float maxSpeed = 5f;
     public float speed = 2f;
@@ -36,8 +38,7 @@ public class PlayerController : MonoBehaviour
         myRigidbody2D = GetComponent<Rigidbody2D>();
         myAnimator = GetComponent<Animator>();
 		estaDisparando = true;
-		powerUpBar.value = 100;
-
+		powerUpBar.value = 0;
     }
 
     // Update is called once per frame
@@ -48,7 +49,11 @@ public class PlayerController : MonoBehaviour
             Movement();
             PlayerShooting();
         }
-
+        if (powerupTimer > 0)
+        {
+            powerupTimer -= Time.deltaTime;
+            powerUpBar.value = powerupTimer;
+        }
 
     }
 
@@ -151,19 +156,10 @@ public class PlayerController : MonoBehaviour
     }
     
 
-    //private void OnCollisionStay2D(Collision2D col)
-	//{
-		//if(col.gameObject.tag == "PowerUp")
-		//{
-			//fuerzaSalto = 15f;
-			//StartCoroutine ("tiempoEspera");
-
-		//}
-	//}
-
 	private void OnCollisionEnter2D (Collision2D col)
 	{
 		if (col.gameObject.tag == "PowerUp") {
+            powerupTimer = 5;
 			fuerzaSalto = 15f;
 			GetComponent<SpriteRenderer> ().color = Color.yellow;
 			powerUpText.text = "Salto Doble";
@@ -172,7 +168,8 @@ public class PlayerController : MonoBehaviour
 			Destroy (col.gameObject);	
 		}
 		if (col.gameObject.tag == "PowerUpVida") {
-			HealthManager.healthManager.invincible = true;
+            powerupTimer = 5;
+            HealthManager.healthManager.invincible = true;
 			GetComponent<SpriteRenderer> ().color = Color.green;
 			powerUpText.text = "Inmunidad";
 			fill.color = Color.green;
@@ -180,7 +177,8 @@ public class PlayerController : MonoBehaviour
 			Destroy (col.gameObject);	
 		}
 		if (col.gameObject.tag == "PowerUpVel") {
-			maxSpeed = 6;
+            powerupTimer = 5;
+            maxSpeed = 6;
 			GetComponent<SpriteRenderer> ().color = Color.blue;
 			powerUpText.text = "Velocidad";
 			fill.color = Color.blue;
@@ -189,7 +187,8 @@ public class PlayerController : MonoBehaviour
 			Destroy (col.gameObject);
 		}
 		if (col.gameObject.tag == "PowerUpDmg") {
-			GetComponent<SpriteRenderer> ().color = Color.gray;
+            powerupTimer = 5;
+            GetComponent<SpriteRenderer> ().color = Color.gray;
 			powerUpText.text = "Fuerza Extra";
 			fill.color = Color.grey;
 			StartCoroutine ("dmg");
@@ -201,7 +200,9 @@ public class PlayerController : MonoBehaviour
 
 	IEnumerator tiempoEspera() {
 		yield return new WaitForSeconds (5);
-		fuerzaSalto = 9.25f;
+        powerUpBar.value = 0;
+        powerupTimer = 0;
+        fuerzaSalto = 9.25f;
 		GetComponent<SpriteRenderer>().color = Color.white;
 		powerUpText.text = "PowerUp";
 		fill.color = Color.white;
@@ -210,7 +211,9 @@ public class PlayerController : MonoBehaviour
 
 	IEnumerator vida() {
 		yield return new WaitForSeconds (5);
-		HealthManager.healthManager.invincible = false;
+        powerUpBar.value = 0;
+        powerupTimer = 0;
+        HealthManager.healthManager.invincible = false;
 		GetComponent<SpriteRenderer> ().color = Color.white;
 		powerUpText.text = "PowerUp";
 		fill.color = Color.white;
@@ -225,7 +228,9 @@ public class PlayerController : MonoBehaviour
 
 	IEnumerator vel() {
 		yield return new WaitForSeconds(5);
-		maxSpeed = 3;
+        powerUpBar.value = 0;
+        powerupTimer = 0;
+        maxSpeed = 3;
 		estaDisparando = true;
 		GetComponent<SpriteRenderer>().color = Color.white;
 		powerUpText.text = "PowerUp";
@@ -234,9 +239,11 @@ public class PlayerController : MonoBehaviour
 
 	IEnumerator dmg() {
 		yield return new WaitForSeconds (5);
-		//BulletMovement.instance.damageRef = 5;
-		//GetComponent<BulletMovement>().damageRef = 5;
-		GetComponent<SpriteRenderer>().color = Color.white;
+        powerUpBar.value = 0;
+        powerupTimer = 0;
+        //BulletMovement.instance.damageRef = 5;
+        //GetComponent<BulletMovement>().damageRef = 5;
+        GetComponent<SpriteRenderer>().color = Color.white;
 		powerUpText.text = "PowerUp";
 		fill.color = Color.white;
 
