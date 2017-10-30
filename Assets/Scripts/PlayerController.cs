@@ -54,7 +54,6 @@ public class PlayerController : MonoBehaviour
             powerupTimer -= Time.deltaTime;
             powerUpBar.value = powerupTimer;
         }
-
     }
 
     private void Movement()
@@ -188,6 +187,7 @@ public class PlayerController : MonoBehaviour
 		}
 		if (col.gameObject.tag == "PowerUpDmg") {
             powerupTimer = 5;
+            bulletPrefab.GetComponent<BulletMovement>().damageRef = 20;
             GetComponent<SpriteRenderer> ().color = Color.gray;
 			powerUpText.text = "Fuerza Extra";
 			fill.color = Color.grey;
@@ -241,8 +241,7 @@ public class PlayerController : MonoBehaviour
 		yield return new WaitForSeconds (5);
         powerUpBar.value = 0;
         powerupTimer = 0;
-        //BulletMovement.instance.damageRef = 5;
-        //GetComponent<BulletMovement>().damageRef = 5;
+        bulletPrefab.GetComponent<BulletMovement>().damageRef = 5;
         GetComponent<SpriteRenderer>().color = Color.white;
 		powerUpText.text = "PowerUp";
 		fill.color = Color.white;
