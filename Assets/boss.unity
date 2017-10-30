@@ -1534,11 +1534,6 @@ Prefab:
       propertyPath: m_Name
       value: Acid
       objectReference: {fileID: 0}
-    - target: {fileID: 82285452013043178, guid: d504d92fdc1ad1645afc5f180d73e59e,
-        type: 2}
-      propertyPath: m_PlayOnAwake
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d504d92fdc1ad1645afc5f180d73e59e, type: 2}
   m_IsPrefabParent: 0
@@ -1883,7 +1878,7 @@ MonoBehaviour:
   healthText: {fileID: 735871534}
   KnockBackX: 5
   KnockBackY: 5
-  fizzSound: {fileID: 2133803228}
+  fizzSound: {fileID: 2133803226}
   animDelay: 0.4
   playerHealth: 13
   enemyDamage: 5
@@ -4129,8 +4124,8 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e75f137644d5fb3478822277b38f98a8, type: 2}
   m_IsPrefabParent: 0
---- !u!82 &2133803228 stripped
+--- !u!82 &2133803226 stripped
 AudioSource:
-  m_PrefabParentObject: {fileID: 82285452013043178, guid: d504d92fdc1ad1645afc5f180d73e59e,
+  m_PrefabParentObject: {fileID: 82333807189799776, guid: d504d92fdc1ad1645afc5f180d73e59e,
     type: 2}
   m_PrefabInternal: {fileID: 711252067}

@@ -61,6 +61,7 @@ public class HealthManager : MonoBehaviour {
         if (col.tag == "Acid")
         {
             fizzSound.Play();
+            col.GetComponent<ParticleSystem>().Play();
             playerHealth -= maxHealth;
             healthBar.value = playerHealth;
             playerDead = true;
