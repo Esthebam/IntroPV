@@ -44,7 +44,6 @@ public class HealthManager : MonoBehaviour {
         myRigidbody = GetComponent<Rigidbody2D>();
 		healthManager = this;
         playerAnim = GetComponent<Animator>();
-		//player = GameObject.FindGameObjectWithTag ("Player");
 		maxHealth = playerHealth;
 		healthBar.value = 100;	
     }
@@ -62,7 +61,7 @@ public class HealthManager : MonoBehaviour {
         }
     }
 
-    void OnTriggerStay2D(Collider2D col)
+    void ChequearAcido(Collider2D col)
     {
         if (col.tag == "Acid")
         {
@@ -72,55 +71,68 @@ public class HealthManager : MonoBehaviour {
             healthBar.value = playerHealth;
             playerDead = true;
         }
+    }
+
+    void ChequearEnemigos(Collider2D col)
+    {
+        if (col.tag == "Enemigo")
+        {
+            playerHealth -= enemyDamage;
+            StartCoroutine("color");
+            invincible = true;
+            StartCoroutine("tiempoEspera");
+            healthBar.value = (playerHealth / maxHealth) * 100;
+            Knockback(col);
+            CameraShake.Shake(0.25f, 0.75f);
+        }
+        if (col.tag == "EnemigoLegs")
+        {
+            playerHealth -= enemyDamage;
+            StartCoroutine("color");
+            invincible = true;
+            StartCoroutine("tiempoEspera");
+            healthBar.value = (playerHealth / maxHealth) * 100;
+            Knockback(col);
+            CameraShake.Shake(0.25f, 0.75f);
+        }
+    }
+
+    void ChequearTrampas(Collider2D col)
+    {
+        if (col.gameObject.tag == "Saw")
+        {
+            col.GetComponent<ParticleSystem>().Play();
+            sawSound.Play();
+            playerHealth -= 5.00f;
+            StartCoroutine("color");
+            invincible = true;
+            StartCoroutine("tiempoEspera");
+            healthBar.value = (playerHealth / maxHealth) * 100;
+            Knockback(col);
+            CameraShake.Shake(0.25f, 0.75f);
+        }
+
+        if (col.gameObject.tag == "Spike")
+        {
+            col.GetComponent<ParticleSystem>().Play();
+            spikeSound.Play();
+            playerHealth -= 5.00f;
+            StartCoroutine("color");
+            invincible = true;
+            StartCoroutine("tiempoEspera");
+            healthBar.value = (playerHealth / maxHealth) * 100;
+            Knockback(col);
+            CameraShake.Shake(0.25f, 0.75f);
+        }
+    }
+
+    void OnTriggerStay2D(Collider2D col)
+    {
+        ChequearAcido(col);
 		if (!invincible) 
 		{
-			if(col.tag == "Enemigo")
-			{
-				playerHealth -= enemyDamage;
-				StartCoroutine ("color");
-				invincible = true;
-				StartCoroutine ("tiempoEspera");
-				healthBar.value = (playerHealth/maxHealth)* 100;
-                Knockback(col);
-                CameraShake.Shake (0.25f, 0.75f); 
-            }
-
-            if (col.tag == "EnemigoLegs")
-            {
-                playerHealth -= enemyDamage;
-                StartCoroutine("color");
-                invincible = true;
-                StartCoroutine("tiempoEspera");
-				healthBar.value = (playerHealth/maxHealth)* 100;
-                Knockback(col);
-                CameraShake.Shake (0.25f, 0.75f);
-            }
-
-            if (col.gameObject.tag == "Saw") 
-			{
-                col.GetComponent<ParticleSystem>().Play();
-                sawSound.Play();
-                playerHealth -= 5.00f;
-				StartCoroutine ("color");
-				invincible = true;
-				StartCoroutine ("tiempoEspera");
-				healthBar.value = (playerHealth/maxHealth)* 100;
-                Knockback(col);
-                CameraShake.Shake (0.25f, 0.75f);
-			}
-
-            if (col.gameObject.tag == "Spike")
-            {
-                col.GetComponent<ParticleSystem>().Play();
-                spikeSound.Play();
-                playerHealth -= 5.00f;
-                StartCoroutine("color");
-                invincible = true;
-                StartCoroutine("tiempoEspera");
-                healthBar.value = (playerHealth / maxHealth) * 100;
-                Knockback(col);
-                CameraShake.Shake(0.25f, 0.75f);
-            }
+            ChequearEnemigos(col);
+            ChequearTrampas(col);          
         }
 
     }

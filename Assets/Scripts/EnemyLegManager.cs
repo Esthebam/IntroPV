@@ -34,7 +34,6 @@ public class EnemyLegManager : MonoBehaviour
         if (col.tag == "Bullet")
         {
             currentHealth -= BulletMovement.damage;
-			Debug.Log (BulletMovement.damage);
 
             if (!enemyDead)
             {
