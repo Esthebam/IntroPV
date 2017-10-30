@@ -11,9 +11,11 @@ public class EnemyManager : MonoBehaviour {
 
     public GameObject healthBar;
     private float currentHealth; 
-	public Transform enemy;
+	private Transform enemy;
 
-
+    public AudioSource deathSound;
+    public AudioSource[] deathSounds;
+    
     public float enemyHealth;
     public int enemyValue;
 
@@ -41,7 +43,8 @@ public class EnemyManager : MonoBehaviour {
             
             if (currentHealth <= 0)
             {
-				GetComponent<BoxCollider2D>().enabled = false;
+                deathSounds[Random.Range(0, deathSounds.Length)].Play();
+                GetComponent<BoxCollider2D>().enabled = false;
                 enemyDead = true;
                 enemyAnim.SetBool("isDead", true);
                 Destroy(gameObject, animDelay);
