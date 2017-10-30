@@ -148,13 +148,13 @@ public class PlayerController : MonoBehaviour
         }
 	
     }
-    
+    /*
     private void OnBecameInvisible()
     // Sólo para las pruebas
     {
         transform.position = new Vector3(-7, 0, 0);
     }
-    
+    */
 
 	private void OnCollisionEnter2D (Collision2D col)
 	{
