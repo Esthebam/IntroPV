@@ -49,8 +49,7 @@ public class EnemyLegManager : MonoBehaviour
                 enemyDead = true;
                 enemyAnim.SetBool("isDead", true);
 				myRigidbody.gravityScale = 0;
-
-
+                GetComponent<LootDrop>().DropLot();
                 Destroy(gameObject, animDelay);
                 
             }
