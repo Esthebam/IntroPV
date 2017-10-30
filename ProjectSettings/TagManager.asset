@@ -15,6 +15,7 @@ TagManager:
   - PowerUpVel
   - PowerUpDmg
   - Acid
+  - Spike
   layers:
   - Default
   - TransparentFX

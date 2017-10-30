@@ -1378,6 +1378,11 @@ Transform:
   m_PrefabParentObject: {fileID: 4908327041694416, guid: 2535d0d0a5cfac147a414e6b15eac7b1,
     type: 2}
   m_PrefabInternal: {fileID: 1533229540}
+--- !u!82 &654050957 stripped
+AudioSource:
+  m_PrefabParentObject: {fileID: 82714603724902180, guid: 8ba09aeac82378949aadec45dccdbb8e,
+    type: 2}
+  m_PrefabInternal: {fileID: 1161638381}
 --- !u!1001 &657591786
 Prefab:
   m_ObjectHideFlags: 0
@@ -1858,10 +1863,10 @@ MonoBehaviour:
   KnockBackY: 5
   fizzSound: {fileID: 2133803226}
   sawSound: {fileID: 1064242714}
+  spikeSound: {fileID: 654050957}
   animDelay: 0.4
   playerHealth: 13
   enemyDamage: 5
-  player: {fileID: 0}
   maxHealth: 0
   vidas: {fileID: 0}
   vida: 2
@@ -2471,6 +2476,26 @@ Prefab:
     - target: {fileID: 4214098117117640, guid: 8ba09aeac82378949aadec45dccdbb8e, type: 2}
       propertyPath: m_RootOrder
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 198974176507472960, guid: 8ba09aeac82378949aadec45dccdbb8e,
+        type: 2}
+      propertyPath: ShapeModule.type
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 198974176507472960, guid: 8ba09aeac82378949aadec45dccdbb8e,
+        type: 2}
+      propertyPath: randomSeed
+      value: -420214534
+      objectReference: {fileID: 0}
+    - target: {fileID: 198974176507472960, guid: 8ba09aeac82378949aadec45dccdbb8e,
+        type: 2}
+      propertyPath: ShapeModule.m_Position.y
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 198974176507472960, guid: 8ba09aeac82378949aadec45dccdbb8e,
+        type: 2}
+      propertyPath: ShapeModule.m_Scale.x
+      value: 1.2574633
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8ba09aeac82378949aadec45dccdbb8e, type: 2}

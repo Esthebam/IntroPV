@@ -21,25 +21,22 @@ public class HealthManager : MonoBehaviour {
 
     public AudioSource fizzSound;
     public AudioSource sawSound;
+    public AudioSource spikeSound;
 
     private Animator playerAnim;
     public float animDelay;
 
     public float playerHealth;
     public int enemyDamage;
-	public GameObject player;
+	private GameObject player;
     public static bool playerDead;
 	public float maxHealth;
 	public Vidas vidas;
 	public int vida = 2;
 	
-
-
-
-
-
-
 	public bool invincible;
+
+
 
     // Use this for initialization
     void Start () {
@@ -100,8 +97,6 @@ public class HealthManager : MonoBehaviour {
                 CameraShake.Shake (0.25f, 0.75f);
             }
 
-				
-
             if (col.gameObject.tag == "Saw") 
 			{
                 col.GetComponent<ParticleSystem>().Play();
@@ -114,7 +109,20 @@ public class HealthManager : MonoBehaviour {
                 Knockback(col);
                 CameraShake.Shake (0.25f, 0.75f);
 			}
-		}
+
+            if (col.gameObject.tag == "Spike")
+            {
+                col.GetComponent<ParticleSystem>().Play();
+                spikeSound.Play();
+                playerHealth -= 5.00f;
+                StartCoroutine("color");
+                invincible = true;
+                StartCoroutine("tiempoEspera");
+                healthBar.value = (playerHealth / maxHealth) * 100;
+                Knockback(col);
+                CameraShake.Shake(0.25f, 0.75f);
+            }
+        }
 
     }
 
