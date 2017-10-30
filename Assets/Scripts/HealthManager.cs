@@ -19,6 +19,7 @@ public class HealthManager : MonoBehaviour {
 
 	public static HealthManager healthManager;
 
+    public AudioSource fizzSound;
 
     private Animator playerAnim;
     public float animDelay;
@@ -59,6 +60,7 @@ public class HealthManager : MonoBehaviour {
     {
         if (col.tag == "Acid")
         {
+            fizzSound.Play();
             playerHealth -= maxHealth;
             healthBar.value = playerHealth;
             playerDead = true;
@@ -189,7 +191,7 @@ public class HealthManager : MonoBehaviour {
 				}
 			}
 	
-			SceneManager.LoadScene ("GameOver");
+			//SceneManager.LoadScene ("GameOver");
 		}
 	
 	}
