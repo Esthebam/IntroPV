@@ -7,7 +7,6 @@ TagManager:
   - Piso
   - Enemigo
   - Bullet
-  - PowerUp
   - PowerUpVida
   - Saw
   - EnemigoLegs
@@ -16,6 +15,7 @@ TagManager:
   - PowerUpDmg
   - Acid
   - Spike
+  - PowerUpSalto
   layers:
   - Default
   - TransparentFX

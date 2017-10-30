@@ -11,7 +11,6 @@ public class EnemyManager : MonoBehaviour {
 
     public GameObject healthBar;
     private float currentHealth; 
-	//private Transform enemy;
 
     public AudioSource deathSound;
     public AudioSource[] deathSounds;
@@ -25,7 +24,6 @@ public class EnemyManager : MonoBehaviour {
     {
         currentHealth = enemyHealth;
         enemyAnim = GetComponent<Animator>();
-		//enemy = GetComponent<Transform> ();
     }
 
 

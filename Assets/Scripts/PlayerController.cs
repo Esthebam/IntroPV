@@ -25,6 +25,10 @@ public class PlayerController : MonoBehaviour
     public GameObject bulletPrefab;
 
     public AudioSource[] shootingSounds;
+    public AudioSource powerUpSaltoSound;
+    public AudioSource powerUpDañoSound;
+    public AudioSource powerUpVelocidadSound;
+    public AudioSource powerUpVidaSound;
 
     private Rigidbody2D myRigidbody2D;
     private Animator myAnimator;
@@ -157,7 +161,8 @@ public class PlayerController : MonoBehaviour
 
 	private void OnCollisionEnter2D (Collision2D col)
 	{
-		if (col.gameObject.tag == "PowerUp") {
+		if (col.gameObject.tag == "PowerUpSalto") {
+            powerUpSaltoSound.Play();
             powerupTimer = 5;
 			fuerzaSalto = 15f;
 			GetComponent<SpriteRenderer> ().color = Color.yellow;
@@ -167,6 +172,7 @@ public class PlayerController : MonoBehaviour
 			Destroy (col.gameObject);	
 		}
 		if (col.gameObject.tag == "PowerUpVida") {
+            powerUpVidaSound.Play();
             powerupTimer = 5;
             HealthManager.healthManager.invincible = true;
 			GetComponent<SpriteRenderer> ().color = Color.green;
@@ -176,6 +182,7 @@ public class PlayerController : MonoBehaviour
 			Destroy (col.gameObject);	
 		}
 		if (col.gameObject.tag == "PowerUpVel") {
+            powerUpVelocidadSound.Play();
             powerupTimer = 5;
             maxSpeed = 6;
 			GetComponent<SpriteRenderer> ().color = Color.blue;
@@ -186,6 +193,7 @@ public class PlayerController : MonoBehaviour
 			Destroy (col.gameObject);
 		}
 		if (col.gameObject.tag == "PowerUpDmg") {
+            powerUpDañoSound.Play();
             powerupTimer = 5;
             bulletPrefab.GetComponent<BulletMovement>().damageRef = 20;
             GetComponent<SpriteRenderer> ().color = Color.gray;
