@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class HealthManager : MonoBehaviour {
     
@@ -27,6 +28,8 @@ public class HealthManager : MonoBehaviour {
 	public GameObject player;
     public static bool playerDead;
 	public float maxHealth;
+	public Vidas vidas;
+	public int vida = 2;
 	
 
 
@@ -38,6 +41,7 @@ public class HealthManager : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+		vidas = GameObject.FindObjectOfType<Vidas> ();
         playerDead = false;
         myRigidbody = GetComponent<Rigidbody2D>();
 		healthManager = this;
@@ -159,22 +163,37 @@ public class HealthManager : MonoBehaviour {
 	{
 		healthText.text = (playerHealth/maxHealth) * 100 + " %";
 
-		if (playerHealth <= 0) 
+
+		if (playerHealth <= 0 && vida > 0) 
 		{
-			healthText.text = 0 + " %";	
-		GetComponent<BoxCollider2D>().enabled = false;
-		playerDead = true;
-		playerAnim.SetBool("isDead", true);
-		Component[] comps = GetComponents<Component>() as Component[];
-		foreach(Component comp in comps)
-		{
-			if (comp != gameObject.GetComponent<Transform>())
-			{
-				Destroy(comp,animDelay);
-			}
-			}
+			vida--;
+			vidas.cambioVida(vida);
+			playerHealth = 13;
+			healthBar.value = (playerHealth/maxHealth)* 100;
 		}
+			
+		
+		if (playerHealth <= 0 && vida == 0) 
+		{
+			vidas.cambioVida (vida--);
+			healthText.text = 0 + " %";	
+			GetComponent<BoxCollider2D>().enabled = false;
+			playerDead = true;
+			playerAnim.SetBool("isDead", true);
+			Component[] comps = GetComponents<Component>() as Component[];
+			foreach(Component comp in comps)
+			{
+				if (comp != gameObject.GetComponent<Transform>())
+				{
+					Destroy(comp,animDelay);
+				}
+			}
+	
+			SceneManager.LoadScene ("GameOver");
+		}
+	
 	}
+		
 }
 		
 
