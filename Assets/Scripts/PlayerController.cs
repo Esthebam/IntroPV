@@ -6,15 +6,47 @@ using UnityEngine.UI;
 public class PlayerController : MonoBehaviour
 {
 	[SerializeField]
-	Slider powerUpBar;
-
-	[SerializeField]
-	Image fill;
-
-    public float powerupTimer;
+	Slider powerUpDmgBar;
 
     [SerializeField]
-	Text powerUpText;
+    Slider powerUpSaltoBar;
+
+    [SerializeField]
+    Slider powerUpVelBar;
+
+    [SerializeField]
+    Slider powerUpVidaBar;
+
+    [SerializeField]
+	Image fillDmg;
+
+    [SerializeField]
+    Image fillSalto;
+
+    [SerializeField]
+    Image fillVel;
+
+    [SerializeField]
+    Image fillVida;
+
+    [SerializeField]
+    Text powerUpDmgText;
+
+    [SerializeField]
+    Text powerUpSaltoText;
+
+    [SerializeField]
+    Text powerUpVelText;
+
+    [SerializeField]
+    Text powerUpVidaText;
+
+
+    public float dmgTimer;
+    public float saltoTimer;
+    public float velTimer;
+    public float vidaTimer;
+
     public float maxSpeed = 5f;
     public float speed = 2f;
     public bool tocandoPiso;
@@ -42,7 +74,10 @@ public class PlayerController : MonoBehaviour
         myRigidbody2D = GetComponent<Rigidbody2D>();
         myAnimator = GetComponent<Animator>();
 		estaDisparando = true;
-		powerUpBar.value = 0;
+        powerUpDmgBar.value = 0;
+        powerUpSaltoBar.value = 0;
+        powerUpVelBar.value = 0;
+        powerUpVidaBar.value = 0;
     }
 
     // Update is called once per frame
@@ -53,11 +88,29 @@ public class PlayerController : MonoBehaviour
             Movement();
             PlayerShooting();
         }
-        if (powerupTimer > 0)
+
+        if (saltoTimer > 0)
         {
-            powerupTimer -= Time.deltaTime;
-            powerUpBar.value = powerupTimer;
+            saltoTimer -= Time.deltaTime;
+            powerUpSaltoBar.value = saltoTimer;
         }
+        if (vidaTimer > 0)
+        {
+            vidaTimer -= Time.deltaTime;
+            powerUpVidaBar.value = vidaTimer;
+        }
+        if (velTimer > 0)
+        {
+            velTimer -= Time.deltaTime;
+            powerUpVelBar.value = velTimer;
+        }
+        if (dmgTimer > 0)
+        {
+            dmgTimer -= Time.deltaTime;
+            powerUpDmgBar.value = dmgTimer;
+        }
+
+
     }
 
     private void Movement()
@@ -163,42 +216,46 @@ public class PlayerController : MonoBehaviour
 	{
 		if (col.gameObject.tag == "PowerUpSalto") {
             powerUpSaltoSound.Play();
-            powerupTimer = 5;
+            powerUpSaltoBar.transform.parent.gameObject.SetActive(true);
+            saltoTimer = 5;
 			fuerzaSalto = 15f;
 			GetComponent<SpriteRenderer> ().color = Color.yellow;
-			powerUpText.text = "Salto Doble";
-			fill.color = Color.yellow;
+			powerUpSaltoText.text = "Salto Doble";
+			fillSalto.color = Color.yellow;
 			StartCoroutine ("tiempoEspera");
 			Destroy (col.gameObject);	
 		}
 		if (col.gameObject.tag == "PowerUpVida") {
             powerUpVidaSound.Play();
-            powerupTimer = 5;
+            powerUpVidaBar.transform.parent.gameObject.SetActive(true);
+            vidaTimer = 5;
             HealthManager.healthManager.invincible = true;
 			GetComponent<SpriteRenderer> ().color = Color.green;
-			powerUpText.text = "Inmunidad";
-			fill.color = Color.green;
+			powerUpVidaText.text = "Inmunidad";
+			fillVida.color = Color.green;
 			StartCoroutine ("vida"); 
 			Destroy (col.gameObject);	
 		}
 		if (col.gameObject.tag == "PowerUpVel") {
             powerUpVelocidadSound.Play();
-            powerupTimer = 5;
+            powerUpVelBar.transform.parent.gameObject.SetActive(true);
+            velTimer = 5;
             maxSpeed = 6;
 			GetComponent<SpriteRenderer> ().color = Color.blue;
-			powerUpText.text = "Velocidad";
-			fill.color = Color.blue;
+			powerUpVelText.text = "Velocidad";
+			fillVel.color = Color.blue;
 			estaDisparando = false;
 			StartCoroutine ("vel");
 			Destroy (col.gameObject);
 		}
 		if (col.gameObject.tag == "PowerUpDmg") {
             powerUpDañoSound.Play();
-            powerupTimer = 5;
+            powerUpDmgBar.transform.parent.gameObject.SetActive(true);
+            dmgTimer = 5;
             bulletPrefab.GetComponent<BulletMovement>().damageRef = 20;
             GetComponent<SpriteRenderer> ().color = Color.gray;
-			powerUpText.text = "Fuerza Extra";
-			fill.color = Color.grey;
+			powerUpDmgText.text = "Fuerza Extra";
+			fillDmg.color = Color.grey;
 			StartCoroutine ("dmg");
 			Destroy (col.gameObject);
 		}
@@ -208,23 +265,25 @@ public class PlayerController : MonoBehaviour
 
 	IEnumerator tiempoEspera() {
 		yield return new WaitForSeconds (5);
-        powerUpBar.value = 0;
-        powerupTimer = 0;
+        powerUpSaltoBar.transform.parent.gameObject.SetActive(false);
+        powerUpSaltoBar.value = 0;
+        saltoTimer = 0;
         fuerzaSalto = 9.25f;
 		GetComponent<SpriteRenderer>().color = Color.white;
-		powerUpText.text = "PowerUp";
-		fill.color = Color.white;
+		powerUpSaltoText.text = "PowerUp";
+		fillSalto.color = Color.white;
 
 	}
 
 	IEnumerator vida() {
 		yield return new WaitForSeconds (5);
-        powerUpBar.value = 0;
-        powerupTimer = 0;
+        powerUpVidaBar.transform.parent.gameObject.SetActive(false);
+        powerUpVidaBar.value = 0;
+        vidaTimer = 0;
         HealthManager.healthManager.invincible = false;
 		GetComponent<SpriteRenderer> ().color = Color.white;
-		powerUpText.text = "PowerUp";
-		fill.color = Color.white;
+		powerUpVidaText.text = "PowerUp";
+		fillVida.color = Color.white;
 	}
 
 	IEnumerator slow() {
@@ -236,23 +295,26 @@ public class PlayerController : MonoBehaviour
 
 	IEnumerator vel() {
 		yield return new WaitForSeconds(5);
-        powerUpBar.value = 0;
-        powerupTimer = 0;
+        powerUpVelBar.transform.parent.gameObject.SetActive(false);
+        powerUpVelBar.value = 0;
+        velTimer = 0;
         maxSpeed = 3;
 		estaDisparando = true;
 		GetComponent<SpriteRenderer>().color = Color.white;
-		powerUpText.text = "PowerUp";
-		fill.color = Color.white;
+		powerUpVelText.text = "PowerUp";
+		fillVel.color = Color.white;
 	}
 
 	IEnumerator dmg() {
 		yield return new WaitForSeconds (5);
-        powerUpBar.value = 0;
-        powerupTimer = 0;
+        powerUpDmgBar.transform.parent.gameObject.SetActive(false);
+        powerUpDmgBar.value = 0;
+        dmgTimer = 0;
         bulletPrefab.GetComponent<BulletMovement>().damageRef = 5;
         GetComponent<SpriteRenderer>().color = Color.white;
-		powerUpText.text = "PowerUp";
-		fill.color = Color.white;
+		powerUpDmgText.text = "PowerUp";
+		fillDmg.color = Color.white;
+
 
 	}
 
