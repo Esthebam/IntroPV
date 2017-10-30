@@ -50,12 +50,21 @@ public class HealthManager : MonoBehaviour {
         playerAnim = GetComponent<Animator>();
 		player = GameObject.FindGameObjectWithTag ("Player");
 		maxHealth = playerHealth;
-		healthBar.value = 100;
-
-
-		
+		healthBar.value = 100;	
     }
-		
+
+
+    void Knockback(Collider2D col)
+    {
+        if (col.GetComponent<SpriteRenderer>().flipX == false)
+        {
+            myRigidbody.velocity = new Vector2(-KnockBackX, KnockBackY);
+        }
+        else
+        {
+            myRigidbody.velocity = new Vector2(KnockBackX, KnockBackY);
+        }
+    }
 
     void OnTriggerStay2D(Collider2D col)
     {
@@ -72,25 +81,13 @@ public class HealthManager : MonoBehaviour {
 			if(col.tag == "Enemigo")
 			{
 				playerHealth -= enemyDamage;
-					StartCoroutine ("color");
-					invincible = true;
-					StartCoroutine ("tiempoEspera");
+				StartCoroutine ("color");
+				invincible = true;
+				StartCoroutine ("tiempoEspera");
 				healthBar.value = (playerHealth/maxHealth)* 100;
-					if (col.GetComponent<SpriteRenderer>().flipX == false)
-					{
-						myRigidbody.velocity = new Vector2(-KnockBackX, KnockBackY);
-					}
-					else
-					{
-						myRigidbody.velocity = new Vector2(KnockBackX, KnockBackY);
-		
-
-                }
-
-				CameraShake.Shake (0.25f, 0.75f);
-             
-			}
-
+                Knockback(col);
+                CameraShake.Shake (0.25f, 0.75f); 
+            }
 
             if (col.tag == "EnemigoLegs")
             {
@@ -99,18 +96,8 @@ public class HealthManager : MonoBehaviour {
                 invincible = true;
                 StartCoroutine("tiempoEspera");
 				healthBar.value = (playerHealth/maxHealth)* 100;
-                if (myRigidbody.GetComponent<SpriteRenderer>().flipX == false)
-                {
-                    myRigidbody.velocity = new Vector2(-KnockBackX, KnockBackY);
-                }
-                else
-                {
-                    myRigidbody.velocity = new Vector2(KnockBackX, KnockBackY);
-
-
-                }
-
-				CameraShake.Shake (0.25f, 0.75f);
+                Knockback(col);
+                CameraShake.Shake (0.25f, 0.75f);
             }
 
 				
@@ -124,31 +111,13 @@ public class HealthManager : MonoBehaviour {
 				invincible = true;
 				StartCoroutine ("tiempoEspera");
 				healthBar.value = (playerHealth/maxHealth)* 100;
-				if (myRigidbody.GetComponent<SpriteRenderer>().flipX == false)
-				{
-					myRigidbody.velocity = new Vector2(-KnockBackX, KnockBackY);
-				}
-				else
-				{
-					myRigidbody.velocity = new Vector2(KnockBackX, KnockBackY);
-
-
-				}
-
-				CameraShake.Shake (0.25f, 0.75f);
+                Knockback(col);
+                CameraShake.Shake (0.25f, 0.75f);
 			}
 		}
 
     }
-	/*
-    void OnTriggerExit2D(Collider2D col)
-    {
-        if (col.tag == "Enemigo")
-        {
-            GetComponent<SpriteRenderer>().color = Color.white;
-        }
-    }
-*/
+
 	IEnumerator tiempoEspera() {
 		yield return new WaitForSeconds (1.2f);
 		invincible = false;
@@ -168,7 +137,6 @@ public class HealthManager : MonoBehaviour {
 	void Update()
 	{
 		healthText.text = (playerHealth/maxHealth) * 100 + " %";
-
 
 		if (playerHealth <= 0 && vida > 0) 
 		{
