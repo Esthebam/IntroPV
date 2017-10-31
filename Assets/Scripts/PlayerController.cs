@@ -17,6 +17,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     Slider powerUpVidaBar;
 
+    private int powerUpActivos;
+
     public float dmgTimer;
     public float saltoTimer;
     public float velTimer;
@@ -162,7 +164,7 @@ public class PlayerController : MonoBehaviour
         // Lo de arriba es para solucionar que no se mueva siempre, ya que pusimos
         // que las plataformas no tengan fricción.
 
-        
+        print(powerUpActivos);
     }
 
 
@@ -202,6 +204,7 @@ public class PlayerController : MonoBehaviour
 	private void OnCollisionEnter2D (Collision2D col)
 	{
 		if (col.gameObject.tag == "PowerUpSalto") {
+            powerUpActivos++;
             powerUpSaltoSound.Play();
             powerUpSaltoBar.transform.parent.gameObject.SetActive(true);
             saltoTimer = 5;
@@ -209,11 +212,15 @@ public class PlayerController : MonoBehaviour
 			GetComponent<SpriteRenderer> ().color = Color.yellow;
 			Destroy (col.gameObject);
 			if (coroutineSalto != null)
-				StopCoroutine (coroutineSalto);
-			coroutineSalto = StartCoroutine ("tiempoEspera");
+            {
+                StopCoroutine(coroutineSalto);
+                powerUpActivos--;
+            }			
+			coroutineSalto = StartCoroutine ("salto");
 		}
 
 		if (col.gameObject.tag == "PowerUpVida") {
+            powerUpActivos++;
             powerUpVidaSound.Play();
             powerUpVidaBar.transform.parent.gameObject.SetActive(true);
             vidaTimer = 5;
@@ -221,11 +228,15 @@ public class PlayerController : MonoBehaviour
 			GetComponent<SpriteRenderer> ().color = Color.green;
 			Destroy (col.gameObject);
 			if (coroutineInvencible != null)
-				StopCoroutine (coroutineInvencible);
+            {
+                StopCoroutine(coroutineInvencible);
+                powerUpActivos--;
+            }		
 			coroutineInvencible = StartCoroutine ("vida"); 
 		}
 
 		if (col.gameObject.tag == "PowerUpVel") {
+            powerUpActivos++;
             powerUpVelocidadSound.Play();
             powerUpVelBar.transform.parent.gameObject.SetActive(true);
             velTimer = 5;
@@ -234,11 +245,15 @@ public class PlayerController : MonoBehaviour
 			estaDisparando = false;
 			Destroy (col.gameObject);
 			if (coroutineVel != null)
-				StopCoroutine (coroutineVel);
+            {
+                StopCoroutine(coroutineVel);
+                powerUpActivos--;
+            }		
 			coroutineVel = StartCoroutine ("vel");
 		}
 
 		if (col.gameObject.tag == "PowerUpDmg") {
+            powerUpActivos++;
             powerUpDañoSound.Play();
             powerUpDmgBar.transform.parent.gameObject.SetActive(true);
             dmgTimer = 5;
@@ -246,20 +261,24 @@ public class PlayerController : MonoBehaviour
             GetComponent<SpriteRenderer> ().color = Color.gray;
 			Destroy (col.gameObject);
 			if (coroutineDanio != null)
-				StopCoroutine (coroutineDanio);
-			coroutineDanio = StartCoroutine ("dmg");
+            {
+                StopCoroutine(coroutineDanio);
+                powerUpActivos--;
+            }
+            coroutineDanio = StartCoroutine ("dmg");
 		}
 
 	}
 
 
-	IEnumerator tiempoEspera() {
+	IEnumerator salto() {
 		yield return new WaitForSeconds (5);
         powerUpSaltoBar.transform.parent.gameObject.SetActive(false);
         powerUpSaltoBar.value = 0;
         saltoTimer = 0;
         fuerzaSalto = 9.25f;
-		GetComponent<SpriteRenderer>().color = Color.white;
+        powerUpActivos--;
+        ChequearSalida();
 	}
 
 	IEnumerator vida() {
@@ -268,10 +287,34 @@ public class PlayerController : MonoBehaviour
         powerUpVidaBar.value = 0;
         vidaTimer = 0;
         HealthManager.healthManager.invincible = false;
-		GetComponent<SpriteRenderer> ().color = Color.white;
-	}
+        powerUpActivos--;
+        ChequearSalida();
+    }
 
-	IEnumerator slow() {
+    IEnumerator vel()
+    {
+        yield return new WaitForSeconds(5);
+        powerUpVelBar.transform.parent.gameObject.SetActive(false);
+        powerUpVelBar.value = 0;
+        velTimer = 0;
+        maxSpeed = 3;
+        estaDisparando = true;
+        powerUpActivos--;
+        ChequearSalida();
+    }
+
+    IEnumerator dmg()
+    {
+        yield return new WaitForSeconds(5);
+        powerUpDmgBar.transform.parent.gameObject.SetActive(false);
+        powerUpDmgBar.value = 0;
+        dmgTimer = 0;
+        bulletPrefab.GetComponent<BulletMovement>().damageRef = 5;
+        powerUpActivos--;
+        ChequearSalida();
+    }
+
+    IEnumerator slow() {
 		yield return new WaitForSeconds (0.25f);
 		speed = 75f; 
 		maxSpeed = 3f;
@@ -282,26 +325,14 @@ public class PlayerController : MonoBehaviour
 		enCoolDown = false;
 	}
 
-	IEnumerator vel() {
-		yield return new WaitForSeconds(5);
-        powerUpVelBar.transform.parent.gameObject.SetActive(false);
-        powerUpVelBar.value = 0;
-        velTimer = 0;
-        maxSpeed = 3;
-		estaDisparando = true;
-		GetComponent<SpriteRenderer>().color = Color.white;
-	}
 
-	IEnumerator dmg() {
-		yield return new WaitForSeconds (5);
-        powerUpDmgBar.transform.parent.gameObject.SetActive(false);
-        powerUpDmgBar.value = 0;
-        dmgTimer = 0;
-        bulletPrefab.GetComponent<BulletMovement>().damageRef = 5;
-        GetComponent<SpriteRenderer>().color = Color.white;
-	}
-
-
+    void ChequearSalida()
+    {
+        if (powerUpActivos == 0)
+        {
+            GetComponent<SpriteRenderer>().color = Color.white;
+        }
+    }
 
 		
 		
