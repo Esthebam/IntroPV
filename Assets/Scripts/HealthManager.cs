@@ -157,26 +157,32 @@ public class HealthManager : MonoBehaviour {
 
 	void Update()
 	{
-		healthText.text = (playerHealth/maxHealth) * 100 + " %";
+		if (playerHealth > 0 && vida >= 0) {
+			healthText.text = (playerHealth/maxHealth) * 100 + " %";
+		}
 
 		if (playerHealth <= 0 && vida > 0) 
 		{
+			healthText.text = (playerHealth/maxHealth) * 100 + " %";
 			vida--;
 			vidas.cambioVida(vida);
-			playerHealth = 13;
+			playerHealth = maxHealth;
 			healthBar.value = (playerHealth/maxHealth)* 100;
 		}
 			
 		
-		if (playerHealth <= 0 && vida == 0) 
+		if (playerHealth < 0 && vida == 0) 
 		{
 			
 			vidas.cambioVida (vida--);
 			healthText.text = 0 + " %";	
+			healthBar.value = 0;
 			//GetComponent<BoxCollider2D> ().enabled = false;
 			circulo.enabled = false;
 			playerDead = true;
 			playerAnim.SetBool("isDead", true);
+
+
 			//Component[] comps = GetComponents<Component>() as Component[];
 			StartCoroutine ("gameOver");
 			//foreach(Component comp in comps)

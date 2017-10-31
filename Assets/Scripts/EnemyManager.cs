@@ -35,6 +35,9 @@ public class EnemyManager : MonoBehaviour {
             if (!enemyDead)
             {
                 float barLenght = currentHealth / enemyHealth;
+				if (barLenght < 0) {
+					barLenght = 0;
+				}
                 SetHealthBar(barLenght);
             }
             
