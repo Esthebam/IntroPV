@@ -71,7 +71,7 @@ public class HealthManager : MonoBehaviour {
             col.GetComponent<ParticleSystem>().Play();
             playerHealth -= maxHealth;
 			healthBar.value = (playerHealth/maxHealth)* 100;
-
+            transform.position = new Vector3(-7, 0, 0);
         }
     }
 
@@ -130,16 +130,19 @@ public class HealthManager : MonoBehaviour {
 
     void OnTriggerStay2D(Collider2D col)
     {
-        ChequearAcido(col);
 		if (!invincible) 
 		{
             ChequearEnemigos(col);
             ChequearTrampas(col);          
         }
-
     }
 
-	IEnumerator tiempoEspera() {
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        ChequearAcido(collision);
+    }
+
+    IEnumerator tiempoEspera() {
 		yield return new WaitForSeconds (1.2f);
 		invincible = false;
 	}

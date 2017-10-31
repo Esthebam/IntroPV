@@ -94,7 +94,7 @@ MonoBehaviour:
   player: {fileID: 0}
   bulletSpeed: 20
   bulletLife: 1
-  damageRef: 10
+  damageRef: 5
 --- !u!198 &198918788451033156
 ParticleSystem:
   m_ObjectHideFlags: 1
