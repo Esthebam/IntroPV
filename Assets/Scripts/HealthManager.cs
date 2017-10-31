@@ -31,6 +31,7 @@ public class HealthManager : MonoBehaviour {
     public static bool playerDead;
 	public float maxHealth;
 	public Vidas vidas;
+	public CircleCollider2D circulo;
 	public int vida = 2;
 	
 	public bool invincible;
@@ -40,6 +41,7 @@ public class HealthManager : MonoBehaviour {
     // Use this for initialization
     void Start () {
 		vidas = GameObject.FindObjectOfType<Vidas> ();
+		circulo = GameObject.FindObjectOfType<CircleCollider2D> ();
         playerDead = false;
         myRigidbody = GetComponent<Rigidbody2D>();
 		healthManager = this;
@@ -68,7 +70,7 @@ public class HealthManager : MonoBehaviour {
             fizzSound.Play();
             col.GetComponent<ParticleSystem>().Play();
             playerHealth -= maxHealth;
-            healthBar.value = playerHealth;
+			healthBar.value = (playerHealth/maxHealth)* 100;
 
         }
     }
@@ -171,23 +173,31 @@ public class HealthManager : MonoBehaviour {
 			
 			vidas.cambioVida (vida--);
 			healthText.text = 0 + " %";	
-			GetComponent<BoxCollider2D>().enabled = false;
+			//GetComponent<BoxCollider2D> ().enabled = false;
+			circulo.enabled = false;
 			playerDead = true;
 			playerAnim.SetBool("isDead", true);
-			Component[] comps = GetComponents<Component>() as Component[];
-			foreach(Component comp in comps)
-			{
-				if (comp != gameObject.GetComponent<Transform>())
-				{
-					Destroy(comp,animDelay);
-				}
-			}
+			//Component[] comps = GetComponents<Component>() as Component[];
+			StartCoroutine ("gameOver");
+			//foreach(Component comp in comps)
+			//{
+				//if (comp != gameObject.GetComponent<Transform>())
+				//{
+					//Destroy(comp,animDelay);
+				//}
+			//}
 	
-			//SceneManager.LoadScene ("GameOver");
+
 		}
 	
 	}
-		
+
+
+	IEnumerator gameOver() {
+		yield return new WaitForSeconds (2f);
+			SceneManager.LoadScene ("GameOver");
+	}
+
 }
 		
 

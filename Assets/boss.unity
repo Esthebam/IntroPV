@@ -2298,6 +2298,26 @@ Prefab:
       propertyPath: m_Name
       value: Acid
       objectReference: {fileID: 0}
+    - target: {fileID: 82333807189799776, guid: d504d92fdc1ad1645afc5f180d73e59e,
+        type: 2}
+      propertyPath: spreadCustomCurve.m_RotationOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 61185210607255428, guid: d504d92fdc1ad1645afc5f180d73e59e,
+        type: 2}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 61185210607255428, guid: d504d92fdc1ad1645afc5f180d73e59e,
+        type: 2}
+      propertyPath: m_Offset.y
+      value: 0.08517325
+      objectReference: {fileID: 0}
+    - target: {fileID: 61185210607255428, guid: d504d92fdc1ad1645afc5f180d73e59e,
+        type: 2}
+      propertyPath: m_Size.y
+      value: 1.6541564
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d504d92fdc1ad1645afc5f180d73e59e, type: 2}
   m_IsPrefabParent: 0
@@ -2806,6 +2826,7 @@ MonoBehaviour:
   enemyDamage: 5
   maxHealth: 0
   vidas: {fileID: 0}
+  circulo: {fileID: 0}
   vida: 2
   invincible: 0
 --- !u!82 &824704213
