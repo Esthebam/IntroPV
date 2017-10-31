@@ -1262,7 +1262,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: PowerUp
+  m_Text: Fuerza Extra
 --- !u!222 &390340679
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1808,7 +1808,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.50735295, g: 0.50735295, b: 0.50735295, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -2379,14 +2379,6 @@ MonoBehaviour:
   powerUpSaltoBar: {fileID: 128657817}
   powerUpVelBar: {fileID: 550889115}
   powerUpVidaBar: {fileID: 1412664560}
-  fillDmg: {fileID: 561256666}
-  fillSalto: {fileID: 847609623}
-  fillVel: {fileID: 2123980669}
-  fillVida: {fileID: 1320246300}
-  powerUpDmgText: {fileID: 390340678}
-  powerUpSaltoText: {fileID: 2056898646}
-  powerUpVelText: {fileID: 1899260053}
-  powerUpVidaText: {fileID: 1096780680}
   dmgTimer: 0
   saltoTimer: 0
   velTimer: 0
@@ -3303,7 +3295,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.9724138, b: 0, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -3777,7 +3769,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: PowerUp
+  m_Text: Inmunidad
 --- !u!222 &1096780681
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4467,7 +4459,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 1, b: 0.08965516, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -5791,7 +5783,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: PowerUp
+  m_Text: 'Velocidad
+
+'
 --- !u!222 &1899260054
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6250,7 +6244,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: PowerUp
+  m_Text: Salto Doble
 --- !u!222 &2056898647
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6385,7 +6379,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.07586192, g: 0, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:

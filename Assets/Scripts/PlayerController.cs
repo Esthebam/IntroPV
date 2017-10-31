@@ -17,29 +17,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     Slider powerUpVidaBar;
 
-    [SerializeField]
-	Image fillDmg;
 
-    [SerializeField]
-    Image fillSalto;
-
-    [SerializeField]
-    Image fillVel;
-
-    [SerializeField]
-    Image fillVida;
-
-    [SerializeField]
-    Text powerUpDmgText;
-
-    [SerializeField]
-    Text powerUpSaltoText;
-
-    [SerializeField]
-    Text powerUpVelText;
-
-    [SerializeField]
-    Text powerUpVidaText;
 
 
     public float dmgTimer;
@@ -220,8 +198,6 @@ public class PlayerController : MonoBehaviour
             saltoTimer = 5;
 			fuerzaSalto = 15f;
 			GetComponent<SpriteRenderer> ().color = Color.yellow;
-			powerUpSaltoText.text = "Salto Doble";
-			fillSalto.color = Color.yellow;
 			StartCoroutine ("tiempoEspera");
 			Destroy (col.gameObject);	
 		}
@@ -231,8 +207,6 @@ public class PlayerController : MonoBehaviour
             vidaTimer = 5;
             HealthManager.healthManager.invincible = true;
 			GetComponent<SpriteRenderer> ().color = Color.green;
-			powerUpVidaText.text = "Inmunidad";
-			fillVida.color = Color.green;
 			StartCoroutine ("vida"); 
 			Destroy (col.gameObject);	
 		}
@@ -242,8 +216,7 @@ public class PlayerController : MonoBehaviour
             velTimer = 5;
             maxSpeed = 6;
 			GetComponent<SpriteRenderer> ().color = Color.blue;
-			powerUpVelText.text = "Velocidad";
-			fillVel.color = Color.blue;
+
 			estaDisparando = false;
 			StartCoroutine ("vel");
 			Destroy (col.gameObject);
@@ -254,8 +227,8 @@ public class PlayerController : MonoBehaviour
             dmgTimer = 5;
             bulletPrefab.GetComponent<BulletMovement>().damageRef = 20;
             GetComponent<SpriteRenderer> ().color = Color.gray;
-			powerUpDmgText.text = "Fuerza Extra";
-			fillDmg.color = Color.grey;
+
+
 			StartCoroutine ("dmg");
 			Destroy (col.gameObject);
 		}
@@ -270,8 +243,6 @@ public class PlayerController : MonoBehaviour
         saltoTimer = 0;
         fuerzaSalto = 9.25f;
 		GetComponent<SpriteRenderer>().color = Color.white;
-		powerUpSaltoText.text = "PowerUp";
-		fillSalto.color = Color.white;
 
 	}
 
@@ -282,8 +253,7 @@ public class PlayerController : MonoBehaviour
         vidaTimer = 0;
         HealthManager.healthManager.invincible = false;
 		GetComponent<SpriteRenderer> ().color = Color.white;
-		powerUpVidaText.text = "PowerUp";
-		fillVida.color = Color.white;
+
 	}
 
 	IEnumerator slow() {
@@ -301,8 +271,7 @@ public class PlayerController : MonoBehaviour
         maxSpeed = 3;
 		estaDisparando = true;
 		GetComponent<SpriteRenderer>().color = Color.white;
-		powerUpVelText.text = "PowerUp";
-		fillVel.color = Color.white;
+
 	}
 
 	IEnumerator dmg() {
@@ -312,8 +281,7 @@ public class PlayerController : MonoBehaviour
         dmgTimer = 0;
         bulletPrefab.GetComponent<BulletMovement>().damageRef = 5;
         GetComponent<SpriteRenderer>().color = Color.white;
-		powerUpDmgText.text = "PowerUp";
-		fillDmg.color = Color.white;
+
 
 
 	}
