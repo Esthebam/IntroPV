@@ -158,12 +158,14 @@ public class HealthManager : MonoBehaviour {
 	void Update()
 	{
 		if (playerHealth > 0 && vida >= 0) {
-			healthText.text = (playerHealth/maxHealth) * 100 + " %";
+			float healthNow= (playerHealth/maxHealth) * 100 ;
+			healthText.text = Mathf.RoundToInt(healthNow) + "%";
 		}
 
 		if (playerHealth <= 0 && vida > 0) 
 		{
-			healthText.text = (playerHealth/maxHealth) * 100 + " %";
+			float healthNow= (playerHealth/maxHealth) * 100 ;
+			healthText.text = Mathf.RoundToInt(healthNow) + "%";
 			vida--;
 			vidas.cambioVida(vida);
 			playerHealth = maxHealth;
