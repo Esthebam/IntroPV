@@ -12,7 +12,6 @@ public class EnemyManager : MonoBehaviour {
     public GameObject healthBar;
     private float currentHealth; 
 
-    public AudioSource deathSound;
     public AudioSource[] deathSounds;
     
     public float enemyHealth;
