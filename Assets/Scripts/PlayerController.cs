@@ -45,11 +45,15 @@ public class PlayerController : MonoBehaviour
 	private Coroutine coroutineSalto;
 	private Coroutine coroutineVel; 
 	private Coroutine coroutineDanio;
-	private Coroutine coroutineInvencible; 
+	private Coroutine coroutineInvencible;
+	public float coolDown;
+	public bool enCoolDown;
+
 
     // Use this for initialization
     void Start()
     {
+
         myRigidbody2D = GetComponent<Rigidbody2D>();
         myAnimator = GetComponent<Animator>();
 		estaDisparando = true;
@@ -57,6 +61,8 @@ public class PlayerController : MonoBehaviour
         powerUpSaltoBar.value = 0;
         powerUpVelBar.value = 0;
         powerUpVidaBar.value = 0;
+
+
     }
 
     // Update is called once per frame
@@ -161,26 +167,28 @@ public class PlayerController : MonoBehaviour
 
 
     public void PlayerShooting()
-    {
+	{
 		
-		if (Input.GetMouseButtonDown(0) && !Pausa.pauseEnabled)
-        {
-            myAnimator.SetBool("Disparo", true);
-            Instantiate(bulletPrefab, bulletSpawner.position, bulletSpawner.rotation);
-            shootingSounds[Random.Range(0, shootingSounds.Length)].Play();
+		if (Input.GetMouseButtonDown (0) && !Pausa.pauseEnabled && !enCoolDown) 
+		{
+			enCoolDown = true;
+			myAnimator.SetBool ("Disparo", true);
+			Instantiate (bulletPrefab, bulletSpawner.position, bulletSpawner.rotation);
+			shootingSounds [Random.Range (0, shootingSounds.Length)].Play ();
 
-            if (estaDisparando) {
+			if (estaDisparando) {
 				speed = 25f;
 				maxSpeed = 0.5f;
 				StartCoroutine ("slow");
 			}
-		
+				
+			StartCoroutine ("cd");
 
-        }
-        else if (Input.GetMouseButtonUp(0))
-        {
-            myAnimator.SetBool("Disparo", false);
-        }
+		} else if (Input.GetMouseButtonUp (0)) {
+			myAnimator.SetBool ("Disparo", false);
+		}
+
+	
 	
     }
     /*
@@ -267,6 +275,11 @@ public class PlayerController : MonoBehaviour
 		yield return new WaitForSeconds (0.25f);
 		speed = 75f; 
 		maxSpeed = 3f;
+	}
+
+	IEnumerator cd() {
+		yield return new WaitForSeconds (coolDown);
+		enCoolDown = false;
 	}
 
 	IEnumerator vel() {

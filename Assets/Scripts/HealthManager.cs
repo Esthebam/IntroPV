@@ -69,7 +69,7 @@ public class HealthManager : MonoBehaviour {
             col.GetComponent<ParticleSystem>().Play();
             playerHealth -= maxHealth;
             healthBar.value = playerHealth;
-            playerDead = true;
+
         }
     }
 
@@ -168,6 +168,7 @@ public class HealthManager : MonoBehaviour {
 		
 		if (playerHealth <= 0 && vida == 0) 
 		{
+			
 			vidas.cambioVida (vida--);
 			healthText.text = 0 + " %";	
 			GetComponent<BoxCollider2D>().enabled = false;
