@@ -17,9 +17,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     Slider powerUpVidaBar;
 
-
-
-
     public float dmgTimer;
     public float saltoTimer;
     public float velTimer;
@@ -45,6 +42,10 @@ public class PlayerController : MonoBehaviour
     private bool jump;
     private bool seAgacha;
 	public bool estaDisparando;
+	private Coroutine coroutineSalto;
+	private Coroutine coroutineVel; 
+	private Coroutine coroutineDanio;
+	private Coroutine coroutineInvencible; 
 
     // Use this for initialization
     void Start()
@@ -198,39 +199,47 @@ public class PlayerController : MonoBehaviour
             saltoTimer = 5;
 			fuerzaSalto = 15f;
 			GetComponent<SpriteRenderer> ().color = Color.yellow;
-			StartCoroutine ("tiempoEspera");
-			Destroy (col.gameObject);	
+			Destroy (col.gameObject);
+			if (coroutineSalto != null)
+				StopCoroutine (coroutineSalto);
+			coroutineSalto = StartCoroutine ("tiempoEspera");
 		}
+
 		if (col.gameObject.tag == "PowerUpVida") {
             powerUpVidaSound.Play();
             powerUpVidaBar.transform.parent.gameObject.SetActive(true);
             vidaTimer = 5;
             HealthManager.healthManager.invincible = true;
 			GetComponent<SpriteRenderer> ().color = Color.green;
-			StartCoroutine ("vida"); 
-			Destroy (col.gameObject);	
+			Destroy (col.gameObject);
+			if (coroutineInvencible != null)
+				StopCoroutine (coroutineInvencible);
+			coroutineInvencible = StartCoroutine ("vida"); 
 		}
+
 		if (col.gameObject.tag == "PowerUpVel") {
             powerUpVelocidadSound.Play();
             powerUpVelBar.transform.parent.gameObject.SetActive(true);
             velTimer = 5;
             maxSpeed = 6;
 			GetComponent<SpriteRenderer> ().color = Color.blue;
-
 			estaDisparando = false;
-			StartCoroutine ("vel");
 			Destroy (col.gameObject);
+			if (coroutineVel != null)
+				StopCoroutine (coroutineVel);
+			coroutineVel = StartCoroutine ("vel");
 		}
+
 		if (col.gameObject.tag == "PowerUpDmg") {
             powerUpDañoSound.Play();
             powerUpDmgBar.transform.parent.gameObject.SetActive(true);
             dmgTimer = 5;
             bulletPrefab.GetComponent<BulletMovement>().damageRef = 20;
             GetComponent<SpriteRenderer> ().color = Color.gray;
-
-
-			StartCoroutine ("dmg");
 			Destroy (col.gameObject);
+			if (coroutineDanio != null)
+				StopCoroutine (coroutineDanio);
+			coroutineDanio = StartCoroutine ("dmg");
 		}
 
 	}
@@ -243,7 +252,6 @@ public class PlayerController : MonoBehaviour
         saltoTimer = 0;
         fuerzaSalto = 9.25f;
 		GetComponent<SpriteRenderer>().color = Color.white;
-
 	}
 
 	IEnumerator vida() {
@@ -253,14 +261,12 @@ public class PlayerController : MonoBehaviour
         vidaTimer = 0;
         HealthManager.healthManager.invincible = false;
 		GetComponent<SpriteRenderer> ().color = Color.white;
-
 	}
 
 	IEnumerator slow() {
 		yield return new WaitForSeconds (0.25f);
 		speed = 75f; 
 		maxSpeed = 3f;
-
 	}
 
 	IEnumerator vel() {
@@ -271,7 +277,6 @@ public class PlayerController : MonoBehaviour
         maxSpeed = 3;
 		estaDisparando = true;
 		GetComponent<SpriteRenderer>().color = Color.white;
-
 	}
 
 	IEnumerator dmg() {
@@ -281,9 +286,6 @@ public class PlayerController : MonoBehaviour
         dmgTimer = 0;
         bulletPrefab.GetComponent<BulletMovement>().damageRef = 5;
         GetComponent<SpriteRenderer>().color = Color.white;
-
-
-
 	}
 
 
