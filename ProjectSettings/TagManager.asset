@@ -16,6 +16,7 @@ TagManager:
   - Acid
   - Spike
   - PowerUpSalto
+  - PlataformaMovil
   layers:
   - Default
   - TransparentFX
