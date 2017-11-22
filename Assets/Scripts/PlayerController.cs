@@ -164,7 +164,7 @@ public class PlayerController : MonoBehaviour
         // Lo de arriba es para solucionar que no se mueva siempre, ya que pusimos
         // que las plataformas no tengan fricción.
 
-        print(powerUpActivos);
+        
     }
 
 
