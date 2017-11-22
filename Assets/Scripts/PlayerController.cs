@@ -55,7 +55,7 @@ public class PlayerController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-
+		//CombatTextManager.Instance;
         myRigidbody2D = GetComponent<Rigidbody2D>();
         myAnimator = GetComponent<Animator>();
 		estaDisparando = true;
@@ -70,6 +70,14 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+		if (Input.GetKeyDown (KeyCode.Space)) {
+			CombatTextManager.Instance.CreateText(new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z), "Hola", Color.red, false);
+		}
+
+		if (Input.GetKeyDown (KeyCode.V)) {
+			CombatTextManager.Instance.CreateText(new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z), "Hola", Color.red, true);
+		}
+
         if(HealthManager.playerDead == false)
         {
             Movement();

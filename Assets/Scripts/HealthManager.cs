@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class HealthManager : MonoBehaviour {
     
     Rigidbody2D myRigidbody;
-
+	PlayerController player;
 	[SerializeField]
 	Slider healthBar;
 
@@ -44,6 +44,7 @@ public class HealthManager : MonoBehaviour {
 		circulo = GameObject.FindObjectOfType<CircleCollider2D> ();
         playerDead = false;
         myRigidbody = GetComponent<Rigidbody2D>();
+		player = GetComponent<PlayerController> ();
 		healthManager = this;
         playerAnim = GetComponent<Animator>();
 		maxHealth = playerHealth;
@@ -69,6 +70,7 @@ public class HealthManager : MonoBehaviour {
         {
             fizzSound.Play();
             col.GetComponent<ParticleSystem>().Play();
+			CombatTextManager.Instance.CreateText(new Vector3(player.transform.position.x, player.transform.position.y + 0.5f, player.transform.position.z), playerHealth.ToString(), Color.red, true);
             playerHealth -= maxHealth;
 			healthBar.value = (playerHealth/maxHealth)* 100;
             transform.position = new Vector3(-7, 0, 0);
@@ -85,6 +87,7 @@ public class HealthManager : MonoBehaviour {
             StartCoroutine("tiempoEspera");
             healthBar.value = (playerHealth / maxHealth) * 100;
             Knockback(col);
+			CombatTextManager.Instance.CreateText(new Vector3(player.transform.position.x, player.transform.position.y + 0.5f, player.transform.position.z), enemyDamage.ToString(), Color.red, false);
             CameraShake.Shake(0.25f, 0.75f);
         }
         if (col.tag == "EnemigoLegs")
@@ -95,6 +98,7 @@ public class HealthManager : MonoBehaviour {
             StartCoroutine("tiempoEspera");
             healthBar.value = (playerHealth / maxHealth) * 100;
             Knockback(col);
+			CombatTextManager.Instance.CreateText(new Vector3(player.transform.position.x, player.transform.position.y + 0.5f, player.transform.position.z), enemyDamage.ToString(), Color.red, false);
             CameraShake.Shake(0.25f, 0.75f);
         }
     }
@@ -111,6 +115,7 @@ public class HealthManager : MonoBehaviour {
             StartCoroutine("tiempoEspera");
             healthBar.value = (playerHealth / maxHealth) * 100;
             Knockback(col);
+			CombatTextManager.Instance.CreateText(new Vector3(player.transform.position.x, player.transform.position.y + 0.5f, player.transform.position.z), "5", Color.red, true);
             CameraShake.Shake(0.25f, 0.75f);
         }
 
@@ -124,6 +129,7 @@ public class HealthManager : MonoBehaviour {
             StartCoroutine("tiempoEspera");
             healthBar.value = (playerHealth / maxHealth) * 100;
             Knockback(col);
+			CombatTextManager.Instance.CreateText(new Vector3(player.transform.position.x, player.transform.position.y + 0.5f, player.transform.position.z), "5", Color.red, true);
             CameraShake.Shake(0.25f, 0.75f);
         }
     }
