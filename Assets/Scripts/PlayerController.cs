@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     Slider powerUpVidaBar;
 
-    private int powerUpActivos;
+    public int powerUpActivos;
 
     public float dmgTimer;
     public float saltoTimer;
@@ -318,7 +318,7 @@ public class PlayerController : MonoBehaviour
         powerUpDmgBar.value = 0;
         dmgTimer = 0;
         bulletPrefab.GetComponent<BulletMovement>().damageRef = 5;
-        powerUpActivos--;
+        
         ChequearSalida();
     }
 
@@ -342,7 +342,20 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-		
+	void restart(){
+		estaDisparando = true;
+		powerUpDmgBar.transform.parent.gameObject.SetActive(false);
+		powerUpSaltoBar.transform.parent.gameObject.SetActive(false);
+		powerUpVelBar.transform.parent.gameObject.SetActive(false);
+		powerUpVidaBar.transform.parent.gameObject.SetActive(false);
+	  	fuerzaSalto = 6.5f;
+		dmgTimer=0;
+		saltoTimer=0;
+		velTimer=0;
+		vidaTimer=0;
+
+
+	}
 		
 
 }

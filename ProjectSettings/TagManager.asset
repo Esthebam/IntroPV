@@ -51,11 +51,11 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: Level
-    uniqueID: 2036745927
-    locked: 0
   - name: Obstacles
     uniqueID: 355403673
+    locked: 0
+  - name: Level
+    uniqueID: 2036745927
     locked: 0
   - name: Acid
     uniqueID: 3336338073

@@ -154,16 +154,21 @@ public class HealthManager : MonoBehaviour {
 	}
 
 	IEnumerator color(){
-		GetComponent<SpriteRenderer>().color = Color.red;
-		yield return new WaitForSeconds (0.05f);
-		GetComponent<SpriteRenderer>().color = Color.white;
-		yield return new WaitForSeconds (0.05f);
-		GetComponent<SpriteRenderer>().color = Color.red;
-		yield return new WaitForSeconds (0.05f);
-		GetComponent<SpriteRenderer>().color = Color.white;
+		Color color = player.GetComponent<SpriteRenderer> ().color;
+
+			GetComponent<SpriteRenderer> ().color = Color.red;
+			yield return new WaitForSeconds (0.05f);
+			GetComponent<SpriteRenderer> ().color = Color.white;
+			yield return new WaitForSeconds (0.05f);
+			GetComponent<SpriteRenderer> ().color = Color.red;
+			yield return new WaitForSeconds (0.05f);
+			GetComponent<SpriteRenderer> ().color = Color.white;
+
+		if (player.powerUpActivos > 0) {
+			GetComponent<SpriteRenderer> ().color = color;
+		}
+
 	}
-
-
 	void Update()
 	{
 		if (playerHealth > 0 && vida >= 0) {
@@ -179,6 +184,7 @@ public class HealthManager : MonoBehaviour {
 			vidas.cambioVida(vida);
 			playerHealth = maxHealth;
 			healthBar.value = (playerHealth/maxHealth)* 100;
+			player.SendMessage ("restart");
 		}
 			
 		
@@ -192,6 +198,7 @@ public class HealthManager : MonoBehaviour {
 			circulo.enabled = false;
 			playerDead = true;
 			playerAnim.SetBool("isDead", true);
+			player.SendMessage ("restart");
 
 
 			//Component[] comps = GetComponents<Component>() as Component[];
