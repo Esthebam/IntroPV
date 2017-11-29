@@ -14,7 +14,6 @@ public class EnemyLegManager : MonoBehaviour
     
     public Transform enemy;
 
-
     public float enemyHealth;
     public int enemyValue;
 
@@ -48,6 +47,7 @@ public class EnemyLegManager : MonoBehaviour
 
             if (currentHealth <= 0)
             {
+				EnemyManager.enemyManager.deathSounds[Random.Range(0, EnemyManager.enemyManager.deathSounds.Length)].Play();
                 GetComponent<BoxCollider2D>().enabled = false;
                 transform.GetChild(1).gameObject.SetActive(false);
                 enemyDead = true;

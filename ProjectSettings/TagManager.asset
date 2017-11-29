@@ -17,6 +17,11 @@ TagManager:
   - Spike
   - PowerUpSalto
   - PlataformaMovil
+  - InstanciadorPowerUp
+  - InstanciadorSierra
+  - InstanciadorPowerUpVel
+  - InstanciadorPowerUpSalto
+  - Grito
   layers:
   - Default
   - TransparentFX

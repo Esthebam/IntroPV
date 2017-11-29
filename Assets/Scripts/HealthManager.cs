@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
+
 public class HealthManager : MonoBehaviour {
     
     Rigidbody2D myRigidbody;
@@ -19,6 +20,7 @@ public class HealthManager : MonoBehaviour {
 
 	public static HealthManager healthManager;
 
+	public AudioSource[] damageSounds;
     public AudioSource fizzSound;
     public AudioSource sawSound;
     public AudioSource spikeSound;
@@ -82,6 +84,7 @@ public class HealthManager : MonoBehaviour {
         if (col.tag == "Enemigo")
         {
             playerHealth -= enemyDamage;
+			damageSounds [Random.Range (0, damageSounds.Length)].Play ();
             StartCoroutine("color");
             invincible = true;
             StartCoroutine("tiempoEspera");
@@ -93,6 +96,7 @@ public class HealthManager : MonoBehaviour {
         if (col.tag == "EnemigoLegs")
         {
             playerHealth -= enemyDamage;
+			damageSounds [Random.Range (0, damageSounds.Length)].Play ();
             StartCoroutine("color");
             invincible = true;
             StartCoroutine("tiempoEspera");

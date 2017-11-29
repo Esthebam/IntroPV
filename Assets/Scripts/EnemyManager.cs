@@ -18,11 +18,13 @@ public class EnemyManager : MonoBehaviour {
     public int enemyValue;
 
     public static bool enemyDead;
+	public static EnemyManager enemyManager;
 
     void Start()
     {
         currentHealth = enemyHealth;
         enemyAnim = GetComponent<Animator>();
+		enemyManager = this;
     }
 
 
