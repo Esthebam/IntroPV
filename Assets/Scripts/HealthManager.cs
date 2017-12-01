@@ -72,11 +72,22 @@ public class HealthManager : MonoBehaviour {
         {
             fizzSound.Play();
             col.GetComponent<ParticleSystem>().Play();
-			CombatTextManager.Instance.CreateText(new Vector3(player.transform.position.x, player.transform.position.y + 0.5f, player.transform.position.z), playerHealth.ToString(), Color.red, true);
+			CombatTextManager.Instance.CreateText(new Vector3(player.transform.position.x, player.transform.position.y + 0.5f, player.transform.position.z), "-" + playerHealth.ToString(), Color.red, true);
             playerHealth -= maxHealth;
 			healthBar.value = (playerHealth/maxHealth)* 100;
             transform.position = new Vector3(-7, 0, 0);
         }
+
+		if (col.gameObject.tag == "TurretBullet") {
+			playerHealth -= 10f;
+			damageSounds [Random.Range (0, damageSounds.Length)].Play ();
+			StartCoroutine ("color");
+			healthBar.value = (playerHealth / maxHealth) * 100;
+			Knockback (col);
+			CombatTextManager.Instance.CreateText(new Vector3(player.transform.position.x, player.transform.position.y + 0.5f, player.transform.position.z), "-" + "10", Color.red, true);
+			CameraShake.Shake(0.25f, 0.75f);
+			Destroy(GameObject.FindWithTag("TurretBullet"));
+		}
     }
 
     void ChequearEnemigos(Collider2D col)
@@ -90,7 +101,7 @@ public class HealthManager : MonoBehaviour {
             StartCoroutine("tiempoEspera");
             healthBar.value = (playerHealth / maxHealth) * 100;
             Knockback(col);
-			CombatTextManager.Instance.CreateText(new Vector3(player.transform.position.x, player.transform.position.y + 0.5f, player.transform.position.z), enemyDamage.ToString(), Color.red, false);
+			CombatTextManager.Instance.CreateText(new Vector3(player.transform.position.x, player.transform.position.y + 0.5f, player.transform.position.z), "-" + enemyDamage.ToString(), Color.red, false);
             CameraShake.Shake(0.25f, 0.75f);
         }
         if (col.tag == "EnemigoLegs")
@@ -102,9 +113,20 @@ public class HealthManager : MonoBehaviour {
             StartCoroutine("tiempoEspera");
             healthBar.value = (playerHealth / maxHealth) * 100;
             Knockback(col);
-			CombatTextManager.Instance.CreateText(new Vector3(player.transform.position.x, player.transform.position.y + 0.5f, player.transform.position.z), enemyDamage.ToString(), Color.red, false);
+			CombatTextManager.Instance.CreateText(new Vector3(player.transform.position.x, player.transform.position.y + 0.5f, player.transform.position.z), "-" + enemyDamage.ToString(), Color.red, false);
             CameraShake.Shake(0.25f, 0.75f);
         }
+
+		if (col.tag == "Turret")
+		{
+			//col.GetComponent<ParticleSystem>().Play();
+			CombatTextManager.Instance.CreateText(new Vector3(player.transform.position.x, player.transform.position.y + 0.5f, player.transform.position.z), "-" + playerHealth.ToString(), Color.red, true);
+			playerHealth -= maxHealth;
+			transform.position = new Vector3(-7, 0, 0);
+			CameraShake.Shake (0.50f, 1f);
+		}
+
+	
     }
 
     void ChequearTrampas(Collider2D col)
@@ -119,7 +141,7 @@ public class HealthManager : MonoBehaviour {
             StartCoroutine("tiempoEspera");
             healthBar.value = (playerHealth / maxHealth) * 100;
             Knockback(col);
-			CombatTextManager.Instance.CreateText(new Vector3(player.transform.position.x, player.transform.position.y + 0.5f, player.transform.position.z), "5", Color.red, true);
+			CombatTextManager.Instance.CreateText(new Vector3(player.transform.position.x, player.transform.position.y + 0.5f, player.transform.position.z), "-" + "5", Color.red, true);
             CameraShake.Shake(0.25f, 0.75f);
         }
 
@@ -133,9 +155,11 @@ public class HealthManager : MonoBehaviour {
             StartCoroutine("tiempoEspera");
             healthBar.value = (playerHealth / maxHealth) * 100;
             Knockback(col);
-			CombatTextManager.Instance.CreateText(new Vector3(player.transform.position.x, player.transform.position.y + 0.5f, player.transform.position.z), "5", Color.red, true);
+			CombatTextManager.Instance.CreateText(new Vector3(player.transform.position.x, player.transform.position.y + 0.5f, player.transform.position.z), "-" + "5", Color.red, true);
             CameraShake.Shake(0.25f, 0.75f);
         }
+
+	
     }
 
     void OnTriggerStay2D(Collider2D col)
@@ -217,6 +241,8 @@ public class HealthManager : MonoBehaviour {
 	
 
 		}
+
+		Destroy(GameObject.FindWithTag("TurretBullet"), 2f);
 	
 	}
 

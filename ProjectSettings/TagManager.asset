@@ -22,6 +22,9 @@ TagManager:
   - InstanciadorPowerUpVel
   - InstanciadorPowerUpSalto
   - Grito
+  - TurretBullet
+  - Turret
+  - Limitador
   layers:
   - Default
   - TransparentFX

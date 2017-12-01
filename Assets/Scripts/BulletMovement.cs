@@ -51,7 +51,7 @@ public class BulletMovement : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.tag == "Piso" || col.tag == "Enemigo")
+		if (col.tag == "Piso" || col.tag == "Enemigo" || col.tag == "Turret")
         {
             GetComponent<ParticleSystem>().Play(); // Que haga el efecto de partículas
             GetComponent<SpriteRenderer>().enabled = false; // Que deje de verse la bala

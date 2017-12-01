@@ -43,6 +43,7 @@ public class PlayerController : MonoBehaviour
 	public AudioSource powerUpVidaSound;
 	public AudioClip grito;
 	public AudioClip surprise;
+	public AudioClip risa;
 
 	private Rigidbody2D myRigidbody2D;
 	private Animator myAnimator;
@@ -321,7 +322,14 @@ public class PlayerController : MonoBehaviour
 		}
 
 		if (col.tag == "Grito") {
-			AudioSource.PlayClipAtPoint (grito, transform.position);
+			if (maxSpeed > 3) {
+				AudioSource.PlayClipAtPoint (grito, transform.position);
+			}
+		}
+
+		if (col.tag == "Limitador") {
+			AudioSource.PlayClipAtPoint (risa, transform.position);
+			transform.position = new Vector3(138.4f, -0.2940886f, 0);
 		}
 	}
 
