@@ -114,8 +114,7 @@ public class PlayerController : MonoBehaviour
 			dmgTimer -= Time.deltaTime;
 			powerUpDmgBar.value = dmgTimer;
 		}
-
-
+			
 	}
 
 	private void Movement()
@@ -332,6 +331,7 @@ public class PlayerController : MonoBehaviour
 			transform.position = new Vector3(138.4f, -0.2940886f, 0);
 		}
 	}
+
 
 	IEnumerator salto() {
 		yield return new WaitForSeconds (5);
