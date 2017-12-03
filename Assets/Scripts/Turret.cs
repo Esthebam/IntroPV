@@ -21,6 +21,7 @@ public class Turret : MonoBehaviour {
 	public Transform shootPointLeft;
 	public Transform shootPointRight;
 	public AudioClip born;
+	private gameMaster gm;
 
 	void Awake() {
 		anim = gameObject.GetComponent<Animator> ();
@@ -29,6 +30,7 @@ public class Turret : MonoBehaviour {
 	void Start() {
 		maxHealth = 30;
 		currentHealth = maxHealth;
+		gm = GameObject.FindGameObjectWithTag ("GameMaster").GetComponent<gameMaster> ();
 	}
 
 	void Update() {
@@ -46,6 +48,8 @@ public class Turret : MonoBehaviour {
 		if (currentHealth <= 0) {
 			//deathSounds[Random.Range(0, deathSounds.Length)].Play();
 			Destroy (gameObject);
+			gm.points += 20;
+
 		}
 	}
 

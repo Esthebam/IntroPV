@@ -19,12 +19,14 @@ public class EnemyManager : MonoBehaviour {
 
     public static bool enemyDead;
 	public static EnemyManager enemyManager;
+	private gameMaster gm;
 
     void Start()
     {
         currentHealth = enemyHealth;
         enemyAnim = GetComponent<Animator>();
 		enemyManager = this;
+		gm = GameObject.FindGameObjectWithTag ("GameMaster").GetComponent<gameMaster> ();
     }
 
 
@@ -56,6 +58,7 @@ public class EnemyManager : MonoBehaviour {
                 enemyAnim.SetBool("isDead", true);
                 Destroy(gameObject, animDelay);
 				GetComponent<LootDrop>().DropLot();
+				gm.points += 5;
             }
 			enemyDead = false;
         }

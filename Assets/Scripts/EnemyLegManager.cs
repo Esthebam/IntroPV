@@ -18,6 +18,7 @@ public class EnemyLegManager : MonoBehaviour
     public int enemyValue;
 
     public static bool enemyDead;
+	private gameMaster gm;
 
     void Start()
     {
@@ -25,6 +26,7 @@ public class EnemyLegManager : MonoBehaviour
 		enemyAnim = GetComponent<Animator>();
         enemy = GetComponent<Transform>();
 		myRigidbody=  GetComponent<Rigidbody2D> ();
+		gm = GameObject.FindGameObjectWithTag ("GameMaster").GetComponent<gameMaster> ();
     }
 
 
@@ -55,6 +57,7 @@ public class EnemyLegManager : MonoBehaviour
 				myRigidbody.gravityScale = 0;
                 GetComponent<LootDrop>().DropLot();
                 Destroy(gameObject, animDelay);
+				gm.points += 5;
                 
             }
             enemyDead = false;

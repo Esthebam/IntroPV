@@ -35,6 +35,7 @@ public class PlayerController : MonoBehaviour
 	public GameObject powerUpSaltoPrefab;
 	public GameObject sierraPrefab;
 	public GameObject powerUpVelPrefab;
+	public Text text;
 
 	public AudioSource[] shootingSounds;
 	public AudioSource powerUpSaltoSound;
@@ -295,6 +296,9 @@ public class PlayerController : MonoBehaviour
 				tieneInstanciadoSalto = true;
 				col.enabled = false;
 				Instantiate (powerUpSaltoPrefab, new Vector3 (col.transform.position.x + 0.5f, col.transform.position.y + 8f, col.transform.position.z), Quaternion.identity);
+				text.enabled = true;
+				text.text = ("Acercate al borde para agarrar la habilidad de salto doble y poder llegar a la plataforma movil");
+				StartCoroutine ("timer");
 			}
 		}
 
@@ -329,6 +333,28 @@ public class PlayerController : MonoBehaviour
 		if (col.tag == "Limitador") {
 			AudioSource.PlayClipAtPoint (risa, transform.position);
 			transform.position = new Vector3(138.4f, -0.2940886f, 0);
+			text.enabled = true;
+			text.text = ("Por favor quedate en la plataforma");
+			StartCoroutine ("timer");
+		}
+
+		if (col.tag == "Limitador2") {
+			transform.position = new Vector3 (138.4f, -0.2940886f, 0);
+		}
+			
+		if (col.tag == "ColliderPlataforma") {
+			text.enabled = true;
+			text.text = ("Al momento de caer no pares de correr para poder lograr alcanzar la siguiente plataforma");
+			StartCoroutine ("timer");
+		}
+
+		if (col.tag == "PlataformaNivel") {
+			text.text = ("Bajando al siguiente nivel...");
+			StartCoroutine ("timer2");
+		}
+
+		if (col.tag == "ColliderEspera") {
+			text.text = ("Espera la plataforma que te llevara al siguiente nivel");
 		}
 	}
 
@@ -388,6 +414,16 @@ public class PlayerController : MonoBehaviour
 	IEnumerator cd() {
 		yield return new WaitForSeconds (coolDown);
 		enCoolDown = false;
+	}
+
+	IEnumerator timer() {
+		yield return new WaitForSeconds (5);
+		text.enabled = false;
+	}
+
+	IEnumerator timer2() {
+		yield return new WaitForSeconds (3);
+		text.enabled = false;
 	}
 
 

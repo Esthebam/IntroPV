@@ -25,6 +25,11 @@ TagManager:
   - TurretBullet
   - Turret
   - Limitador
+  - ColliderPlataforma
+  - PlataformaNivel
+  - Limitador2
+  - ColliderEspera
+  - GameMaster
   layers:
   - Default
   - TransparentFX
