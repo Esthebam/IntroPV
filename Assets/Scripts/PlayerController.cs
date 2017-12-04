@@ -62,6 +62,7 @@ public class PlayerController : MonoBehaviour
 	public gameMaster gm;
 	private float startTime = 200;
 	private float tiempoRestante;
+	public Vector3 checkpoint;
 
 
 
@@ -368,6 +369,10 @@ public class PlayerController : MonoBehaviour
 			gm.points += Mathf.FloorToInt (tiempoRestante) /2 ;
 			Destroy (GameObject.FindGameObjectWithTag ("ColliderNivel1"));
 
+		}
+
+		if (col.tag == "Checkpoint") {
+			checkpoint = new Vector3 (transform.position.x, transform.position.y, transform.position.z);
 		}
 	}
 

@@ -33,6 +33,7 @@ TagManager:
   - Puerta
   - ColliderNivel1
   - Tiempo
+  - Checkpoint
   layers:
   - Default
   - TransparentFX

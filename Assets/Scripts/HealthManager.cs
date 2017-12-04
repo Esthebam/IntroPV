@@ -75,7 +75,7 @@ public class HealthManager : MonoBehaviour {
 			CombatTextManager.Instance.CreateText(new Vector3(player.transform.position.x, player.transform.position.y + 0.5f, player.transform.position.z), "-" + playerHealth.ToString(), Color.red, true);
             playerHealth -= maxHealth;
 			healthBar.value = (playerHealth/maxHealth)* 100;
-            transform.position = new Vector3(-7, 0, 0);
+			transform.position = player.checkpoint;
         }
 
 		if (col.gameObject.tag == "TurretBullet") {
