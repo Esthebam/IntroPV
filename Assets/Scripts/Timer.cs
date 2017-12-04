@@ -6,22 +6,29 @@ using UnityEngine.UI;
 public class Timer : MonoBehaviour {
 	
 	public Text timerText;
-	private float startTime;
+	public float startTime;
+	public float tiempoRestante;
+	public string seconds;
+
 	// Use this for initialization
 	void Start () {
-		startTime = Time.time;
+		startTime = 200;
 
 		
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
-		float t = Time.time - startTime;
+		tiempoRestante = startTime - Time.time;
 
-		string minutes = ((int)t / 60).ToString ();
-		string seconds = (t % 60).ToString ();
+		//string minutes = ((int)t / 60).ToString ();
+		//string seconds = (t % 60).ToString ();
+		seconds = Mathf.FloorToInt(tiempoRestante).ToString();
+		//timerText.text = minutes + ":" + seconds;
+		timerText.text = seconds;
 
-		timerText.text = minutes + ":" + seconds;
-		
+		if (Input.GetKeyDown (KeyCode.T)) {
+			startTime += 100;
+		}
 	}
 }

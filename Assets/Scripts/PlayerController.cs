@@ -59,6 +59,10 @@ public class PlayerController : MonoBehaviour
 	public bool enCoolDown;
 	private bool tieneInstanciadoSalto;
 	private bool tieneInstanciadoVel;
+	public gameMaster gm;
+	private float startTime = 200;
+	private float tiempoRestante;
+
 
 
 	// Use this for initialization
@@ -73,14 +77,15 @@ public class PlayerController : MonoBehaviour
 		powerUpVelBar.value = 0;
 		powerUpVidaBar.value = 0;
 		tieneInstanciadoSalto = false;
-
-
-
+		gm = GameObject.FindGameObjectWithTag ("GameMaster").GetComponent<gameMaster> ();
+	
 	}
 
 	// Update is called once per frame
 	void Update()
 	{
+		tiempoRestante = startTime - Time.time;
+
 		if (Input.GetKeyDown (KeyCode.Space)) {
 			CombatTextManager.Instance.CreateText(new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z), "Hola", Color.red, false);
 		}
@@ -115,6 +120,8 @@ public class PlayerController : MonoBehaviour
 			dmgTimer -= Time.deltaTime;
 			powerUpDmgBar.value = dmgTimer;
 		}
+
+	
 			
 	}
 
@@ -355,6 +362,12 @@ public class PlayerController : MonoBehaviour
 
 		if (col.tag == "ColliderEspera") {
 			text.text = ("Espera la plataforma que te llevara al siguiente nivel");
+		}
+
+		if (col.tag == "ColliderNivel1") {
+			gm.points += Mathf.FloorToInt (tiempoRestante) /2 ;
+			Destroy (GameObject.FindGameObjectWithTag ("ColliderNivel1"));
+
 		}
 	}
 

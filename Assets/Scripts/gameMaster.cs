@@ -5,10 +5,10 @@ using UnityEngine.UI;
 
 public class gameMaster : MonoBehaviour {
 
-	public int points;
+	public float points;
 	public Text pointsText;
 
 	void Update() {
-		pointsText.text = ("Score: " + points);
+		pointsText.text = ("Score: " + Mathf.FloorToInt(points));
 	}
 }

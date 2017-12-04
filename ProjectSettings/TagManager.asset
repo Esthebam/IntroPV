@@ -30,6 +30,9 @@ TagManager:
   - Limitador2
   - ColliderEspera
   - GameMaster
+  - Puerta
+  - ColliderNivel1
+  - Tiempo
   layers:
   - Default
   - TransparentFX
