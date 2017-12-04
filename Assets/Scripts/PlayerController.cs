@@ -66,6 +66,7 @@ public class PlayerController : MonoBehaviour
 
 
 
+
 	// Use this for initialization
 	void Start()
 	{
@@ -79,6 +80,7 @@ public class PlayerController : MonoBehaviour
 		powerUpVidaBar.value = 0;
 		tieneInstanciadoSalto = false;
 		gm = GameObject.FindGameObjectWithTag ("GameMaster").GetComponent<gameMaster> ();
+	
 	
 	}
 

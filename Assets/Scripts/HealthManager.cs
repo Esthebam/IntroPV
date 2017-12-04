@@ -32,9 +32,8 @@ public class HealthManager : MonoBehaviour {
     public int enemyDamage;
     public static bool playerDead;
 	public float maxHealth;
-	public Vidas vidas;
 	public CircleCollider2D circulo;
-	public int vida = 2;
+	public int currentLifes;
 	
 	public bool invincible;
 
@@ -42,7 +41,6 @@ public class HealthManager : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-		vidas = GameObject.FindObjectOfType<Vidas> ();
 		circulo = GameObject.FindObjectOfType<CircleCollider2D> ();
         playerDead = false;
         myRigidbody = GetComponent<Rigidbody2D>();
@@ -50,7 +48,8 @@ public class HealthManager : MonoBehaviour {
 		healthManager = this;
         playerAnim = GetComponent<Animator>();
 		maxHealth = playerHealth;
-		healthBar.value = 100;	
+		healthBar.value = 100;
+		currentLifes = 5;
     }
 
 
@@ -199,27 +198,26 @@ public class HealthManager : MonoBehaviour {
 	}
 	void Update()
 	{
-		if (playerHealth > 0 && vida >= 0) {
+		if (playerHealth > 0 && currentLifes >= 0) {
 			float healthNow= (playerHealth/maxHealth) * 100 ;
 			healthText.text = Mathf.RoundToInt(healthNow) + "%";
 		}
 
-		if (playerHealth <= 0 && vida > 0) 
+		if (playerHealth <= 0 && currentLifes > 0) 
 		{
 			float healthNow= (playerHealth/maxHealth) * 100 ;
 			healthText.text = Mathf.RoundToInt(healthNow) + "%";
-			vida--;
-			vidas.cambioVida(vida);
+			currentLifes--;
 			playerHealth = maxHealth;
 			healthBar.value = (playerHealth/maxHealth)* 100;
 			player.SendMessage ("restart");
 		}
 			
 		
-		if (playerHealth < 0 && vida == 0) 
+		if (playerHealth < 0 && currentLifes == 0) 
 		{
 			
-			vidas.cambioVida (vida--);
+			currentLifes--;
 			healthText.text = 0 + " %";	
 			healthBar.value = 0;
 			//GetComponent<BoxCollider2D> ().enabled = false;
