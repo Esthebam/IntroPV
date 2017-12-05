@@ -4877,6 +4877,8 @@ MonoBehaviour:
   estaDisparando: 1
   coolDown: 0.3
   enCoolDown: 0
+  gm: {fileID: 0}
+  checkpoint: {x: 0, y: 0, z: 0}
 --- !u!50 &824704209
 Rigidbody2D:
   serializedVersion: 4
@@ -5029,9 +5031,8 @@ MonoBehaviour:
   playerHealth: 100
   enemyDamage: 5
   maxHealth: 0
-  vidas: {fileID: 0}
   circulo: {fileID: 0}
-  vida: 2
+  currentLifes: 0
   invincible: 0
 --- !u!82 &824704213
 AudioSource:
@@ -9818,6 +9819,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timerText: {fileID: 1907483191}
+  startTime: 0
+  tiempoRestante: 0
+  seconds: 
 --- !u!1001 &1393588674
 Prefab:
   m_ObjectHideFlags: 0
