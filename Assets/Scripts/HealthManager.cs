@@ -38,7 +38,6 @@ public class HealthManager : MonoBehaviour {
 	public bool invincible;
 
 
-
     // Use this for initialization
     void Start () {
 		circulo = GameObject.FindObjectOfType<CircleCollider2D> ();
@@ -87,6 +86,7 @@ public class HealthManager : MonoBehaviour {
 			CameraShake.Shake(0.25f, 0.75f);
 			Destroy(GameObject.FindWithTag("TurretBullet"));
 		}
+
     }
 
     void ChequearEnemigos(Collider2D col)
@@ -157,9 +157,23 @@ public class HealthManager : MonoBehaviour {
 			CombatTextManager.Instance.CreateText(new Vector3(player.transform.position.x, player.transform.position.y + 0.5f, player.transform.position.z), "-" + "5", Color.red, true);
             CameraShake.Shake(0.25f, 0.75f);
         }
-
-	
+			
     }
+
+	void OnCollisionEnter2D(Collision2D col) {
+		if (col.gameObject.tag == "Boss" && !invincible)
+		{
+			playerHealth -= 30f;
+			damageSounds [Random.Range (0, damageSounds.Length)].Play ();
+			StartCoroutine("color");
+			invincible = true;
+			StartCoroutine("tiempoEspera");
+			healthBar.value = (playerHealth / maxHealth) * 100;
+			myRigidbody.velocity = new Vector2(-10f, KnockBackY);
+			CombatTextManager.Instance.CreateText(new Vector3(player.transform.position.x, player.transform.position.y + 0.5f, player.transform.position.z), "-" + 30.ToString(), Color.red, true);
+			CameraShake.Shake (0.50f, 1f);
+		}
+	}
 
     void OnTriggerStay2D(Collider2D col)
     {
@@ -179,6 +193,7 @@ public class HealthManager : MonoBehaviour {
 		yield return new WaitForSeconds (1.2f);
 		invincible = false;
 	}
+
 
 	IEnumerator color(){
 		Color color = player.GetComponent<SpriteRenderer> ().color;
