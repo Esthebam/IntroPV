@@ -433,9 +433,10 @@ public class PlayerController : MonoBehaviour
 
 		}
 
-		if (col.tag == "ColliderNivel") {
-			SceneManager.LoadScene ("Escena 2");
-		}
+		//if (col.tag == "ColliderNivel") {
+			//if(Input.GetKeyDown(ke
+			//SceneManager.LoadScene ("Escena 2");
+		//}
 
 	}
 

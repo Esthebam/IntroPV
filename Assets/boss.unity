@@ -1410,7 +1410,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   points: 0
   pointsText: {fileID: 1264249166}
-  inputText: {fileID: 0}
+  inputText: {fileID: 362289109}
 --- !u!1001 &157648854
 Prefab:
   m_ObjectHideFlags: 0
@@ -2540,6 +2540,80 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2535d0d0a5cfac147a414e6b15eac7b1, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &362289108
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 362289111}
+  - component: {fileID: 362289110}
+  - component: {fileID: 362289109}
+  m_Layer: 5
+  m_Name: Text (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &362289109
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 362289108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 250
+    m_FontStyle: 1
+    m_BestFit: 1
+    m_MinSize: 1
+    m_MaxSize: 300
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 
+--- !u!222 &362289110
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 362289108}
+--- !u!224 &362289111
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 362289108}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.99998707, y: 0.99998707, z: 0.99998707}
+  m_Children: []
+  m_Father: {fileID: 1158333850}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 279.18, y: -97.15997}
+  m_SizeDelta: {x: 173.85, y: 111.08}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &390340676
 GameObject:
   m_ObjectHideFlags: 0
@@ -4957,7 +5031,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 824704204}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.2, y: -2.28, z: 0}
+  m_LocalPosition: {x: 145.91, y: 4.75, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1446481110}
@@ -8324,6 +8398,7 @@ RectTransform:
   m_Children:
   - {fileID: 1634190453}
   - {fileID: 1264249165}
+  - {fileID: 362289111}
   m_Father: {fileID: 0}
   m_RootOrder: 134
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -10156,6 +10231,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1408561429}
   - component: {fileID: 1408561428}
+  - component: {fileID: 1408561430}
   m_Layer: 0
   m_Name: ColliderNivel
   m_TagString: ColliderNivel
@@ -10178,9 +10254,9 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -6.5329285, y: -2.3311949}
-  - {x: -1.0153351, y: -2.2877684}
-  - {x: -1.0543213, y: -2.2779646}
+  - {x: -5.0252686, y: 0.92397976}
+  - {x: -5.058609, y: -3.6926346}
+  - {x: -5.063339, y: -3.7856245}
 --- !u!4 &1408561429
 Transform:
   m_ObjectHideFlags: 0
@@ -10194,6 +10270,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 146
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1408561430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1408561427}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5393bea4c94021c43b3f990187cb0dc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelToLoad: 2
 --- !u!1001 &1412517604
 Prefab:
   m_ObjectHideFlags: 0

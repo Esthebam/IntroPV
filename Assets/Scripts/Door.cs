@@ -24,6 +24,7 @@ public class Door : MonoBehaviour {
 		if(col.CompareTag("Player")) {
 			gm.inputText.text = ("[E] para entrar");
 			if(Input.GetKeyDown(KeyCode.E)) {
+				SaveScore ();
 				SceneManager.LoadScene(levelToLoad);
 			}
 		}
@@ -33,6 +34,7 @@ public class Door : MonoBehaviour {
 	void OnTriggerStay2D(Collider2D col) {
 		if(col.CompareTag("Player")) {
 			if(Input.GetKeyDown(KeyCode.E)) {
+					SaveScore ();
 					SceneManager.LoadScene(levelToLoad);
 			}
 		}
@@ -42,6 +44,10 @@ public class Door : MonoBehaviour {
 		if(col.CompareTag("Player")) {
 			gm.inputText.text = ("");
 		}
+	}
+
+	void SaveScore() {
+		PlayerPrefs.SetInt ("Points", (int)gm.points);
 	}
 
 }
