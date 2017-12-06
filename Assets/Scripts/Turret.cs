@@ -11,6 +11,7 @@ public class Turret : MonoBehaviour {
 	public float bulletTimer;
 	public static float currentHealth;
 	public static float maxHealth;
+	public float currenHealthRef;
 
 	public bool awake = false;
 	public bool lookingRight = true;
@@ -30,10 +31,12 @@ public class Turret : MonoBehaviour {
 	void Start() {
 		maxHealth = 30;
 		currentHealth = maxHealth;
+		currenHealthRef = currentHealth;
 		gm = GameObject.FindGameObjectWithTag ("GameMaster").GetComponent<gameMaster> ();
 	}
 
 	void Update() {
+		currenHealthRef = currentHealth;
 		anim.SetBool ("Awake", awake);
 		anim.SetBool ("LookingRight", lookingRight);
 		RangeCheck ();

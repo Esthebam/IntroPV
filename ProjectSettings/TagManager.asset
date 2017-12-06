@@ -36,6 +36,12 @@ TagManager:
   - Checkpoint
   - Boss
   - BossTrigger
+  - LimitadorBoss
+  - LimitadorBossInicial
+  - SinDMG
+  - Turret1
+  - Turret2
+  - BossWall2
   layers:
   - Default
   - TransparentFX

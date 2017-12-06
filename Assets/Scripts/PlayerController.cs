@@ -378,6 +378,18 @@ public class PlayerController : MonoBehaviour
 		}
 	}
 
+	void OnTriggerExit2D(Collider2D col) {
+		if (col.tag == "SinDMG") {
+			text.text = ("");
+		}
+	}
+
+	void OnTriggerStay2D(Collider2D col) {
+		if (col.tag == "SinDMG") {
+			BulletMovement.damage = 0;
+			text.text = ("Desde aca no podes hacer daño, acercate mas");
+		}
+	}
 
 	IEnumerator salto() {
 		yield return new WaitForSeconds (5);

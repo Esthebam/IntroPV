@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class BossManager : MonoBehaviour {
 
-	public float maxSpeed=1f ;
-	public float speed=1f ;
+	public float maxSpeed = 1f ;
+	public float speed = 1f ;
 	private Rigidbody2D rb2d;
 	private Animator anim;
 	public bool colisiona;
@@ -13,9 +13,10 @@ public class BossManager : MonoBehaviour {
 	public bool walk;
 	public float wakeRange;
 	public Transform target;
-	private float ySize;
+	//private float ySize;
 	public AudioClip risaRobot;
 	public bool seRio;
+	public AudioSource[] ataques;
 
 
 	void Start () {
@@ -23,18 +24,23 @@ public class BossManager : MonoBehaviour {
 		rb2d = GetComponent<Rigidbody2D>();
 		anim = gameObject.GetComponent<Animator> ();
 		target = GameObject.FindGameObjectWithTag ("Player").GetComponent<Transform> ();
-		ySize = transform.localScale.y;
+		//ySize = transform.localScale.y;
 	}
 
 	void Update () {
 		anim.SetBool ("Colisiona", colisiona);
 		anim.SetBool ("Distancia", walk);
 		RangeCheck ();
+
+		if (Input.GetKeyDown (KeyCode.S)) {
+			transform.localScale = new Vector3(1f, 1f, 1f);
+		}
 	}
 
 	void OnCollisionEnter2D(Collision2D col) {
-		if (col.gameObject.tag == "Player") {
+		if (col.gameObject.tag == "Player" && !colisiona) {
 			colisiona = true;
+			ataques [Random.Range (0, ataques.Length)].Play ();
 			StartCoroutine ("tiempo");
 		}
 	}
@@ -43,7 +49,7 @@ public class BossManager : MonoBehaviour {
 		
 
 	IEnumerator tiempo() {
-		yield return new WaitForSeconds(0.5f);
+		yield return new WaitForSeconds(1.5f);
 		colisiona = false;
 	}
 
@@ -51,6 +57,7 @@ public class BossManager : MonoBehaviour {
 		distance = Vector3.Distance (transform.position, target.transform.position);
 		if (distance < wakeRange) {
 			walk = true;
+			Destroy (GameObject.FindGameObjectWithTag ("LimitadorBossInicial"));
 			if (!seRio) {
 				seRio = true;
 				AudioSource.PlayClipAtPoint (risaRobot, transform.position);
@@ -58,9 +65,9 @@ public class BossManager : MonoBehaviour {
 
 		}
 
-		if (distance > wakeRange) {
-			walk = false;
-		}
+		//if (distance > wakeRange) {
+			//walk = false;
+		//}
 	}
 
 	// Update is called once per frame
@@ -74,15 +81,18 @@ public class BossManager : MonoBehaviour {
 				rb2d.velocity = new Vector2 (speed, rb2d.velocity.y);
 			}
 			if (speed < 0) {
-				transform.localScale = new Vector3 (ySize, transform.localScale.y, transform.localScale.z);
+				//transform.localScale = new Vector3 (ySize, transform.localScale.y, transform.localScale.z);
 				//transform.GetChild(0).localScale= new Vector3(-1f, 1f, 1f);
+				transform.localScale = new Vector3(1f, 1f, 1f);
 			}
 			if (speed > 0) {
-				transform.localScale = new Vector3 (-ySize, transform.localScale.y, transform.localScale.z);
+				//transform.localScale = new Vector3 (-ySize, transform.localScale.y, transform.localScale.z);
 				//transform.GetChild(0).localScale= new Vector3(1f, 1f, 1f);
+				transform.localScale = new Vector3(-1f, 1f, 1f);
 
 			}
 		}
+
 
 
 

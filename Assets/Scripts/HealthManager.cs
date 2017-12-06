@@ -116,7 +116,7 @@ public class HealthManager : MonoBehaviour {
             CameraShake.Shake(0.25f, 0.75f);
         }
 
-		if (col.tag == "Turret")
+		if (col.tag == "Turret" || col.tag == "Turret1" || col.tag == "Turret2")
 		{
 			//col.GetComponent<ParticleSystem>().Play();
 			CombatTextManager.Instance.CreateText(new Vector3(player.transform.position.x, player.transform.position.y + 0.5f, player.transform.position.z), "-" + playerHealth.ToString(), Color.red, true);
