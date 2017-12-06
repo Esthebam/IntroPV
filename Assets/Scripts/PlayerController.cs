@@ -36,6 +36,7 @@ public class PlayerController : MonoBehaviour
 	public GameObject sierraPrefab;
 	public GameObject powerUpVelPrefab;
 	public GameObject powerUpDMGPrefab;
+	public GameObject plataformaMovilPuaPrefab;
 	public Text text;
 
 	public AudioSource[] shootingSounds;
@@ -399,10 +400,39 @@ public class PlayerController : MonoBehaviour
 				StartCoroutine ("DMGtimer");
 			}
 		}
+
+		if (col.tag == "InstanciadorPowerUpSALTO") {
+			if (!tieneInstanciadoSalto) {
+				tieneInstanciadoSalto = true;
+				Instantiate (powerUpSaltoPrefab, new Vector3 (transform.position.x, transform.position.y + 5f, transform.position.z), Quaternion.identity);
+				col.enabled = false;
+				StartCoroutine ("SALTOtimer");
+			}
+		}
+
+
+		if (col.tag == "Limitator") {
+			healthManager.playerHealth -= healthManager.maxHealth;
+			transform.position = checkpoint;
+			Destroy(GameObject.FindGameObjectWithTag("PlataformaMovilPua"));
+			Instantiate (plataformaMovilPuaPrefab, new Vector3 (179.964f, -27.57f, 0), Quaternion.identity);
+		}
+
+		if (col.tag == "ASaltar") {
+			text.text = ("Intenta saltar todas las sierras para poder continuar");
+		}
+
+		if (col.tag == "SawDamage") {
+			healthManager.sawDamage = 100;
+		}
 	}
 
 	void OnTriggerExit2D(Collider2D col) {
 		if (col.tag == "SinDMG") {
+			text.text = ("");
+		}
+
+		if (col.tag == "ASaltar") {
 			text.text = ("");
 		}
 	}
@@ -411,6 +441,11 @@ public class PlayerController : MonoBehaviour
 		if (col.tag == "SinDMG") {
 			BulletMovement.damage = 0;
 			text.text = ("Desde aca no podes hacer daño, acercate mas");
+		}
+
+		if (col.tag == "Espera") {
+			BulletMovement.damage = 0;
+			text.text = ("Espera la plataforma movil para continuar");
 		}
 	}
 
@@ -428,6 +463,12 @@ public class PlayerController : MonoBehaviour
 	IEnumerator DMGtimer() {
 		yield return new WaitForSeconds(5);
 		tieneInstanciadoDMG = false;
+	}
+
+	IEnumerator SALTOtimer() {
+		yield return new WaitForSeconds(5);
+		tieneInstanciadoSalto = false;
+		GameObject.FindWithTag ("InstanciadorPowerUpSALTO").GetComponent<Collider2D> ().enabled = true;
 	}
 
 	IEnumerator vida() {

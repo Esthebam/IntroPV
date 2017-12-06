@@ -9,9 +9,7 @@ public class Turret : MonoBehaviour {
 	public float shootInterval;
 	public float bulletSpeed = 100;
 	public float bulletTimer;
-	public static float currentHealth;
-	public static float maxHealth;
-	public float currenHealthRef;
+
 
 	public bool awake = false;
 	public bool lookingRight = true;
@@ -22,21 +20,18 @@ public class Turret : MonoBehaviour {
 	public Transform shootPointLeft;
 	public Transform shootPointRight;
 	public AudioClip born;
-	private gameMaster gm;
+	//private gameMaster gm;
 
 	void Awake() {
 		anim = gameObject.GetComponent<Animator> ();
 	}
 
 	void Start() {
-		maxHealth = 30;
-		currentHealth = maxHealth;
-		currenHealthRef = currentHealth;
-		gm = GameObject.FindGameObjectWithTag ("GameMaster").GetComponent<gameMaster> ();
+		
+		//gm = GameObject.FindGameObjectWithTag ("GameMaster").GetComponent<gameMaster> ();
 	}
 
 	void Update() {
-		currenHealthRef = currentHealth;
 		anim.SetBool ("Awake", awake);
 		anim.SetBool ("LookingRight", lookingRight);
 		RangeCheck ();
@@ -48,12 +43,9 @@ public class Turret : MonoBehaviour {
 		if (target.transform.position.x < transform.position.x) {
 			lookingRight = false;
 		}
-		if (currentHealth <= 0) {
-			//deathSounds[Random.Range(0, deathSounds.Length)].Play();
-			Destroy (gameObject);
-			gm.points += 20;
 
-		}
+
+
 	}
 
 	void RangeCheck() {

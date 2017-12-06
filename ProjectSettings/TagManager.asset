@@ -43,6 +43,12 @@ TagManager:
   - Turret2
   - BossWall2
   - InstanciadorPowerUpDMG
+  - InstanciadorPowerUpSALTO
+  - Limitator
+  - PlataformaMovilPua
+  - ASaltar
+  - SawDamage
+  - Espera
   layers:
   - Default
   - TransparentFX

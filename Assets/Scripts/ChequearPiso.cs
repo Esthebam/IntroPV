@@ -14,7 +14,7 @@ public class ChequearPiso : MonoBehaviour {
 	}
 
 	private void OnCollisionEnter2D(Collision2D col){
-		if(col.gameObject.tag == "PlataformaMovil")
+		if(col.gameObject.tag == "PlataformaMovil" || col.gameObject.tag == "PlataformaMovilPua")
 		{
 			myRigidbody.velocity = new Vector3(0f,0f,0f);
 			player.transform.parent = col.transform;
@@ -28,7 +28,7 @@ public class ChequearPiso : MonoBehaviour {
         {
             player.tocandoPiso = true;
         }
-		if(col.gameObject.tag == "PlataformaMovil")
+		if(col.gameObject.tag == "PlataformaMovil" || col.gameObject.tag == "PlataformaMovilPua")
 		{
 			player.transform.parent = col.transform;
 			player.tocandoPiso = true;
@@ -41,7 +41,7 @@ public class ChequearPiso : MonoBehaviour {
         {
 			player.tocandoPiso = false;
 		}
-		if(col.gameObject.tag == "PlataformaMovil")
+		if(col.gameObject.tag == "PlataformaMovil" || col.gameObject.tag == "PlataformaMovilPua")
 		{
 			player.transform.parent = null;
 			player.tocandoPiso = false;

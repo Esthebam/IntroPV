@@ -34,6 +34,7 @@ public class HealthManager : MonoBehaviour {
 	public float maxHealth;
 	public CircleCollider2D circulo;
 	public int currentLifes;
+	public float sawDamage;
 	
 	public bool invincible;
 
@@ -49,6 +50,7 @@ public class HealthManager : MonoBehaviour {
 		maxHealth = playerHealth;
 		healthBar.value = 100;
 		currentLifes = 5;
+		sawDamage = 5;
     }
 
 
@@ -121,7 +123,6 @@ public class HealthManager : MonoBehaviour {
 			//col.GetComponent<ParticleSystem>().Play();
 			CombatTextManager.Instance.CreateText(new Vector3(player.transform.position.x, player.transform.position.y + 0.5f, player.transform.position.z), "-" + "20", Color.red, true);
 			playerHealth -= 20;
-			transform.position = new Vector3(-7, 0, 0);
 			CameraShake.Shake (0.50f, 1f);
 		}
 
@@ -134,13 +135,13 @@ public class HealthManager : MonoBehaviour {
         {
             col.GetComponent<ParticleSystem>().Play();
             sawSound.Play();
-            playerHealth -= 5.00f;
+			playerHealth -= sawDamage;
             StartCoroutine("color");
             invincible = true;
             StartCoroutine("tiempoEspera");
             healthBar.value = (playerHealth / maxHealth) * 100;
             Knockback(col);
-			CombatTextManager.Instance.CreateText(new Vector3(player.transform.position.x, player.transform.position.y + 0.5f, player.transform.position.z), "-" + "5", Color.red, true);
+			CombatTextManager.Instance.CreateText(new Vector3(player.transform.position.x, player.transform.position.y + 0.5f, player.transform.position.z), "-" + sawDamage.ToString() , Color.red, true);
             CameraShake.Shake(0.25f, 0.75f);
         }
 

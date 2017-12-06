@@ -27,8 +27,8 @@ public class BossHealth : MonoBehaviour {
 	public bool noAlarde1, noAlarde2, noAlarde3;
 	//public AudioClip risaAyuda; // poner una lista
 	public BossManager boss;
-	public Turret turret1;
-	public Turret turret2;
+	public TurretHealth turret1;
+	public TurretHealth turret2;
 	public GameObject dmgPrefab;
 	public GameObject wallBoss2Prefab;
 
@@ -37,12 +37,12 @@ public class BossHealth : MonoBehaviour {
 		enemyAnim = gameObject.GetComponent<Animator> ();
 		gm = GameObject.FindGameObjectWithTag ("GameMaster").GetComponent<gameMaster> ();
 		boss = gameObject.GetComponent<BossManager> ();
-		turret1 = GameObject.FindGameObjectWithTag ("Turret2").GetComponent<Turret> ();
-		turret2 = GameObject.FindGameObjectWithTag ("Turret1").GetComponent<Turret> ();
+		turret1 = GameObject.FindGameObjectWithTag ("Turret2").GetComponent<TurretHealth> ();
+		turret2 = GameObject.FindGameObjectWithTag ("Turret1").GetComponent<TurretHealth> ();
 	}
 
 	void Update() {
-		if (turret1.currenHealthRef > 0 && enemyHealth <= 15 || turret2.currenHealthRef > 0 && enemyHealth <= 15) {
+		if (turret1.currentHealth > 0 && enemyHealth <= 15 || turret2.currentHealth> 0 && enemyHealth <= 15) {
 			AudioSource.PlayClipAtPoint (grito, transform.position);
 			BulletMovement.damage = 0;
 			enemyHealth += 100;
@@ -53,7 +53,7 @@ public class BossHealth : MonoBehaviour {
 			Instantiate (enemyEyePrefab,  new Vector3 (-6.96733f, -12.50937f, 0), Quaternion.identity);
 		}
 
-		if (turret1.currenHealthRef <= 0 || turret2.currenHealthRef <= 0) {
+		if (turret1.currentHealth <= 0 || turret2.currentHealth <= 0) {
 			Destroy (GameObject.FindGameObjectWithTag ("BossWall2"));
 		}
 	}

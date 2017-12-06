@@ -4954,7 +4954,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 824704204}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 140.55, y: 0.63, z: 0}
+  m_LocalPosition: {x: 125.18, y: -2.18, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1446481110}
@@ -4995,6 +4995,8 @@ MonoBehaviour:
   sierraPrefab: {fileID: 1015167542687836, guid: 7b712e72a5f0f644d8403c59b6ce048e,
     type: 2}
   powerUpVelPrefab: {fileID: 1841379246555062, guid: d3b70db9b353d2c4d97e591498444eae,
+    type: 2}
+  powerUpDMGPrefab: {fileID: 1269298817595940, guid: d8e6f1e57ed44644183acdac865a2b2d,
     type: 2}
   text: {fileID: 1634190454}
   shootingSounds:
