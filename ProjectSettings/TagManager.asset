@@ -42,6 +42,7 @@ TagManager:
   - Turret1
   - Turret2
   - BossWall2
+  - InstanciadorPowerUpDMG
   layers:
   - Default
   - TransparentFX

@@ -70,7 +70,7 @@ public class HealthManager : MonoBehaviour {
         {
             fizzSound.Play();
             col.GetComponent<ParticleSystem>().Play();
-			CombatTextManager.Instance.CreateText(new Vector3(player.transform.position.x, player.transform.position.y + 0.5f, player.transform.position.z), "-" + playerHealth.ToString(), Color.red, true);
+			CombatTextManager.Instance.CreateText(new Vector3(player.transform.position.x, player.transform.position.y + 0.5f, player.transform.position.z), "-" + "100", Color.red, true);
             playerHealth -= maxHealth;
 			healthBar.value = (playerHealth/maxHealth)* 100;
 			transform.position = player.checkpoint;
@@ -119,8 +119,8 @@ public class HealthManager : MonoBehaviour {
 		if (col.tag == "Turret" || col.tag == "Turret1" || col.tag == "Turret2")
 		{
 			//col.GetComponent<ParticleSystem>().Play();
-			CombatTextManager.Instance.CreateText(new Vector3(player.transform.position.x, player.transform.position.y + 0.5f, player.transform.position.z), "-" + playerHealth.ToString(), Color.red, true);
-			playerHealth -= maxHealth;
+			CombatTextManager.Instance.CreateText(new Vector3(player.transform.position.x, player.transform.position.y + 0.5f, player.transform.position.z), "-" + "20", Color.red, true);
+			playerHealth -= 20;
 			transform.position = new Vector3(-7, 0, 0);
 			CameraShake.Shake (0.50f, 1f);
 		}
@@ -170,7 +170,7 @@ public class HealthManager : MonoBehaviour {
 			StartCoroutine("tiempoEspera");
 			healthBar.value = (playerHealth / maxHealth) * 100;
 			myRigidbody.velocity = new Vector2(-10f, KnockBackY);
-			CombatTextManager.Instance.CreateText(new Vector3(player.transform.position.x, player.transform.position.y + 0.5f, player.transform.position.z), "-" + 30.ToString(), Color.red, true);
+			CombatTextManager.Instance.CreateText(new Vector3(player.transform.position.x, player.transform.position.y + 0.5f, player.transform.position.z), "-" + "30", Color.red, true);
 			CameraShake.Shake (0.50f, 1f);
 		}
 	}

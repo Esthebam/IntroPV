@@ -35,6 +35,7 @@ public class PlayerController : MonoBehaviour
 	public GameObject powerUpSaltoPrefab;
 	public GameObject sierraPrefab;
 	public GameObject powerUpVelPrefab;
+	public GameObject powerUpDMGPrefab;
 	public Text text;
 
 	public AudioSource[] shootingSounds;
@@ -63,6 +64,10 @@ public class PlayerController : MonoBehaviour
 	private float startTime = 200;
 	private float tiempoRestante;
 	public Vector3 checkpoint;
+	public AudioClip chekPointSound;
+	public bool tieneCheckPoint;
+	private HealthManager healthManager;
+	private bool tieneInstanciadoDMG;
 
 
 
@@ -80,6 +85,7 @@ public class PlayerController : MonoBehaviour
 		powerUpVidaBar.value = 0;
 		tieneInstanciadoSalto = false;
 		gm = GameObject.FindGameObjectWithTag ("GameMaster").GetComponent<gameMaster> ();
+		healthManager = GetComponent<HealthManager> ();
 	
 	
 	}
@@ -87,6 +93,10 @@ public class PlayerController : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
+		if (Input.GetKeyDown (KeyCode.W)) {
+			GetComponent<SpriteRenderer>().color = Color.white;
+		}
+			
 		tiempoRestante = startTime - Time.time;
 
 		if (Input.GetKeyDown (KeyCode.Space)) {
@@ -341,15 +351,17 @@ public class PlayerController : MonoBehaviour
 		}
 
 		if (col.tag == "Limitador") {
+			healthManager.playerHealth -= healthManager.maxHealth;
 			AudioSource.PlayClipAtPoint (risa, transform.position);
-			transform.position = new Vector3(138.4f, -0.2940886f, 0);
+			transform.position = checkpoint;
 			text.enabled = true;
 			text.text = ("Por favor quedate en la plataforma");
 			StartCoroutine ("timer");
 		}
 
 		if (col.tag == "Limitador2") {
-			transform.position = new Vector3 (138.4f, -0.2940886f, 0);
+			healthManager.playerHealth -= healthManager.maxHealth;
+			transform.position = checkpoint;
 		}
 			
 		if (col.tag == "ColliderPlataforma") {
@@ -373,8 +385,19 @@ public class PlayerController : MonoBehaviour
 
 		}
 
-		if (col.tag == "Checkpoint") {
+		if (col.tag == "Checkpoint" && !tieneCheckPoint) {
+			tieneCheckPoint = true;
+			AudioSource.PlayClipAtPoint(chekPointSound, transform.position);
 			checkpoint = new Vector3 (transform.position.x, transform.position.y, transform.position.z);
+			StartCoroutine ("checkTimer");
+		}
+
+		if (col.tag == "InstanciadorPowerUpDMG") {
+			if (!tieneInstanciadoDMG) {
+				tieneInstanciadoDMG = true;
+				Instantiate (powerUpDMGPrefab, new Vector3 (transform.position.x -0.5f, transform.position.y + 8f,transform.position.z), Quaternion.identity);
+				StartCoroutine ("DMGtimer");
+			}
 		}
 	}
 
@@ -400,6 +423,11 @@ public class PlayerController : MonoBehaviour
 		powerUpActivos--;
 		GameObject.FindWithTag ("InstanciadorPowerUp").GetComponent<Collider2D> ().enabled = true;
 		ChequearSalida();
+	}
+
+	IEnumerator DMGtimer() {
+		yield return new WaitForSeconds(5);
+		tieneInstanciadoDMG = false;
 	}
 
 	IEnumerator vida() {
@@ -458,6 +486,11 @@ public class PlayerController : MonoBehaviour
 		text.enabled = false;
 	}
 
+	IEnumerator checkTimer() {
+		yield return new WaitForSeconds (10);
+		tieneCheckPoint = false;
+	}
+
 
 
 	void ChequearSalida()
@@ -469,6 +502,7 @@ public class PlayerController : MonoBehaviour
 	}
 
 	void restart(){
+		transform.position = checkpoint;
 		estaDisparando = true;
 		powerUpDmgBar.transform.parent.gameObject.SetActive(false);
 		powerUpSaltoBar.transform.parent.gameObject.SetActive(false);

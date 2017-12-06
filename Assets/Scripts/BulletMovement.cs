@@ -53,7 +53,7 @@ public class BulletMovement : MonoBehaviour
     {
 		if (col.tag == "Piso" || col.tag == "Enemigo" || col.tag == "Turret" || col.tag == "Boss")
         {
-            GetComponent<ParticleSystem>().Play(); // Que haga el efecto de partículas
+			GetComponent<ParticleSystem> ().Play (); // Que haga el efecto de partículas
             GetComponent<SpriteRenderer>().enabled = false; // Que deje de verse la bala
             GetComponent<CircleCollider2D>().enabled = false; // Que deshabilite el collider para que no mate un enemigo atrás de otro
 			Destroy(gameObject);
