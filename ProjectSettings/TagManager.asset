@@ -49,6 +49,8 @@ TagManager:
   - ASaltar
   - SawDamage
   - Espera
+  - ColliderNivel2
+  - ColliderNivel
   layers:
   - Default
   - TransparentFX

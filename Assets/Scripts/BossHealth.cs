@@ -37,8 +37,8 @@ public class BossHealth : MonoBehaviour {
 		enemyAnim = gameObject.GetComponent<Animator> ();
 		gm = GameObject.FindGameObjectWithTag ("GameMaster").GetComponent<gameMaster> ();
 		boss = gameObject.GetComponent<BossManager> ();
-		turret1 = GameObject.FindGameObjectWithTag ("Turret2").GetComponent<TurretHealth> ();
-		turret2 = GameObject.FindGameObjectWithTag ("Turret1").GetComponent<TurretHealth> ();
+		//turret1 = GameObject.FindGameObjectWithTag ("Turret2").GetComponent<TurretHealth> ();
+		//turret2 = GameObject.FindGameObjectWithTag ("Turret1").GetComponent<TurretHealth> ();
 	}
 
 	void Update() {
@@ -53,7 +53,7 @@ public class BossHealth : MonoBehaviour {
 			Instantiate (enemyEyePrefab,  new Vector3 (-6.96733f, -12.50937f, 0), Quaternion.identity);
 		}
 
-		if (turret1.currentHealth <= 0 || turret2.currentHealth <= 0) {
+		if (turret1.currentHealth <= 0 && turret2.currentHealth <= 0) {
 			Destroy (GameObject.FindGameObjectWithTag ("BossWall2"));
 		}
 	}
@@ -96,6 +96,7 @@ public class BossHealth : MonoBehaviour {
 				Instantiate (enemyEyePrefab,  new Vector3 (-5.558771f, -12.50937f, 0), Quaternion.identity);
 				Instantiate (enemyEyePrefab,  new Vector3 (-6.026636f, -12.50937f, 0), Quaternion.identity);
 				AudioSource.PlayClipAtPoint (risaAyuda, transform.position);
+				Instantiate (dmgPrefab, new Vector3 (-12.7f, transform.position.y + 2f, transform.position.z), transform.rotation);
 				pidioAyuda2 = true;
 			}
 
@@ -104,6 +105,7 @@ public class BossHealth : MonoBehaviour {
 				Instantiate (enemyEyePrefab,  new Vector3 (-6.026636f, -12.50937f, 0), Quaternion.identity);
 				Instantiate (enemyEyePrefab,  new Vector3 (-6.96733f, -12.50937f, 0), Quaternion.identity);
 				AudioSource.PlayClipAtPoint (risaAyuda, transform.position);
+				Instantiate (dmgPrefab, new Vector3 (-12.7f, transform.position.y + 2f, transform.position.z), transform.rotation);
 				pidioAyuda3 = true;
 			}
 
@@ -134,6 +136,7 @@ public class BossHealth : MonoBehaviour {
 				gameObject.GetComponent<BoxCollider2D>().enabled = false;
 				enemyAnim.SetBool ("isDead", true);
 				AudioSource.PlayClipAtPoint (muerte, transform.position);
+				Destroy (GameObject.FindGameObjectWithTag ("Finish"));
 
 
 				//if (transform.localScale.y > minSize) {
@@ -156,7 +159,10 @@ public class BossHealth : MonoBehaviour {
 				//}
 
 				Destroy(gameObject, animDelay);
-				Destroy (GameObject.FindGameObjectWithTag ("Finish"), animDelay);
+				GameObject[] enemies = GameObject.FindGameObjectsWithTag ("Enemigo");
+				for (int i = 0; i < enemies.Length; i++) {
+					Destroy (enemies [i]);
+				}
 
 			}
 	

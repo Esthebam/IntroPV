@@ -20,6 +20,7 @@ public class EnemyManager : MonoBehaviour {
     public static bool enemyDead;
 	public static EnemyManager enemyManager;
 	private gameMaster gm;
+	private BossHealth bh;
 
     void Start()
     {

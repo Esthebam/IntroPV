@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Timer : MonoBehaviour {
 	
@@ -30,5 +31,15 @@ public class Timer : MonoBehaviour {
 		if (Input.GetKeyDown (KeyCode.T)) {
 			startTime += 100;
 		}
+
+		if (Input.GetKeyDown (KeyCode.R)) {
+			startTime -= 100;
+		}
+
+		if (startTime == 0) {
+			SceneManager.LoadScene ("GameOver");
+		}
+
+
 	}
 }

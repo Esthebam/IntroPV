@@ -33,7 +33,7 @@ public class BossManager : MonoBehaviour {
 		RangeCheck ();
 
 		if (Input.GetKeyDown (KeyCode.S)) {
-			transform.localScale = new Vector3(1f, 1f, 1f);
+			speed = 5;
 		}
 	}
 

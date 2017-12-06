@@ -214,6 +214,13 @@ public class HealthManager : MonoBehaviour {
 	}
 	void Update()
 	{
+		if (Input.GetKeyDown (KeyCode.Q)) {
+			if (currentLifes < 5) {
+				currentLifes ++;
+			}
+
+		}
+
 		if (playerHealth > 0 && currentLifes >= 0) {
 			float healthNow= (playerHealth/maxHealth) * 100 ;
 			healthText.text = Mathf.RoundToInt(healthNow) + "%";

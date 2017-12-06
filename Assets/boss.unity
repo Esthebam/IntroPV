@@ -1410,6 +1410,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   points: 0
   pointsText: {fileID: 1264249166}
+  inputText: {fileID: 0}
 --- !u!1001 &157648854
 Prefab:
   m_ObjectHideFlags: 0
@@ -1500,6 +1501,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 777659020a899774991108ec11c5bb4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentHealth: 0
+  turret: {fileID: 0}
 --- !u!61 &164897136
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4954,7 +4957,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 824704204}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 125.18, y: -2.18, z: 0}
+  m_LocalPosition: {x: -7.2, y: -2.28, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1446481110}
@@ -4998,6 +5001,7 @@ MonoBehaviour:
     type: 2}
   powerUpDMGPrefab: {fileID: 1269298817595940, guid: d8e6f1e57ed44644183acdac865a2b2d,
     type: 2}
+  plataformaMovilPuaPrefab: {fileID: 0}
   text: {fileID: 1634190454}
   shootingSounds:
   - {fileID: 824704217}
@@ -5173,6 +5177,7 @@ MonoBehaviour:
   maxHealth: 0
   circulo: {fileID: 0}
   currentLifes: 0
+  sawDamage: 0
   invincible: 0
 --- !u!82 &824704213
 AudioSource:
@@ -10142,6 +10147,53 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1407929600}
+--- !u!1 &1408561427
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1408561429}
+  - component: {fileID: 1408561428}
+  m_Layer: 0
+  m_Name: ColliderNivel
+  m_TagString: ColliderNivel
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!68 &1408561428
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1408561427}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: -6.5329285, y: -2.3311949}
+  - {x: -1.0153351, y: -2.2877684}
+  - {x: -1.0543213, y: -2.2779646}
+--- !u!4 &1408561429
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1408561427}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 151.0813, y: -6.1330576, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 146
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1412517604
 Prefab:
   m_ObjectHideFlags: 0
@@ -11451,7 +11503,6 @@ MonoBehaviour:
   shootInterval: 1
   bulletSpeed: 10
   bulletTimer: 0
-  currenHealthRef: 0
   awake: 0
   lookingRight: 1
   bullet: {fileID: 1722041820549420, guid: 5fbd78c7ae1f90b4fb6b130d3776ed90, type: 2}

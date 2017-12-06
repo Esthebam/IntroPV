@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -425,6 +426,17 @@ public class PlayerController : MonoBehaviour
 		if (col.tag == "SawDamage") {
 			healthManager.sawDamage = 100;
 		}
+
+		if (col.tag == "ColliderNivel2") {
+			gm.points += Mathf.FloorToInt (tiempoRestante) /2 ;
+			Destroy (GameObject.FindGameObjectWithTag ("ColliderNivel2"));
+
+		}
+
+		if (col.tag == "ColliderNivel") {
+			SceneManager.LoadScene ("Escena 2");
+		}
+
 	}
 
 	void OnTriggerExit2D(Collider2D col) {
