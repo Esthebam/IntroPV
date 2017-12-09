@@ -967,6 +967,11 @@ Prefab:
       propertyPath: m_TagString
       value: Turret2
       objectReference: {fileID: 0}
+    - target: {fileID: 212416366543181840, guid: ce280e1a9a0aacb4dbd132683709259f,
+        type: 2}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ce280e1a9a0aacb4dbd132683709259f, type: 2}
   m_IsPrefabParent: 0
@@ -1706,6 +1711,11 @@ Prefab:
     - target: {fileID: 1707524827494850, guid: ce280e1a9a0aacb4dbd132683709259f, type: 2}
       propertyPath: m_TagString
       value: Turret1
+      objectReference: {fileID: 0}
+    - target: {fileID: 212416366543181840, guid: ce280e1a9a0aacb4dbd132683709259f,
+        type: 2}
+      propertyPath: m_SortingOrder
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ce280e1a9a0aacb4dbd132683709259f, type: 2}
@@ -2578,7 +2588,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 824704204}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -10.15, y: -12.38, z: 0}
+  m_LocalPosition: {x: -11.05, y: -12.36, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1446481110}
@@ -5206,7 +5216,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: aae89205756a5ef47bd689f7c9ba4314, type: 3}
     m_FontSize: 70
     m_FontStyle: 0
     m_BestFit: 0
@@ -6192,7 +6202,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: aae89205756a5ef47bd689f7c9ba4314, type: 3}
     m_FontSize: 250
     m_FontStyle: 1
     m_BestFit: 1
@@ -6284,7 +6294,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: aae89205756a5ef47bd689f7c9ba4314, type: 3}
     m_FontSize: 250
     m_FontStyle: 1
     m_BestFit: 1
@@ -6764,7 +6774,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5393bea4c94021c43b3f990187cb0dc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelToLoad: 4
+  levelToLoad: 5
 --- !u!212 &1693127738
 SpriteRenderer:
   m_ObjectHideFlags: 0

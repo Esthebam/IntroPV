@@ -24,5 +24,6 @@ public class gameMaster : MonoBehaviour {
 
 	void Update() {
 		pointsText.text = ("Score: " + Mathf.FloorToInt(points));
+
 	}
 }
